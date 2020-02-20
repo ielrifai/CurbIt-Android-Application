@@ -1,4 +1,4 @@
-package com.example.habittracker.ui.notifications;
+package se3350.habittracker.ui.notifications;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

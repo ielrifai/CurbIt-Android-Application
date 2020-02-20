@@ -1,4 +1,4 @@
-package com.example.habittracker;
+package se3350.habittracker;
 
 import android.os.Bundle;
 

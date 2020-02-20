@@ -1,4 +1,4 @@
-package com.example.habittracker;
+package se3350.habittracker;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("com.example.habittracker", appContext.getPackageName());
+        assertEquals("se3350.habittracker", appContext.getPackageName());
     }
 }
