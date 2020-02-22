@@ -27,6 +27,9 @@ public abstract class AppDatabase extends RoomDatabase {
     }
 
     private static AppDatabase create(final Context context){
+        //Comment the following line to not destroy the database on launch
+        //context.getApplicationContext().deleteDatabase(DB_NAME);
+
         return Room.databaseBuilder(context,AppDatabase.class,DB_NAME).build();
     }
 }
