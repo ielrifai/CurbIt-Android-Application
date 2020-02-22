@@ -12,6 +12,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.room.Room;
 
 import java.util.ArrayList;
 
@@ -31,21 +32,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-        DatabaseHandler databaseHandler = new DatabaseHandler(this);
 
-        AddData("Habitone");
     }
 
-    public void AddData(String newEntry) {
-        DatabaseHandler databaseHandler = new DatabaseHandler(this);
-        boolean insertData = databaseHandler.addData(newEntry);
-
-        if (insertData) {
-            Log.d("SQLtest","success");
-
-        } else {
-            Log.d("SQLtest","fail");
-
-        }
-    }
 }
