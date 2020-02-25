@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -16,8 +15,6 @@ import androidx.lifecycle.LiveData;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 import se3350.habittracker.AddHabitActivity;
 import se3350.habittracker.AppDatabase;
@@ -59,7 +56,6 @@ public class HomeFragment extends Fragment {
 
         // Set add button to open the add habit form
         addButton.setOnClickListener(event -> {
-            // TODO: Open the add habit form activity
             Intent intent = new Intent(this.getContext(), AddHabitActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity(intent);
