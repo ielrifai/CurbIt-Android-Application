@@ -3,13 +3,11 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
+    <TextView
         android:id="@+id/title"
         android:layout_width="422dp"
         android:layout_height="106dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Add Habit" />
+        android:text="@string/add_habit" />
 
     <EditText
         android:id="@+id/habitName"

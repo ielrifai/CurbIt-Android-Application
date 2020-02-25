@@ -1,5 +1,6 @@
 package se3350.habittracker.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+import se3350.habittracker.AddHabitActivity;
 import se3350.habittracker.AppDatabase;
 import se3350.habittracker.Habit;
 import se3350.habittracker.HabitDao;
@@ -58,16 +60,10 @@ public class HomeFragment extends Fragment {
         // Set add button to open the add habit form
         addButton.setOnClickListener(event -> {
             // TODO: Open the add habit form activity
-            Toast.makeText(getContext(),"Add a habit!", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this.getContext(), AddHabitActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
         });
-
-        // TODO: Remove once add habit is done
-        // asynchronous insert using an executor
-        Executor myExecutor = Executors.newSingleThreadExecutor();
-        myExecutor.execute(() -> {
-            habitDao.insertAll(newHabit);
-        });
-
 
         return root;
     }
