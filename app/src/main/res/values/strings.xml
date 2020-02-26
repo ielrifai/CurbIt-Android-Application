@@ -1,6 +1,17 @@
 <resources>
     <string name="app_name">Habit Tracker</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_information">Information</string>
+    <string name="habit_list">Habit List</string>
+    <string name="add_habit">Add Habit</string>
+    <string name="error_add_habit">Pls fill in all fields</string>
+    <string name="error_add_entry">Please fill in the journal entry</string>
+    <string name="name">Name</string>
+    <string name="description">Description</string>
+    <string name="submit">Submit</string>
+    <string name="step1">Step 1: Relabel</string>
+    <string name="step2">Step 2: Reframe</string>
+    <string name="step1_journal">Talk about how you relabelled your habit</string>
+    <string name="step1_desc">The relabel step involves being mindful and recognizing negative thoughts related to the habit.</string>
+    <string name="submit_next">Save and move to next step</string>
 </resources>
