@@ -10,6 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ViewHabit"
+            android:label="@string/title_activity_view_habit"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
             <intent-filter>
@@ -18,8 +22,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddHabitActivity" android:launchMode="singleInstance">
-        </activity>
+        <activity
+            android:name=".AddHabitActivity"
+            android:launchMode="singleInstance"></activity>
     </application>
 
 </manifest>
