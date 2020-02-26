@@ -5,6 +5,7 @@
     <string name="habit_list">Habit List</string>
     <string name="add_habit">Add Habit</string>
     <string name="error_add_habit">Pls fill in all fields</string>
+    <string name="error_add_entry">Please fill in the journal entry</string>
     <string name="name">Name</string>
     <string name="description">Description</string>
     <string name="submit">Submit</string>

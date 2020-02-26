@@ -6,11 +6,12 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {Habit.class}, version = 1, exportSchema = false)
+@Database(entities = {Habit.class, JournalEntry.class}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     //declare Daos - habit,user,etc
     public abstract HabitDao habitDao();
+    public abstract JournalEntryDao journalEntryDao();
 
 
 
@@ -28,7 +29,7 @@ public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase create(final Context context){
         //Comment the following line to not destroy the database on launch
-        //context.getApplicationContext().deleteDatabase(DB_NAME);
+//        context.getApplicationContext().deleteDatabase(DB_NAME);
 
         return Room.databaseBuilder(context,AppDatabase.class,DB_NAME).build();
     }
