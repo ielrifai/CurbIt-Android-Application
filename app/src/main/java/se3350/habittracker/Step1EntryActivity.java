@@ -1,19 +1,16 @@
 package se3350.habittracker;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
+
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
-
-import se3350.habittracker.R;
 
 public class Step1EntryActivity extends AppCompatActivity {
 
@@ -60,7 +57,7 @@ public class Step1EntryActivity extends AppCompatActivity {
                 journalEntryDao.updateJournalEntries(journalEntry);
             });
 
-            //TODO: Use intents to move on to the next step activity
+            //TUse intents to move on to the next step activity
             Intent intent = new Intent(Step1EntryActivity.this, Step2EntryActivity.class).putExtra("JOURNAL_ID", journalEntry.uid);
             startActivity(intent);
         });

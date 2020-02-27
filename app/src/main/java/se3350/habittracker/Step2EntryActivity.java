@@ -1,5 +1,6 @@
 package se3350.habittracker;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -55,7 +56,10 @@ public class Step2EntryActivity extends AppCompatActivity {
                 journalEntryDao.updateJournalEntries(journalEntry);
             });
 
-            //TODO: Use intents to move on to the next step activity
+            //Use intents to move on to the next step activity
+            //TUse intents to move on to the next step activity
+            Intent intent = new Intent(Step2EntryActivity.this, Step3EntryActivity.class).putExtra("JOURNAL_ID", journalEntry.uid);
+            startActivity(intent);
         });
 
     }

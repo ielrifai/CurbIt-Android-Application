@@ -27,7 +27,7 @@ public class Step4EntryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_step4_entry);
 
         // Get the elements
-        stepEntryInput = (EditText) findViewById(R.id.step3_journal);
+        stepEntryInput = (EditText) findViewById(R.id.step4_journal);
         submitButton = (Button) findViewById(R.id.submitButton);
 
         //Get the journal entry from the database
@@ -55,7 +55,7 @@ public class Step4EntryActivity extends AppCompatActivity {
                 journalEntryDao.updateJournalEntries(journalEntry);
             });
 
-            //TODO: Use intents to move on to the next step activity
+            //TODO: Use intents to move back to the habit page
         });
 
     }
