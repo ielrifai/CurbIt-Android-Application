@@ -9,15 +9,20 @@ import androidx.lifecycle.LiveData;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+
 public class ViewHabitActivity extends AppCompatActivity {
 
     String habit_description;
     int habitId;
     Habit habit;
-
     TextView habitDescriptionTextView, viewProgressTextView, editHabitButton;
-
     Button seeJournalButton, begin4StepsButton;
+    private HabitDao habitDao;
+    private JournalEntryDao journalEntryDao;
+
+
     private void setHabit(Habit habit)
     {
         this.habit = habit;
@@ -33,14 +38,14 @@ public class ViewHabitActivity extends AppCompatActivity {
         begin4StepsButton = findViewById(R.id.begin_4_steps_btn);
         editHabitButton = findViewById(R.id.edit_habit);
 
+        habitId = getIntent().getIntExtra("HABIT_ID", -1 );
+
+        // Get Daos and DB
         AppDatabase db = AppDatabase.getInstance(getBaseContext());
-        HabitDao habitDao = db.habitDao();
+        habitDao = db.habitDao();
+        journalEntryDao = db.journalEntryDao();
 
-
-        // TODO  REMOVE
-        habitId = 1;
-
-
+        // Get habit from database
         LiveData<Habit> habitLiveData = habitDao.getHabitById(habitId);
 
         habitLiveData.observe(this, habit -> {
@@ -48,12 +53,13 @@ public class ViewHabitActivity extends AppCompatActivity {
             setTitle(habit.name);
             habitDescriptionTextView.setText(habit.description);
         });
+
+
         seeJournalButton.setOnClickListener(event -> {
-            //TODO
+            //TODO launch journal view
         });
-        begin4StepsButton.setOnClickListener(event -> {
-            //TODO
-        });
+
+        begin4StepsButton.setOnClickListener(event -> begin4Steps());
 
         editHabitButton.setOnClickListener(event -> {
             Intent intent = new Intent(ViewHabitActivity.this, EditHabitActivity.class).putExtra("HABIT_ID", habitId);
@@ -61,5 +67,16 @@ public class ViewHabitActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+    }
+
+    private void begin4Steps() {
+        JournalEntry journalEntry = new JournalEntry(habitId);
+
+        Executor myExecutor = Executors.newSingleThreadExecutor();
+        myExecutor.execute(() -> {
+            int id = (int) journalEntryDao.insertOne(journalEntry);
+            Intent intent = new Intent(ViewHabitActivity.this, Step1EntryActivity.class).putExtra("JOURNAL_ID", id);
+            startActivity(intent);
+        });
     }
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -20,7 +21,9 @@ import se3350.habittracker.AddHabitActivity;
 import se3350.habittracker.AppDatabase;
 import se3350.habittracker.Habit;
 import se3350.habittracker.HabitDao;
+import se3350.habittracker.MainActivity;
 import se3350.habittracker.R;
+import se3350.habittracker.ViewHabitActivity;
 import se3350.habittracker.adapters.HabitListAdapter;
 
 public class HomeFragment extends Fragment {
@@ -36,6 +39,16 @@ public class HomeFragment extends Fragment {
         // Set the habit list adapter
         HabitListAdapter adapter = new HabitListAdapter(getContext(), habits);
         habitListView.setAdapter(adapter);
+
+        // Set the listener on item click
+        habitListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Habit habit = habits.get(position);
+                Intent intent = new Intent(getContext(), ViewHabitActivity.class).putExtra("HABIT_ID", habit.uid);
+                startActivity(intent);
+            }
+        });
 
 
         // Get the database and user dao

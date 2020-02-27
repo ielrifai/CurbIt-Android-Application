@@ -22,6 +22,9 @@ public interface JournalEntryDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(JournalEntry... journalEntries);
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    long insertOne(JournalEntry journalEntry);
+
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void updateJournalEntries(JournalEntry... journalEntries);
 

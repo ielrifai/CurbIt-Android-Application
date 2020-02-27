@@ -33,10 +33,11 @@ public class Step1EntryActivity extends AppCompatActivity {
 
 
         //Get the journal entry from the database
-        addNewJournalEntry(); // TODO: May be removed later
         AppDatabase db = AppDatabase.getInstance(this);
         JournalEntryDao journalEntryDao = db.journalEntryDao();
-        LiveData<JournalEntry> journalEntryLive = journalEntryDao.getById(1); // TODO: How to get the id of the new journal entry (intents?)
+
+        int journal_id = getIntent().getIntExtra("JOURNAL_ID", -1 );
+        LiveData<JournalEntry> journalEntryLive = journalEntryDao.getById(journal_id);
 
         journalEntryLive.observe(this, entry -> setJournalEntry(entry));
 
@@ -62,18 +63,6 @@ public class Step1EntryActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-    }
-
-    // Insert a new Journal Entry for the habit
-    //TODO: May be removed later if entry is created before the 4 steps
-    void addNewJournalEntry(){
-        JournalEntry testEntry = new JournalEntry(123);
-        AppDatabase db = AppDatabase.getInstance(this);
-        JournalEntryDao journalEntryDao = db.journalEntryDao();
-        Executor myExecutor = Executors.newSingleThreadExecutor();
-        myExecutor.execute(() -> {
-            journalEntryDao.insertAll(testEntry);
-        });
     }
 
     // Function to set the journal entry
