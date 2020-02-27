@@ -22,4 +22,8 @@
     <string name="step3_desc">The refocus step is the part where you thing of positive habits that can keep you away from the negative ones.</string>
     <string name="step4_desc">The revalue step is where you reflect on your progress.</string>
     <string name="submit_next">Save and move to next step</string>
+    <string name="title_activity_view_habit">ViewHabit</string>
+    <string name="action_settings">Settings</string>
+    <string name="edit_habit">Edit Habit</string>
+    <string name="apply_changes">Apply Changes</string>
 </resources>
