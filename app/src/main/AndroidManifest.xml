@@ -10,9 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ViewHabit"
-            android:label="@string/title_activity_view_habit"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:name=".ViewHabitActivity"
+            android:label="@string/title_activity_view_habit">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            </activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
@@ -24,6 +29,9 @@
         </activity>
         <activity
             android:name=".AddHabitActivity"
+            android:launchMode="singleInstance"></activity>
+        <activity
+            android:name=".EditHabitActivity"
             android:launchMode="singleInstance"></activity>
     </application>
 

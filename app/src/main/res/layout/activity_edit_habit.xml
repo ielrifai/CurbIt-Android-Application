@@ -1,30 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
-
-    <EditView
-        android:id="@+id/habit_description"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="habit description"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="20sp"
+        android:text="@string/edit_habit"
+        android:textSize="20sp"
         />
 
-    <Button
-        android:id="@+id/apply_changes_btn"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/habit_name"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="APPLY CHANGES"
-        app:layout_constraintEnd_toEndOf="@id/habit_description"
-        app:layout_constraintStart_toStartOf="@id/habit_description"
-        app:layout_constraintTop_toBottomOf="@id/habit_description"
-        ></Button>
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="20sp"
+        android:hint="@string/name"
+        android:inputType="text" />
 
+    <EditText
+        android:id="@+id/habit_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/habit_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="20sp"
+        android:hint="@string/description"
+        android:inputType="textMultiLine" />
+
+    <Button
+        android:id="@+id/apply_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center"
+        android:text="@string/apply_changes"
+        android:layout_margin="20sp"
+        android:backgroundTint="@color/colorPrimary"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,13 +9,13 @@ import androidx.lifecycle.LiveData;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class ViewHabit extends AppCompatActivity {
+public class ViewHabitActivity extends AppCompatActivity {
 
     String habit_description;
     int habitId;
     Habit habit;
 
-    TextView habitDescriptionTextView, viewProgressTextView;
+    TextView habitDescriptionTextView, viewProgressTextView, editHabitButton;
 
     Button seeJournalButton, begin4StepsButton;
     private void setHabit(Habit habit)
@@ -27,17 +27,25 @@ public class ViewHabit extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_habit);
 
-        habitDescriptionTextView = findViewById(R.id.habitName);
+        habitDescriptionTextView = findViewById(R.id.habit_description);
         viewProgressTextView = findViewById(R.id.view_progress);
         seeJournalButton = findViewById(R.id.see_journal_btn);
         begin4StepsButton = findViewById(R.id.begin_4_steps_btn);
+        editHabitButton = findViewById(R.id.edit_habit);
 
         AppDatabase db = AppDatabase.getInstance(getBaseContext());
         HabitDao habitDao = db.habitDao();
+
+
+        // TODO  REMOVE
+        habitId = 1;
+
+
         LiveData<Habit> habitLiveData = habitDao.getHabitById(habitId);
 
         habitLiveData.observe(this, habit -> {
             setHabit(habit);
+            setTitle(habit.name);
             habitDescriptionTextView.setText(habit.description);
         });
         seeJournalButton.setOnClickListener(event -> {
@@ -46,7 +54,12 @@ public class ViewHabit extends AppCompatActivity {
         begin4StepsButton.setOnClickListener(event -> {
             //TODO
         });
-        Intent intent = new Intent(ViewHabit.this, ViewHabit.class);
-        startActivity(intent);
+
+        editHabitButton.setOnClickListener(event -> {
+            Intent intent = new Intent(ViewHabitActivity.this, EditHabitActivity.class).putExtra("HABIT_ID", habitId);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+        });
+
     }
 }
