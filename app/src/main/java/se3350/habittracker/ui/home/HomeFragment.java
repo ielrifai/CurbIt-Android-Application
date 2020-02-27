@@ -52,7 +52,6 @@ public class HomeFragment extends Fragment {
 
 
         // Get the database and user dao
-        Habit newHabit = new Habit("habit", "hello");
         AppDatabase db = AppDatabase.getInstance(getContext());
         HabitDao habitDao = db.habitDao();
 

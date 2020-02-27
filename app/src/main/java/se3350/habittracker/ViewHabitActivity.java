@@ -56,7 +56,8 @@ public class ViewHabitActivity extends AppCompatActivity {
 
 
         seeJournalButton.setOnClickListener(event -> {
-            //TODO launch journal view
+            Intent intent = new Intent(ViewHabitActivity.this, JournalListActivity.class).putExtra("HABIT_ID", habitId);
+            startActivity(intent);
         });
 
         begin4StepsButton.setOnClickListener(event -> begin4Steps());

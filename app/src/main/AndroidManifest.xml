@@ -9,18 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Step1EntryActivity">
-        </activity>
-        <activity android:name=".Step2EntryActivity">
-        </activity>
-        <activity android:name=".Step3EntryActivity">
-        </activity>
-        <activity android:name=".Step4EntryActivity">
-        </activity>
+        <activity android:name=".ViewJournalEntryActivity"></activity>
+        <activity android:name=".JournalListActivity" />
+        <activity android:name=".Step1EntryActivity" />
+        <activity android:name=".Step2EntryActivity" />
+        <activity android:name=".Step3EntryActivity" />
+        <activity android:name=".Step4EntryActivity" />
         <activity
             android:name=".ViewHabitActivity"
-            android:label="@string/title_activity_view_habit">
-            </activity>
+            android:label="@string/title_activity_view_habit" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
@@ -32,10 +29,10 @@
         </activity>
         <activity
             android:name=".AddHabitActivity"
-            android:launchMode="singleInstance"></activity>
+            android:launchMode="singleInstance" />
         <activity
             android:name=".EditHabitActivity"
-            android:launchMode="singleInstance"></activity>
+            android:launchMode="singleInstance" />
     </application>
 
 </manifest>

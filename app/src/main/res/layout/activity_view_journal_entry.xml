@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ViewJournalEntryActivity"
+    android:scrollbars="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/relabel_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="@string/relabel"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="20sp" />
+
+        <TextView
+            android:id="@+id/relabel_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Vestibulum imperdiet odio odio, vitae rutrum felis venenatis vitae. Praesent libero massa, tempus sit amet dapibus sed, rutrum a metus. Donec vel metus in leo pretium pulvinar in ut turpis. Vestibulum feugiat non est hendrerit mollis. In imperdiet accumsan placerat. Cras at dignissim mauris. Nunc pretium tincidunt enim, et porttitor diam. Interdum et malesuada fames ac ante ipsum primis in faucibus."
+            app:layout_constraintTop_toBottomOf="@+id/relabel_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="20sp"
+            android:layout_marginEnd="20sp"
+            android:layout_marginBottom="20sp"
+            android:layout_marginStart="25sp"
+            />
+
+        <TextView
+            android:id="@+id/reframe_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="@string/reframe"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/relabel_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="20sp" />
+
+        <TextView
+            android:id="@+id/reframe_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Vestibulum imperdiet odio odio, vitae rutrum felis venenatis vitae. Praesent libero massa, tempus sit amet dapibus sed, rutrum a metus. Donec vel metus in leo pretium pulvinar in ut turpis. Vestibulum feugiat non est hendrerit mollis. In imperdiet accumsan placerat. Cras at dignissim mauris. Nunc pretium tincidunt enim, et porttitor diam. Interdum et malesuada fames ac ante ipsum primis in faucibus."
+            app:layout_constraintTop_toBottomOf="@+id/reframe_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="20sp"
+            android:layout_marginEnd="20sp"
+            android:layout_marginBottom="20sp"
+            android:layout_marginStart="25sp"
+            />
+
+        <TextView
+            android:id="@+id/refocus_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="@string/refocus"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/reframe_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="20sp" />
+
+        <TextView
+            android:id="@+id/refocus_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Vestibulum imperdiet odio odio, vitae rutrum felis venenatis vitae. Praesent libero massa, tempus sit amet dapibus sed, rutrum a metus. Donec vel metus in leo pretium pulvinar in ut turpis. Vestibulum feugiat non est hendrerit mollis. In imperdiet accumsan placerat. Cras at dignissim mauris. Nunc pretium tincidunt enim, et porttitor diam. Interdum et malesuada fames ac ante ipsum primis in faucibus."
+            app:layout_constraintTop_toBottomOf="@+id/refocus_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="20sp"
+            android:layout_marginEnd="20sp"
+            android:layout_marginBottom="20sp"
+            android:layout_marginStart="25sp"
+            />
+
+        <TextView
+            android:id="@+id/revalue_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="@string/relabel"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/refocus_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="20sp" />
+
+        <TextView
+            android:id="@+id/revalue_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Vestibulum imperdiet odio odio, vitae rutrum felis venenatis vitae. Praesent libero massa, tempus sit amet dapibus sed, rutrum a metus. Donec vel metus in leo pretium pulvinar in ut turpis. Vestibulum feugiat non est hendrerit mollis. In imperdiet accumsan placerat. Cras at dignissim mauris. Nunc pretium tincidunt enim, et porttitor diam. Interdum et malesuada fames ac ante ipsum primis in faucibus."
+            app:layout_constraintTop_toBottomOf="@+id/revalue_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="20sp"
+            android:layout_marginEnd="20sp"
+            android:layout_marginBottom="20sp"
+            android:layout_marginStart="25sp"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
