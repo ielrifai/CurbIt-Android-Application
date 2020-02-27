@@ -1,31 +1,52 @@
 package se3350.habittracker;
 
+import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.LiveData;
 
-import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 public class ViewHabit extends AppCompatActivity {
 
+    String habit_description;
+    int habitId;
+    Habit habit;
+
+    TextView habitDescriptionTextView, viewProgressTextView;
+
+    Button seeJournalButton, begin4StepsButton;
+    private void setHabit(Habit habit)
+    {
+        this.habit = habit;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_habit);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
+        habitDescriptionTextView = findViewById(R.id.habitName);
+        viewProgressTextView = findViewById(R.id.view_progress);
+        seeJournalButton = findViewById(R.id.see_journal_btn);
+        begin4StepsButton = findViewById(R.id.begin_4_steps_btn);
+
+        AppDatabase db = AppDatabase.getInstance(getBaseContext());
+        HabitDao habitDao = db.habitDao();
+        LiveData<Habit> habitLiveData = habitDao.getHabitById(habitId);
+
+        habitLiveData.observe(this, habit -> {
+            setHabit(habit);
+            habitDescriptionTextView.setText(habit.description);
         });
+        seeJournalButton.setOnClickListener(event -> {
+            //TODO
+        });
+        begin4StepsButton.setOnClickListener(event -> {
+            //TODO
+        });
+        Intent intent = new Intent(ViewHabit.this, ViewHabit.class);
+        startActivity(intent);
     }
 }

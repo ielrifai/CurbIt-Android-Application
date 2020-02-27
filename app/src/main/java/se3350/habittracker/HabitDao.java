@@ -16,6 +16,9 @@ public interface HabitDao {
     @Query("SELECT * FROM habit")
     LiveData<Habit[]> getAll();
 
+    @Query("SELECT * FROM habit WHERE uid=:id")
+    LiveData<Habit> getHabitById(int id);
+
     //insert data
     //... - accept anything that is a list, array, or multiple arguments
     @Insert(onConflict = OnConflictStrategy.REPLACE)

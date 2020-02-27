@@ -7,7 +7,7 @@
     >
 
 
-    <TextView
+    <EditView
         android:id="@+id/habit_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,35 +15,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-         />
+        />
 
     <Button
-        android:id="@+id/see_journal_btn"
+        android:id="@+id/apply_changes_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="See Journal"
-        app:layout_constraintStart_toStartOf="@id/habit_description"
+        android:text="APPLY CHANGES"
         app:layout_constraintEnd_toEndOf="@id/habit_description"
+        app:layout_constraintStart_toStartOf="@id/habit_description"
         app:layout_constraintTop_toBottomOf="@id/habit_description"
-       ></Button>
-    <Button
-        android:id="@+id/begin_4_steps_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Begin 4 Steps"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/see_journal_btn"
         ></Button>
 
-    <TextView
-        android:id="@+id/view_progress"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/begin_4_steps_btn"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:text="Progress"
-         />
 </androidx.constraintlayout.widget.ConstraintLayout>
