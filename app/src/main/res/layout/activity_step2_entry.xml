@@ -14,34 +14,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_margin="20sp"
-        android:text="@string/step1"
+        android:text="@string/step2"
         android:textSize="20sp"
         />
 
     <TextView
-        android:id="@+id/step1_desc"
+        android:id="@+id/step2_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="@id/title"
         app:layout_constraintTop_toBottomOf="@id/title"
         android:layout_margin="20sp"
         android:paddingTop="20sp"
-        android:text="@string/step1_desc"
+        android:text="@string/step2_desc"
         android:textSize="18sp"
         />
 
     <EditText
-        android:id="@+id/step1_journal"
+        android:id="@+id/step2_journal"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:minLines="10"
         android:scrollbars="vertical"
-        app:layout_constraintTop_toBottomOf="@id/step1_desc"
+        app:layout_constraintTop_toBottomOf="@id/step2_desc"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/submitButton"
         android:layout_margin="20sp"
-        android:hint="@string/step1_journal"
+        android:hint="@string/step2_journal"
         android:inputType="textMultiLine"
         android:gravity="top" />
 
@@ -49,12 +49,13 @@
         android:id="@+id/submitButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20sp"
-        android:backgroundTint="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:gravity="center"
         android:text="@string/submit_next"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_margin="20sp"
+        android:backgroundTint="@color/colorPrimary"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

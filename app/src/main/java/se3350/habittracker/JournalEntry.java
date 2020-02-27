@@ -4,6 +4,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+
+
 @Entity
 public class JournalEntry {
     @PrimaryKey(autoGenerate = true)
@@ -24,6 +26,7 @@ public class JournalEntry {
     @ColumnInfo(name = "step4") // Step 4 entry
     public String step4;
 
+    // TODO: Add a date field later
 
     public JournalEntry(int habitId){
         this.habitId = habitId;
