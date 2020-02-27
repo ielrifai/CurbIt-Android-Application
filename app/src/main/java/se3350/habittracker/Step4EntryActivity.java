@@ -39,9 +39,9 @@ public class Step4EntryActivity extends AppCompatActivity {
         journalEntryLive.observe(this, entry -> setJournalEntry(entry));
 
         submitButton.setOnClickListener(v -> {
-            // Save the step 2 journal entry text
+            // Save the step 4 journal entry text
             step4Entry = stepEntryInput.getText().toString();
-            journalEntry.step2 = step4Entry;
+            journalEntry.step4 = step4Entry;
 
             // Check if field is empty
             if(step4Entry.length() == 0){
@@ -49,7 +49,7 @@ public class Step4EntryActivity extends AppCompatActivity {
                 return;
             }
 
-            //Update the journal entry with the step 1 entry text
+            //Update the journal entry with the step 4 entry text
             Executor myExecutor = Executors.newSingleThreadExecutor();
             myExecutor.execute(() -> {
                 journalEntryDao.updateJournalEntries(journalEntry);

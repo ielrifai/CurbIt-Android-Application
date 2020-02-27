@@ -41,7 +41,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/submitButton"
         android:layout_margin="20sp"
-        android:hint="@string/step2_journal"
+        android:hint="@string/step3_journal"
         android:inputType="textMultiLine"
         android:gravity="top" />
 
