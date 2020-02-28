@@ -46,7 +46,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:gravity="center"
-        android:text="@string/submit"
+        android:text="@string/add_habit"
         android:layout_margin="20sp"
         android:backgroundTint="@color/colorPrimary"
         />

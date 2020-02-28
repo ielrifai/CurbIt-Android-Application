@@ -32,4 +32,5 @@
     <string name="relabel">Relabel</string>
     <string name="reframe">Reframe</string>
     <string name="refocus">Refocus</string>
+    <string name="submit_final">Save and return to habit details</string>
 </resources>
