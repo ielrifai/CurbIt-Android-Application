@@ -6,8 +6,8 @@
     <string name="add_habit">Add Habit</string>
     <string name="error_add_habit">Please fill in all fields</string>
     <string name="error_add_entry">Please fill in the journal entry</string>
-    <string name="name">Name</string>
-    <string name="description">Description</string>
+    <string name="name">Name the habit</string>
+    <string name="description">Describe the habit</string>
     <string name="submit">Submit</string>
     <string name="step1">Step 1: Relabel</string>
     <string name="step2">Step 2: Reframe</string>
@@ -25,6 +25,8 @@
     <string name="title_activity_view_habit">ViewHabit</string>
     <string name="action_settings">Settings</string>
     <string name="edit_habit">Edit Habit</string>
+    <string name="edit_habit_name">Edit Habit Name: </string>
+    <string name="edit_habit_description">Edit Habit Description: </string>
     <string name="apply_changes">Apply Changes</string>
     <string name="journal_list">Journal Entries</string>
     <string name="relabel">Relabel</string>
