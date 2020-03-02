@@ -1,4 +1,4 @@
-package se3350.habittracker;
+package se3350.habittracker.activities;
 
 import android.os.Bundle;
 import android.widget.Button;
@@ -9,6 +9,11 @@ import androidx.lifecycle.LiveData;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
+
+import se3350.habittracker.AppDatabase;
+import se3350.habittracker.models.Habit;
+import se3350.habittracker.daos.HabitDao;
+import se3350.habittracker.R;
 
 public class EditHabitActivity extends AppCompatActivity {
     EditText habitDescriptionEditView;

@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import se3350.habittracker.JournalEntry;
+import se3350.habittracker.models.JournalEntry;
 import se3350.habittracker.R;
 
 public class JournalListAdapter extends ArrayAdapter<JournalEntry> {

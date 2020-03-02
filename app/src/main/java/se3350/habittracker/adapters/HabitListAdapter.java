@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import se3350.habittracker.Habit;
+import se3350.habittracker.models.Habit;
 import se3350.habittracker.R;
 
 public class HabitListAdapter extends ArrayAdapter<Habit> {

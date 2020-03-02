@@ -1,4 +1,4 @@
-package se3350.habittracker;
+package se3350.habittracker.activities;
 
 import android.database.Cursor;
 import android.os.Bundle;
@@ -15,6 +15,8 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.room.Room;
 
 import java.util.ArrayList;
+
+import se3350.habittracker.R;
 
 public class MainActivity extends AppCompatActivity {
 

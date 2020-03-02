@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="se3350.habittracker.ui.home.HomeFragment"
+        android:name="se3350.habittracker.fragments.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_information"
-        android:name="se3350.habittracker.ui.information.InformationFragment"
+        android:name="se3350.habittracker.fragments.InformationFragment"
         android:label="@string/title_information"
         tools:layout="@layout/fragment_information" />
 

@@ -1,4 +1,4 @@
-package se3350.habittracker.ui.home;
+package se3350.habittracker.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,13 +17,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import se3350.habittracker.AddHabitActivity;
+import se3350.habittracker.activities.AddHabitActivity;
 import se3350.habittracker.AppDatabase;
-import se3350.habittracker.Habit;
-import se3350.habittracker.HabitDao;
-import se3350.habittracker.MainActivity;
+import se3350.habittracker.models.Habit;
+import se3350.habittracker.daos.HabitDao;
 import se3350.habittracker.R;
-import se3350.habittracker.ViewHabitActivity;
+import se3350.habittracker.activities.ViewHabitActivity;
 import se3350.habittracker.adapters.HabitListAdapter;
 
 public class HomeFragment extends Fragment {

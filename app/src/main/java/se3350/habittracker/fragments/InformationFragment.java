@@ -1,4 +1,4 @@
-package se3350.habittracker.ui.information;
+package se3350.habittracker.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

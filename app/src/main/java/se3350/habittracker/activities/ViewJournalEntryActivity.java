@@ -1,10 +1,15 @@
-package se3350.habittracker;
+package se3350.habittracker.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 
 import android.os.Bundle;
 import android.widget.TextView;
+
+import se3350.habittracker.AppDatabase;
+import se3350.habittracker.models.JournalEntry;
+import se3350.habittracker.daos.JournalEntryDao;
+import se3350.habittracker.R;
 
 public class ViewJournalEntryActivity extends AppCompatActivity {
 

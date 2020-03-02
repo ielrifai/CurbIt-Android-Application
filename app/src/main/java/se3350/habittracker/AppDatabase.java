@@ -6,6 +6,11 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import se3350.habittracker.daos.HabitDao;
+import se3350.habittracker.daos.JournalEntryDao;
+import se3350.habittracker.models.Habit;
+import se3350.habittracker.models.JournalEntry;
+
 @Database(entities = {Habit.class, JournalEntry.class}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 

@@ -1,4 +1,4 @@
-package se3350.habittracker;
+package se3350.habittracker.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,13 @@ import android.widget.TextView;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
+
+import se3350.habittracker.AppDatabase;
+import se3350.habittracker.models.Habit;
+import se3350.habittracker.daos.HabitDao;
+import se3350.habittracker.models.JournalEntry;
+import se3350.habittracker.daos.JournalEntryDao;
+import se3350.habittracker.R;
 
 public class ViewHabitActivity extends AppCompatActivity {
 

@@ -1,8 +1,7 @@
-package se3350.habittracker;
+package se3350.habittracker.activities;
 
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -11,6 +10,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
+
+import se3350.habittracker.AppDatabase;
+import se3350.habittracker.models.Habit;
+import se3350.habittracker.daos.HabitDao;
+import se3350.habittracker.R;
 
 public class AddHabitActivity extends AppCompatActivity {
 

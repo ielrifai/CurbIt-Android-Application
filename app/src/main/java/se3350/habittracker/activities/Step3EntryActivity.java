@@ -1,4 +1,4 @@
-package se3350.habittracker;
+package se3350.habittracker.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,10 +12,15 @@ import androidx.lifecycle.LiveData;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-public class Step4EntryActivity extends AppCompatActivity {
+import se3350.habittracker.AppDatabase;
+import se3350.habittracker.models.JournalEntry;
+import se3350.habittracker.daos.JournalEntryDao;
+import se3350.habittracker.R;
+
+public class Step3EntryActivity extends AppCompatActivity {
 
     // Data
-    String step4Entry;
+    String step3Entry;
     JournalEntry journalEntry;
 
     // Elements
@@ -25,10 +30,10 @@ public class Step4EntryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_step4_entry);
+        setContentView(R.layout.activity_step3_entry);
 
         // Get the elements
-        stepEntryInput = (EditText) findViewById(R.id.step4_journal);
+        stepEntryInput = (EditText) findViewById(R.id.step3_journal);
         submitButton = (Button) findViewById(R.id.submitButton);
 
         //Get the journal entry from the database
@@ -40,24 +45,25 @@ public class Step4EntryActivity extends AppCompatActivity {
         journalEntryLive.observe(this, entry -> setJournalEntry(entry));
 
         submitButton.setOnClickListener(v -> {
-            // Save the step 4 journal entry text
-            step4Entry = stepEntryInput.getText().toString();
-            journalEntry.step4 = step4Entry;
+            // Save the step 3 journal entry text
+            step3Entry = stepEntryInput.getText().toString();
+            journalEntry.step3 = step3Entry;
 
             // Check if field is empty
-            if(step4Entry.length() == 0){
+            if(step3Entry.length() == 0){
                 Toast.makeText(getApplicationContext(), R.string.error_add_entry,Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            //Update the journal entry with the step 4 entry text
+            //Update the journal entry with the step 3 entry text
             Executor myExecutor = Executors.newSingleThreadExecutor();
             myExecutor.execute(() -> {
                 journalEntryDao.updateJournalEntries(journalEntry);
             });
 
-            //TODO: Use intents to move back to the habit page, find a way to clean the bacl stack
-            Intent intent = new Intent(Step4EntryActivity.this, ViewHabitActivity.class).putExtra("HABIT_ID", journalEntry.habitId);
+            //Use intents to move on to the next step activity
+            //TUse intents to move on to the next step activity
+            Intent intent = new Intent(Step3EntryActivity.this, Step4EntryActivity.class).putExtra("JOURNAL_ID", journalEntry.uid);
             startActivity(intent);
         });
 

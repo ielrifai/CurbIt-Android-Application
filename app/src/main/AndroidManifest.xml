@@ -9,17 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViewJournalEntryActivity"></activity>
-        <activity android:name=".JournalListActivity" />
-        <activity android:name=".Step1EntryActivity" />
-        <activity android:name=".Step2EntryActivity" />
-        <activity android:name=".Step3EntryActivity" />
-        <activity android:name=".Step4EntryActivity" />
+        <activity android:name=".activities.ViewJournalEntryActivity"></activity>
+        <activity android:name=".activities.JournalListActivity" />
+        <activity android:name=".activities.Step1EntryActivity" />
+        <activity android:name=".activities.Step2EntryActivity" />
+        <activity android:name=".activities.Step3EntryActivity" />
+        <activity android:name=".activities.Step4EntryActivity" />
         <activity
-            android:name=".ViewHabitActivity"
+            android:name=".activities.ViewHabitActivity"
             android:label="@string/title_activity_view_habit" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,10 +28,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AddHabitActivity"
+            android:name=".activities.AddHabitActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".EditHabitActivity"
+            android:name=".activities.EditHabitActivity"
             android:launchMode="singleInstance" />
     </application>
 

@@ -1,4 +1,4 @@
-package se3350.habittracker;
+package se3350.habittracker.models;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

@@ -1,4 +1,4 @@
-package se3350.habittracker.ui.information;
+package se3350.habittracker.fragments;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

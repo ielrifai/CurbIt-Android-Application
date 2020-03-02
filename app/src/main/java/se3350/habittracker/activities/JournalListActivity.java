@@ -1,7 +1,6 @@
-package se3350.habittracker;
+package se3350.habittracker.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,12 +8,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import se3350.habittracker.adapters.HabitListAdapter;
+import se3350.habittracker.AppDatabase;
+import se3350.habittracker.models.JournalEntry;
+import se3350.habittracker.daos.JournalEntryDao;
+import se3350.habittracker.R;
 import se3350.habittracker.adapters.JournalListAdapter;
 
 public class JournalListActivity extends AppCompatActivity {
