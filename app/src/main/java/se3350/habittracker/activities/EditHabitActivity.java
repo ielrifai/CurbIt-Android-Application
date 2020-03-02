@@ -16,6 +16,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import se3350.habittracker.AppDatabase;
+import se3350.habittracker.daos.JournalEntryDao;
 import se3350.habittracker.models.Habit;
 import se3350.habittracker.daos.HabitDao;
 import se3350.habittracker.R;
@@ -23,9 +24,12 @@ import se3350.habittracker.R;
 public class EditHabitActivity extends ActionBarActivity {
     EditText habitDescriptionEditView;
     EditText habitNameEditView;
+
     Habit habit;
     int habitId;
+
     HabitDao habitDao;
+    JournalEntryDao journalEntryDao;
 
     private void setHabit(Habit habit)
     {
@@ -46,8 +50,9 @@ public class EditHabitActivity extends ActionBarActivity {
 
         AppDatabase db = AppDatabase.getInstance(getBaseContext());
         habitDao = db.habitDao();
-        LiveData<Habit> habitLiveData = habitDao.getHabitById(habitId);
+        journalEntryDao = db.journalEntryDao();
 
+        LiveData<Habit> habitLiveData = habitDao.getHabitById(habitId);
         habitLiveData.observe(this, habit -> {
             if(habit == null)
                 return;
@@ -92,10 +97,14 @@ public class EditHabitActivity extends ActionBarActivity {
 
         // Add the buttons
         builder.setPositiveButton(R.string.delete, ((dialog, which) -> {
-            //delete the habit if confirmed
+            // Delete the habit if confirmed
             Executor myExecutor = Executors.newSingleThreadExecutor();
             myExecutor.execute(() -> {
+                // Delete habit and all its journal entries
+                journalEntryDao.deleteAllByHabitId(habit.uid);
                 habitDao.delete(habit);
+
+                // Go back to Habit List and clear task (clear all stacks)
                 Intent intent = new Intent(EditHabitActivity.this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
