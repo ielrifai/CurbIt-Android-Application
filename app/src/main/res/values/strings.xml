@@ -33,4 +33,6 @@
     <string name="reframe">Reframe</string>
     <string name="refocus">Refocus</string>
     <string name="submit_final">Save and return to habit details</string>
+    <string name="empty_journal">No journal entry yet!\n\nTo add a journal entry, go back to the previous page and begin the 4 steps.</string>
+    <string name="empty_habit">Add a habit to begin !</string>
 </resources>

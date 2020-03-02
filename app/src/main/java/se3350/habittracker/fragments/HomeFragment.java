@@ -8,10 +8,12 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
+import androidx.recyclerview.widget.RecyclerView.Adapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,16 +29,24 @@ import se3350.habittracker.adapters.HabitListAdapter;
 
 public class HomeFragment extends Fragment {
 
+    private List<Habit> habits;
+    private HabitListAdapter adapter;
+
+    private ListView habitListView;
+    private Button addButton;
+    private TextView emptyListText;
+
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-        ListView habitListView = root.findViewById(R.id.list_habit);
-        Button addButton = root.findViewById(R.id.btn_add);
+        habitListView = root.findViewById(R.id.list_habit);
+        addButton = root.findViewById(R.id.btn_add);
+        emptyListText = root.findViewById(R.id.text_empty_list);
 
-        List<Habit> habits = new ArrayList<>();
+        habits = new ArrayList<>();
 
         // Set the habit list adapter
-        HabitListAdapter adapter = new HabitListAdapter(getContext(), habits);
+        adapter = new HabitListAdapter(getContext(), habits);
         habitListView.setAdapter(adapter);
 
         // Set the listener on item click
@@ -58,11 +68,7 @@ public class HomeFragment extends Fragment {
         LiveData<Habit[]> habitList = habitDao.getAll();
 
         // observe the data, refresh habit list view each time it's updated
-        habitList.observe(getViewLifecycleOwner(), newHabits -> {
-            habits.clear();
-            habits.addAll(Arrays.asList(newHabits));
-            adapter.notifyDataSetChanged();
-        });
+        habitList.observe(getViewLifecycleOwner(), newHabits -> setHabits(newHabits));
 
 
         // Set add button to open the add habit form
@@ -74,5 +80,17 @@ public class HomeFragment extends Fragment {
 
 
         return root;
+    }
+
+    private void setHabits(Habit[] newHabits){
+        // If list is empty show the empty list message
+        if (newHabits.length == 0)
+            emptyListText.setVisibility(View.VISIBLE);
+        else
+            emptyListText.setVisibility(View.INVISIBLE);
+
+        habits.clear();
+        habits.addAll(Arrays.asList(newHabits));
+        adapter.notifyDataSetChanged();
     }
 }

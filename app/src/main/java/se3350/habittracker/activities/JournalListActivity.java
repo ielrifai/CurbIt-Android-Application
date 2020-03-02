@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,6 +20,8 @@ import se3350.habittracker.R;
 import se3350.habittracker.adapters.JournalListAdapter;
 
 public class JournalListActivity extends AppCompatActivity {
+
+    TextView emptyListText;
 
     ListView journalListView;
     List<JournalEntry> journalEntries;
@@ -33,6 +36,7 @@ public class JournalListActivity extends AppCompatActivity {
         journalEntries = new ArrayList<>();
 
         journalListView = findViewById(R.id.list_journal);
+        emptyListText = findViewById(R.id.text_empty_list);
 
         // Set the journal list adapter
         adapter = new JournalListAdapter(getBaseContext(), journalEntries);
@@ -63,6 +67,12 @@ public class JournalListActivity extends AppCompatActivity {
     }
 
     private void setJournalEntries(JournalEntry[] newJournalEntries) {
+        // If list is empty show the empty list message
+        if (newJournalEntries.length == 0)
+            emptyListText.setVisibility(View.VISIBLE);
+        else
+            emptyListText.setVisibility(View.INVISIBLE);
+
         journalEntries.clear();
         journalEntries.addAll(Arrays.asList(newJournalEntries));
         adapter.notifyDataSetChanged();
