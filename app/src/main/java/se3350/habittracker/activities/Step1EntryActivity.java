@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NavUtils;
 import androidx.lifecycle.LiveData;
 
+import java.util.Date;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -52,6 +53,9 @@ public class Step1EntryActivity extends ActionBarActivity {
             // Save the step 1 journal entry text
             step1Entry = stepEntryInput.getText().toString();
             journalEntry.step1 = step1Entry;
+
+            // Update the date
+            journalEntry.date = new Date();
 
             // Check if field is empty
             if(step1Entry.length() == 0){

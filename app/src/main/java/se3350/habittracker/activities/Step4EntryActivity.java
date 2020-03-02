@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 
+import java.util.Date;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -50,6 +51,9 @@ public class Step4EntryActivity extends ActionBarActivity {
             // Save the step 4 journal entry text
             step4Entry = stepEntryInput.getText().toString();
             journalEntry.step4 = step4Entry;
+
+            // Update the date
+            journalEntry.date = new Date();
 
             // Check if field is empty
             if(step4Entry.length() == 0){

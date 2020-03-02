@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.Date;
 
 
 @Entity
@@ -26,9 +27,12 @@ public class JournalEntry {
     @ColumnInfo(name = "step4") // Step 4 entry
     public String step4;
 
-    // TODO: Add a date field later
+    @ColumnInfo(name = "date") // Date of last modification / creation
+    public Date date;
+
 
     public JournalEntry(int habitId){
         this.habitId = habitId;
+        this.date = new Date();
     }
 }

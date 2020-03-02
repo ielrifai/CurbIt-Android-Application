@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 
 import se3350.habittracker.daos.HabitDao;
 import se3350.habittracker.daos.JournalEntryDao;
@@ -12,6 +13,7 @@ import se3350.habittracker.models.Habit;
 import se3350.habittracker.models.JournalEntry;
 
 @Database(entities = {Habit.class, JournalEntry.class}, version = 1, exportSchema = false)
+@TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
 
     //declare Daos - habit,user,etc
