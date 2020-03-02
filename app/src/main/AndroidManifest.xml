@@ -28,11 +28,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.AddHabitActivity"
-            android:launchMode="singleInstance" />
+            android:name=".activities.AddHabitActivity" />
         <activity
-            android:name=".activities.EditHabitActivity"
-            android:launchMode="singleInstance" />
+            android:name=".activities.EditHabitActivity" />
     </application>
 
 </manifest>

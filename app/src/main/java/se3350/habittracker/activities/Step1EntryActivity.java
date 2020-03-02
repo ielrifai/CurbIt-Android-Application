@@ -65,6 +65,7 @@ public class Step1EntryActivity extends AppCompatActivity {
 
             //TUse intents to move on to the next step activity
             Intent intent = new Intent(Step1EntryActivity.this, Step2EntryActivity.class).putExtra("JOURNAL_ID", journalEntry.uid);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             startActivity(intent);
         });
 

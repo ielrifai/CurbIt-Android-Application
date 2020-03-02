@@ -84,6 +84,7 @@ public class ViewHabitActivity extends AppCompatActivity {
         myExecutor.execute(() -> {
             int id = (int) journalEntryDao.insertOne(journalEntry);
             Intent intent = new Intent(ViewHabitActivity.this, Step1EntryActivity.class).putExtra("JOURNAL_ID", id);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             startActivity(intent);
         });
     }

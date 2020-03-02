@@ -61,9 +61,8 @@ public class Step4EntryActivity extends AppCompatActivity {
                 journalEntryDao.updateJournalEntries(journalEntry);
             });
 
-            //TODO: Use intents to move back to the habit page, find a way to clean the bacl stack
-            Intent intent = new Intent(Step4EntryActivity.this, ViewHabitActivity.class).putExtra("HABIT_ID", journalEntry.habitId);
-            startActivity(intent);
+            // Go back to the habit page
+            onBackPressed();
         });
 
     }
