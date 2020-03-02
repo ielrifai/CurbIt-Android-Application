@@ -94,7 +94,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:text="@string/relabel"
+            android:text="@string/revalue"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@+id/refocus_text"
             app:layout_constraintStart_toStartOf="parent"

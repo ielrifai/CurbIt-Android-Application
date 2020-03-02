@@ -11,7 +11,7 @@ import se3350.habittracker.models.JournalEntry;
 import se3350.habittracker.daos.JournalEntryDao;
 import se3350.habittracker.R;
 
-public class ViewJournalEntryActivity extends AppCompatActivity {
+public class ViewJournalEntryActivity extends ActionBarActivity {
 
     JournalEntry journalEntry;
     JournalEntryDao journalEntryDao;

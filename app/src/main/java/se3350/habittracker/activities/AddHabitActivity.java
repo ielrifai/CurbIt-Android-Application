@@ -16,7 +16,7 @@ import se3350.habittracker.models.Habit;
 import se3350.habittracker.daos.HabitDao;
 import se3350.habittracker.R;
 
-public class AddHabitActivity extends AppCompatActivity {
+public class AddHabitActivity extends ActionBarActivity {
 
     //vars to hold input data
     String habitName, habitDescription;
@@ -30,6 +30,7 @@ public class AddHabitActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_habit);
+        // getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         habitNameInput = (EditText) findViewById(R.id.habitName);
         habitDescriptionInput = (EditText) findViewById(R.id.habitDescription);

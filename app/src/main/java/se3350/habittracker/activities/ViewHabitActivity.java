@@ -6,6 +6,8 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -19,12 +21,12 @@ import se3350.habittracker.models.JournalEntry;
 import se3350.habittracker.daos.JournalEntryDao;
 import se3350.habittracker.R;
 
-public class ViewHabitActivity extends AppCompatActivity {
+public class ViewHabitActivity extends ActionBarActivity {
 
     String habit_description;
     int habitId;
     Habit habit;
-    TextView habitDescriptionTextView, viewProgressTextView, editHabitButton;
+    TextView habitDescriptionTextView, viewProgressTextView;
     Button seeJournalButton, begin4StepsButton;
     private HabitDao habitDao;
     private JournalEntryDao journalEntryDao;
@@ -43,7 +45,6 @@ public class ViewHabitActivity extends AppCompatActivity {
         viewProgressTextView = findViewById(R.id.view_progress);
         seeJournalButton = findViewById(R.id.see_journal_btn);
         begin4StepsButton = findViewById(R.id.begin_4_steps_btn);
-        editHabitButton = findViewById(R.id.edit_habit);
 
         habitId = getIntent().getIntExtra("HABIT_ID", -1 );
 
@@ -56,6 +57,11 @@ public class ViewHabitActivity extends AppCompatActivity {
         LiveData<Habit> habitLiveData = habitDao.getHabitById(habitId);
 
         habitLiveData.observe(this, habit -> {
+            // If habit is not in database
+            if(habit == null){
+                return;
+            }
+
             setHabit(habit);
             setTitle(habit.name);
             habitDescriptionTextView.setText(habit.description);
@@ -68,13 +74,25 @@ public class ViewHabitActivity extends AppCompatActivity {
         });
 
         begin4StepsButton.setOnClickListener(event -> begin4Steps());
+    }
 
-        editHabitButton.setOnClickListener(event -> {
-            Intent intent = new Intent(ViewHabitActivity.this, EditHabitActivity.class).putExtra("HABIT_ID", habitId);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            startActivity(intent);
-        });
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_view_habit, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle presses on the action bar items
+        switch (item.getItemId()) {
+            case R.id.edit_habit:
+                editHabit();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void begin4Steps() {
@@ -84,8 +102,13 @@ public class ViewHabitActivity extends AppCompatActivity {
         myExecutor.execute(() -> {
             int id = (int) journalEntryDao.insertOne(journalEntry);
             Intent intent = new Intent(ViewHabitActivity.this, Step1EntryActivity.class).putExtra("JOURNAL_ID", id);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             startActivity(intent);
         });
+    }
+
+    private void editHabit() {
+        Intent intent = new Intent(ViewHabitActivity.this, EditHabitActivity.class).putExtra("HABIT_ID", habitId);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
     }
 }

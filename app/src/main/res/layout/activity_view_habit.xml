@@ -78,17 +78,6 @@
         android:layout_margin="20sp"
         />
 
-    <Button
-        android:id="@+id/edit_habit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Edit Habit"
-        android:backgroundTint="@color/colorPrimary"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/view_progress"
-        android:layout_margin="20sp"
-        />
 
     <TextView
         android:id="@+id/view_progress"

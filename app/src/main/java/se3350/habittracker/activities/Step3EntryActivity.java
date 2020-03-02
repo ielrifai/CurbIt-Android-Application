@@ -2,6 +2,7 @@ package se3350.habittracker.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -17,7 +18,7 @@ import se3350.habittracker.models.JournalEntry;
 import se3350.habittracker.daos.JournalEntryDao;
 import se3350.habittracker.R;
 
-public class Step3EntryActivity extends AppCompatActivity {
+public class Step3EntryActivity extends ActionBarActivity {
 
     // Data
     String step3Entry;
@@ -64,11 +65,12 @@ public class Step3EntryActivity extends AppCompatActivity {
             //Use intents to move on to the next step activity
             //TUse intents to move on to the next step activity
             Intent intent = new Intent(Step3EntryActivity.this, Step4EntryActivity.class).putExtra("JOURNAL_ID", journalEntry.uid);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             startActivity(intent);
         });
 
     }
+
+
 
     // Function to set the journal entry
     void setJournalEntry(JournalEntry journalEntry){

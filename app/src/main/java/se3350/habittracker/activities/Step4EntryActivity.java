@@ -2,6 +2,7 @@ package se3350.habittracker.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -13,11 +14,12 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import se3350.habittracker.AppDatabase;
+import se3350.habittracker.models.Habit;
 import se3350.habittracker.models.JournalEntry;
 import se3350.habittracker.daos.JournalEntryDao;
 import se3350.habittracker.R;
 
-public class Step4EntryActivity extends AppCompatActivity {
+public class Step4EntryActivity extends ActionBarActivity {
 
     // Data
     String step4Entry;
@@ -62,7 +64,9 @@ public class Step4EntryActivity extends AppCompatActivity {
             });
 
             // Go back to the habit page
-            onBackPressed();
+            Intent intent = new Intent(getBaseContext(), ViewHabitActivity.class).putExtra("HABIT_ID", journalEntry.habitId);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
         });
 
     }

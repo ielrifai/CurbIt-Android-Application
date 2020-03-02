@@ -19,7 +19,7 @@ import se3350.habittracker.daos.JournalEntryDao;
 import se3350.habittracker.R;
 import se3350.habittracker.adapters.JournalListAdapter;
 
-public class JournalListActivity extends AppCompatActivity {
+public class JournalListActivity extends ActionBarActivity {
 
     TextView emptyListText;
 

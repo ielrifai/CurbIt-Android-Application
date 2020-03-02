@@ -32,7 +32,14 @@
     <string name="relabel">Relabel</string>
     <string name="reframe">Reframe</string>
     <string name="refocus">Refocus</string>
+    <string name="revalue">Revalue</string>
     <string name="submit_final">Save and return to habit details</string>
     <string name="empty_journal">No journal entry yet!\n\nTo add a journal entry, go back to the previous page and begin the 4 steps.</string>
     <string name="empty_habit">Add a habit to begin !</string>
+    <string name="delete_habit">Delete Habit</string>
+    <string name="yes">Yes</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm_delete_popup_message">Delete "%1$s" ?</string>
+    <string name="confirm_delete_popup_title">Delete Habit ?</string>
+    <string name="delete">Delete</string>
 </resources>
