@@ -42,4 +42,8 @@
     <string name="confirm_delete_popup_message">Delete "%1$s" ?</string>
     <string name="confirm_delete_popup_title">Delete Habit ?</string>
     <string name="delete">Delete</string>
+    <string name="discard">Discard</string>
+    <string name="save">Save</string>
+    <string name="confirm_save_draft_message">You are going to exit the 4 steps.\nDo you want to save your progress ?</string>
+    <string name="confirm_save_draft_title">Exit 4 Steps Process ?</string>
 </resources>

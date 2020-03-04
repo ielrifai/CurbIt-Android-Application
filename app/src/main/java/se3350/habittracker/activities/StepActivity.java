@@ -1,10 +1,12 @@
 package se3350.habittracker.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.LiveData;
 
 import java.util.Date;
@@ -29,6 +31,8 @@ public abstract class StepActivity extends ActionBarActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_cross);
+
         //Get the journal entry from the database
         AppDatabase db = AppDatabase.getInstance(this);
         journalEntryDao = db.journalEntryDao();
@@ -51,11 +55,38 @@ public abstract class StepActivity extends ActionBarActivity{
 
     @Override
     public void onBackPressed() {
-        // Save Draft
+        // On Back press ask the user if want to save or discard the current entry
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.confirm_save_draft_message)
+                .setTitle(R.string.confirm_save_draft_title)
+                .setPositiveButton(R.string.save, ((dialog, which) -> {
+                    save();
+                    goBackToHabitPage();
+                }))
+                .setNeutralButton(R.string.discard, ((dialog, which) -> {
+                    discardDraft();
+                    goBackToHabitPage();
+                }))
+                .setNegativeButton(R.string.cancel, ((dialog, which) -> {}));
 
+        // Show the AlertDialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
 
+    protected void goBackToHabitPage() {
+        //Use intents to move on to the habit page, clearing the stack
+        Intent intent = new Intent(getBaseContext(), ViewHabitActivity.class).putExtra("HABIT_ID", journalEntry.habitId);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
 
-        super.onBackPressed();
+    private void discardDraft() {
+        // Delete the journal entry from the DB as it is discarded
+        Executor myExecutor = Executors.newSingleThreadExecutor();
+        myExecutor.execute(() -> {
+            journalEntryDao.delete(journalEntry);
+        });
     }
 
     // Function to set the journal entry
@@ -64,7 +95,7 @@ public abstract class StepActivity extends ActionBarActivity{
     }
 
     // Check if step text entry is empty
-    protected boolean stepEmpty(){
+    private boolean stepEmpty(){
         // Check if field is empty
         String step1Entry = stepEntryInput.getText().toString();
         if(step1Entry.length() == 0){

@@ -15,14 +15,12 @@ public class Step4EntryActivity extends StepActivity {
     protected void save(){
         // Save the step 4 journal entry text
         journalEntry.step4 = stepEntryInput.getText().toString();
+        journalEntry.isDraft = false;
         super.save();
     }
 
     @Override
     protected void goToNext() {
-        //Use intents to move on to the habit page, clearing the stack
-        Intent intent = new Intent(getBaseContext(), ViewHabitActivity.class).putExtra("HABIT_ID", journalEntry.habitId);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+        goBackToHabitPage();
     }
 }

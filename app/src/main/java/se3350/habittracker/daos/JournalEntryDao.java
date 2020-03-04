@@ -35,7 +35,7 @@ public interface JournalEntryDao {
     void updateJournalEntries(JournalEntry... journalEntries);
 
     @Delete
-    void delete(Habit habit);
+    void delete(JournalEntry journalEntry);
 
     @Query("DELETE FROM journalentry WHERE habitId=:habitId")
     void deleteAllByHabitId(int habitId);
