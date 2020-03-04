@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -17,13 +18,13 @@ public class JournalListAdapter extends ArrayAdapter<JournalEntry> {
     private final Context context;
     private final List<JournalEntry> journalEntries;
 
-    private SimpleDateFormat simpleDateFormat;
+    private DateFormat dateFormat;
 
     public JournalListAdapter(Context context, List<JournalEntry> journalEntries) {
         super(context, -1, journalEntries);
         this.context = context;
         this.journalEntries = journalEntries;
-        this.simpleDateFormat = new SimpleDateFormat("EEE dd MMM - hh:mm");
+        this.dateFormat = SimpleDateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
     }
 
     @Override
@@ -34,7 +35,7 @@ public class JournalListAdapter extends ArrayAdapter<JournalEntry> {
 
         TextView journalTitle = rowView.findViewById(R.id.journal_title);
 
-        String title = simpleDateFormat.format(journalEntries.get(position).date);
+        String title = dateFormat.format(journalEntries.get(position).date);
         journalTitle.setText(title);
 
         return rowView;
