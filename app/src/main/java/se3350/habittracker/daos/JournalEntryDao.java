@@ -23,6 +23,9 @@ public interface JournalEntryDao {
     @Query("SELECT * FROM journalEntry WHERE uid=:uid")
     LiveData<JournalEntry> getById(int uid);
 
+    @Query("SELECT * FROM journalentry WHERE isDraft=1 AND habitId=:habitId")
+    LiveData<JournalEntry> getDraftOfHabit(int habitId);
+
     //insert data
     //... - accept anything that is a list, array, or multiple arguments
     @Insert(onConflict = OnConflictStrategy.REPLACE)

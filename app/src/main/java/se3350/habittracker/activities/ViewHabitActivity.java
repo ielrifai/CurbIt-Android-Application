@@ -3,11 +3,14 @@ package se3350.habittracker.activities;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -26,16 +29,15 @@ public class ViewHabitActivity extends ActionBarActivity {
     String habit_description;
     int habitId;
     Habit habit;
+    JournalEntry draft;
+
     TextView habitDescriptionTextView, viewProgressTextView;
-    Button seeJournalButton, begin4StepsButton;
+    Button seeJournalButton, begin4StepsButton, resume4StepButton;
+
     private HabitDao habitDao;
     private JournalEntryDao journalEntryDao;
 
 
-    private void setHabit(Habit habit)
-    {
-        this.habit = habit;
-    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +47,7 @@ public class ViewHabitActivity extends ActionBarActivity {
         viewProgressTextView = findViewById(R.id.view_progress);
         seeJournalButton = findViewById(R.id.see_journal_btn);
         begin4StepsButton = findViewById(R.id.begin_4_steps_btn);
+        resume4StepButton = findViewById(R.id.resume_4_steps_btn);
 
         habitId = getIntent().getIntExtra("HABIT_ID", -1 );
 
@@ -55,18 +58,17 @@ public class ViewHabitActivity extends ActionBarActivity {
 
         // Get habit from database
         LiveData<Habit> habitLiveData = habitDao.getHabitById(habitId);
-
         habitLiveData.observe(this, habit -> {
             // If habit is not in database
             if(habit == null){
                 return;
             }
-
             setHabit(habit);
-            setTitle(habit.name);
-            habitDescriptionTextView.setText(habit.description);
         });
 
+        // Get draft from database
+        LiveData<JournalEntry> journalEntryLiveData = journalEntryDao.getDraftOfHabit(habitId);
+        journalEntryLiveData.observe(this, journalEntry -> setDraft(journalEntry));
 
         seeJournalButton.setOnClickListener(event -> {
             Intent intent = new Intent(ViewHabitActivity.this, JournalListActivity.class).putExtra("HABIT_ID", habitId);
@@ -74,6 +76,7 @@ public class ViewHabitActivity extends ActionBarActivity {
         });
 
         begin4StepsButton.setOnClickListener(event -> begin4Steps());
+        resume4StepButton.setOnClickListener(event -> begin4Steps(draft.uid));
     }
 
     @Override
@@ -95,16 +98,60 @@ public class ViewHabitActivity extends ActionBarActivity {
         }
     }
 
+    private void setHabit(Habit habit)
+    {
+        this.habit = habit;
+        setTitle(habit.name);
+        habitDescriptionTextView.setText(habit.description);
+    }
+
+    private void setDraft(JournalEntry journalEntry){
+        draft = journalEntry;
+        Log.d("DEBUG", "setDraft: "+draft);
+        // if there is no draft, hide the resume button from layout
+        if(draft == null) {
+            resume4StepButton.setVisibility(View.GONE);
+        }
+    }
+
     private void begin4Steps() {
         JournalEntry journalEntry = new JournalEntry(habitId);
 
-        Executor myExecutor = Executors.newSingleThreadExecutor();
-        myExecutor.execute(() -> {
-            int id = (int) journalEntryDao.insertOne(journalEntry);
-            Intent intent = new Intent(ViewHabitActivity.this, Step1EntryActivity.class).putExtra("JOURNAL_ID", id);
-            startActivity(intent);
-        });
+        if(draft!= null) {
+            // Ask the user if they want to erase the current draft
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage(R.string.confirm_begin_4_steps_message)
+                    .setTitle(R.string.confirm_begin_4_steps_title)
+                    .setPositiveButton(R.string.begin_4_steps, ((dialog, which) -> {
+                        // Delete old draft and create a new entry
+                        Executor myExecutor = Executors.newSingleThreadExecutor();
+                        myExecutor.execute(() -> {
+                            journalEntryDao.delete(draft);
+                            int id = (int) journalEntryDao.insertOne(journalEntry);
+                            begin4Steps(id);
+                        });
+                    }))
+                    .setNegativeButton(R.string.cancel, ((dialog, which) -> {}));
+
+            // Show the AlertDialog
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+        else {
+            // Create a new entry
+            Executor myExecutor = Executors.newSingleThreadExecutor();
+            myExecutor.execute(() -> {
+                int id = (int) journalEntryDao.insertOne(journalEntry);
+                begin4Steps(id);
+            });
+        }
     }
+
+    private void begin4Steps(int journalId) {
+        Intent intent = new Intent(ViewHabitActivity.this, Step1EntryActivity.class).putExtra("JOURNAL_ID", journalId);
+        startActivity(intent);
+    }
+
 
     private void editHabit() {
         Intent intent = new Intent(ViewHabitActivity.this, EditHabitActivity.class).putExtra("HABIT_ID", habitId);

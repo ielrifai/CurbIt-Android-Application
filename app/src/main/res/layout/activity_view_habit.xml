@@ -66,17 +66,35 @@
         android:textSize="20sp"
         />
 
-    <Button
-        android:id="@+id/begin_4_steps_btn"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Begin 4 Steps"
-        android:backgroundTint="@color/colorPrimary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/begin_4_steps_header"
-        android:layout_margin="20sp"
-        />
+        android:orientation="horizontal"
+        android:layout_margin="20sp">
+
+
+        <Button
+            android:id="@+id/resume_4_steps_btn"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Resume 4 Steps"
+            android:backgroundTint="@color/colorPrimary"
+            />
+        
+        <Button
+            android:id="@+id/begin_4_steps_btn"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Begin 4 Steps"
+            android:backgroundTint="@color/colorPrimary"
+            />
+
+    </LinearLayout>
 
 
     <TextView

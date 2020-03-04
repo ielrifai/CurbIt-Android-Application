@@ -1,6 +1,8 @@
 package se3350.habittracker.adapters;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +39,13 @@ public class JournalListAdapter extends ArrayAdapter<JournalEntry> {
 
         String title = dateFormat.format(journalEntries.get(position).date);
         journalTitle.setText(title);
+
+        // If draft change the display
+        if(journalEntries.get(position).isDraft) {
+            journalTitle.setTextColor(rowView.getResources().getColor(R.color.colorAccent, getDropDownViewTheme()));
+            title = journalTitle.getText() + " (draft)";
+            journalTitle.setText(title);
+        }
 
         return rowView;
     }

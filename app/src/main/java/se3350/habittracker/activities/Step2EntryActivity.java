@@ -12,6 +12,10 @@ public class Step2EntryActivity extends StepActivity {
         super.onCreate(savedInstanceState);
     }
 
+    protected void setEntryText(){
+        stepEntryInput.setText(journalEntry.step2);
+    }
+
     protected void save(){
         // Save the step 2 journal entry text
         journalEntry.step2 = stepEntryInput.getText().toString();

@@ -46,4 +46,7 @@
     <string name="save">Save</string>
     <string name="confirm_save_draft_message">You are going to exit the 4 steps.\nDo you want to save your progress ?</string>
     <string name="confirm_save_draft_title">Exit 4 Steps Process ?</string>
+    <string name="confirm_begin_4_steps_message">You are going to erase your previous unfinished draft. Do you want to continue ?</string>
+    <string name="confirm_begin_4_steps_title">Begin 4 steps ?</string>
+    <string name="begin_4_steps">Begin 4 steps</string>
 </resources>

@@ -40,7 +40,10 @@ public abstract class StepActivity extends ActionBarActivity{
         int journal_id = getIntent().getIntExtra("JOURNAL_ID", -1 );
         LiveData<JournalEntry> journalEntryLive = journalEntryDao.getById(journal_id);
 
-        journalEntryLive.observe(this, entry -> setJournalEntry(entry));
+        journalEntryLive.observe(this, entry -> {
+            if(entry == null) return;
+            setJournalEntry(entry);
+        });
 
         // Get the elements
         stepEntryInput = (EditText) findViewById(R.id.step_journal);
@@ -90,9 +93,12 @@ public abstract class StepActivity extends ActionBarActivity{
     }
 
     // Function to set the journal entry
-    void setJournalEntry(JournalEntry journalEntry){
+    private void setJournalEntry(JournalEntry journalEntry){
         this.journalEntry = journalEntry;
+        setEntryText();
     }
+
+    protected abstract void setEntryText();
 
     // Check if step text entry is empty
     private boolean stepEmpty(){
