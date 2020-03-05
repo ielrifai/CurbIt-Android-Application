@@ -49,4 +49,6 @@
     <string name="confirm_begin_4_steps_message">You are going to erase your previous unfinished draft. Do you want to continue ?</string>
     <string name="confirm_begin_4_steps_title">Begin 4 steps ?</string>
     <string name="begin_4_steps">Begin 4 steps</string>
+    <string name="survey_title">How are you feeling?</string>
+    <string name="survey_prompt">On a scale of 1 to 10, how much better are you feeling about your habit after going through the 4 step process?</string>
 </resources>
