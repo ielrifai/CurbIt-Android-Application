@@ -29,4 +29,12 @@ public interface HabitDao {
 
     @Delete
     void delete(Habit habit);
+
+    // TODO: SQL query to add up the scores of journal entries for this habit and get avg
+    @Query("UPDATE habit " +
+            "SET avgScore = (" +
+                "SELECT AVG(surveyScore) " +
+                "from journalentry as j " +
+                "WHERE j.habitId = :id)")
+    void updateAvgScore(int id);
 }
