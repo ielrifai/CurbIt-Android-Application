@@ -51,4 +51,19 @@
     <string name="begin_4_steps">Begin 4 steps</string>
     <string name="survey_title">How are you feeling?</string>
     <string name="survey_prompt">On a scale of 1 to 10, how much better are you feeling about your habit after going through the 4 step process?</string>
+    <string name="submit_survey">Save and Finish Process</string>
+
+    <!-- Survey Levels -->
+    <!-- TODO: May want to change these -->
+    <string name="level_10">Excellent</string>
+    <string name="level_9">Awesome</string>
+    <string name="level_8">Great</string>
+    <string name="level_7">Good</string>
+    <string name="level_6">Okay</string>
+    <string name="level_5">Meh</string>
+    <string name="level_4">Not great</string>
+    <string name="level_3">Discouraged</string>
+    <string name="level_2">:(</string>
+    <string name="level_1">Very Sad</string>
+    <string name="level_0">Terrible</string>
 </resources>

@@ -48,6 +48,19 @@
         android:layout_margin="20sp"
         android:paddingTop="20sp"
         android:text="0"
+        android:textSize="24sp"
+        android:textAlignment="center"
+        />
+
+    <TextView
+        android:id="@+id/survey_progress_feeling"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/title"
+        app:layout_constraintTop_toBottomOf="@id/survey_progress_value"
+        android:layout_margin="20sp"
+        android:paddingTop="20sp"
+        android:text="@string/level_5"
         android:textSize="22sp"
         android:textAlignment="center"
         />
@@ -60,7 +73,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:gravity="center"
-        android:text="@string/submit_next"
+        android:text="@string/submit_survey"
         android:layout_margin="20sp"
         android:backgroundTint="@color/colorPrimary"
         />

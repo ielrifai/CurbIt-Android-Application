@@ -3,6 +3,7 @@ package se3350.habittracker.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.SeekBar;
@@ -24,6 +25,7 @@ public class SurveyActivity extends AppCompatActivity {
     // Elements
     SeekBar surveySeekbar;
     TextView surveyProgressValue;
+    TextView surveyProgressFeeling;
     Button submitButton;
 
     // Values
@@ -66,11 +68,11 @@ public class SurveyActivity extends AppCompatActivity {
         // Get the elements
         surveySeekbar = (SeekBar) findViewById(R.id.survey_seekbar);
         surveyProgressValue = (TextView) findViewById(R.id.survey_progress_value);
+        surveyProgressFeeling = (TextView) findViewById(R.id.survey_progress_feeling);
         submitButton = (Button) findViewById(R.id.submitButton);
 
         // Seekbar setup and listener
-        surveySeekbar.setProgress(0);
-        surveySeekbar.incrementProgressBy(1);
+        surveySeekbar.setProgress(5);
         surveySeekbar.setMax(10); // Out of 10
 
         surveySeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -78,6 +80,44 @@ public class SurveyActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 surveyProgressValue.setText(String.valueOf(progress));
+                // Show a feeling based on progress value
+                String feeling = "";
+                switch(progress){
+                    case 0:
+                        feeling = getString(R.string.level_0);
+                        break;
+                    case 1:
+                        feeling = getString(R.string.level_1);
+                        break;
+                    case 2:
+                        feeling = getString(R.string.level_2);
+                        break;
+                    case 3:
+                        feeling = getString(R.string.level_3);
+                        break;
+                    case 4:
+                        feeling = getString(R.string.level_4);
+                        break;
+                    case 5:
+                        feeling = getString(R.string.level_5);
+                        break;
+                    case 6:
+                        feeling = getString(R.string.level_6);
+                        break;
+                    case 7:
+                        feeling = getString(R.string.level_7);
+                        break;
+                    case 8:
+                        feeling = getString(R.string.level_8);
+                        break;
+                    case 9:
+                        feeling = getString(R.string.level_9);
+                        break;
+                    case 10:
+                        feeling = getString(R.string.level_10);
+                        break;
+                }
+                surveyProgressFeeling.setText(feeling);
                 currentProgressValue = progress;
             }
 
@@ -133,7 +173,10 @@ public class SurveyActivity extends AppCompatActivity {
     }
 
     private void goToNext(){
-        // TODO: Go back to habit page
+        // Go back to habit page
+        Intent intent = new Intent(getBaseContext(), ViewHabitActivity.class).putExtra("HABIT_ID", journalEntry.habitId);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 
     //TODO: Add ability to go back???
