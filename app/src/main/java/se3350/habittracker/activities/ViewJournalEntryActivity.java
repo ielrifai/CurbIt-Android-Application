@@ -20,6 +20,7 @@ public class ViewJournalEntryActivity extends ActionBarActivity {
     TextView refocusTextView;
     TextView revalueTextView;
     TextView reframeTextView;
+    TextView scoreTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,7 @@ public class ViewJournalEntryActivity extends ActionBarActivity {
         refocusTextView = findViewById(R.id.refocus_text);
         reframeTextView = findViewById(R.id.reframe_text);
         revalueTextView = findViewById(R.id.revalue_text);
+        scoreTextView = findViewById(R.id.progress_score);
 
         // Get journalId from the intent extra
         int journalId = getIntent().getIntExtra("JOURNAL_ID", -1 );
@@ -51,5 +53,6 @@ public class ViewJournalEntryActivity extends ActionBarActivity {
         reframeTextView.setText(journalEntry.step2);
         refocusTextView.setText(journalEntry.step3);
         revalueTextView.setText(journalEntry.step4);
+        scoreTextView.setText(getString(R.string.progress_score_desc, journalEntry.surveyScore));
     }
 }

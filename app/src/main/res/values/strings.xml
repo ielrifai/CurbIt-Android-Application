@@ -52,6 +52,8 @@
     <string name="survey_title">How are you feeling?</string>
     <string name="survey_prompt">On a scale of 1 to 10, how much better are you feeling about your habit after going through the 4 step process?</string>
     <string name="submit_survey">Save and Finish Process</string>
+    <string name="progress_score_title">Progress Score</string>
+    <string name="progress_score_desc">You felt %1$d/10 about your habit after this entry.</string>
 
     <!-- Survey Levels -->
     <!-- TODO: May want to change these -->
