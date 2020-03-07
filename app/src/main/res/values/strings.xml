@@ -33,7 +33,7 @@
     <string name="reframe">Reframe</string>
     <string name="refocus">Refocus</string>
     <string name="revalue">Revalue</string>
-    <string name="submit_final">Save and return to habit details</string>
+    <string name="submit_final">Save and Finish</string>
     <string name="empty_journal">No journal entry yet!\n\nTo add a journal entry, go back to the previous page and begin the 4 steps.</string>
     <string name="empty_habit">Add a habit to begin !</string>
     <string name="delete_habit">Delete Habit</string>
@@ -49,4 +49,11 @@
     <string name="confirm_begin_4_steps_message">You are going to erase your previous unfinished draft. Do you want to continue ?</string>
     <string name="confirm_begin_4_steps_title">Begin 4 steps ?</string>
     <string name="begin_4_steps">Begin 4 steps</string>
+    <string name="previous_step">Previous step</string>
+    <string name="next_step">Next Step</string>
+    <string name="four_steps">4 Steps</string>
+    <string name="habit_description">Habit Description</string>
+    <string name="journal">Journal</string>
+    <string name="see_journal">See Journal</string>
+    <string name="resume_4_steps">Resume 4 Steps</string>
 </resources>

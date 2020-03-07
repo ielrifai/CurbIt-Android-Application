@@ -28,4 +28,12 @@ public class Step2EntryActivity extends StepActivity {
         Intent intent = new Intent(Step2EntryActivity.this, Step3EntryActivity.class).putExtra("JOURNAL_ID", journalEntry.uid);
         startActivity(intent);
     }
+
+    @Override
+    protected void goToPrevious() {
+        //Use intents to move on to the previous step activity
+        Intent intent = new Intent(Step2EntryActivity.this, Step1EntryActivity.class).putExtra("JOURNAL_ID", journalEntry.uid);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
 }

@@ -6,8 +6,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -32,10 +30,10 @@ public class AddHabitActivity extends ActionBarActivity {
         setContentView(R.layout.activity_add_habit);
         // getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        habitNameInput = (EditText) findViewById(R.id.habitName);
-        habitDescriptionInput = (EditText) findViewById(R.id.habitDescription);
+        habitNameInput = (EditText) findViewById(R.id.habit_name);
+        habitDescriptionInput = (EditText) findViewById(R.id.habit_description);
 
-        submitButton = (Button) findViewById(R.id.submitButton);
+        submitButton = (Button) findViewById(R.id.submit_btn);
 
         submitButton.setOnClickListener(v -> {
             //save habit info

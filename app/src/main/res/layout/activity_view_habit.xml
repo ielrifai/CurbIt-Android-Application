@@ -11,7 +11,7 @@
         android:id="@+id/habit_description_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="habit description"
+        android:text="@string/habit_description"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -34,7 +34,7 @@
         android:id="@+id/journal_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Journal"
+        android:text="@string/journal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/habit_description"
@@ -46,7 +46,7 @@
         android:id="@+id/see_journal_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="See Journal"
+        android:text="@string/see_journal"
         android:backgroundTint="@color/colorPrimary"
         app:layout_constraintStart_toStartOf="@id/habit_description"
         app:layout_constraintEnd_toEndOf="@id/habit_description"
@@ -58,7 +58,7 @@
         android:id="@+id/begin_4_steps_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="4 Steps"
+        android:text="@string/four_steps"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/see_journal_btn"
@@ -81,7 +81,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="Resume 4 Steps"
+            android:text="@string/resume_4_steps"
             android:backgroundTint="@color/colorPrimary"
             />
         
@@ -90,7 +90,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="Begin 4 Steps"
+            android:text="@string/begin_4_steps"
             android:backgroundTint="@color/colorPrimary"
             />
 

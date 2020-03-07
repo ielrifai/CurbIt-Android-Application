@@ -22,7 +22,7 @@ public abstract class StepActivity extends ActionBarActivity{
 
     // Elements
     EditText stepEntryInput;
-    Button submitButton;
+    Button nextButton, previousButton;
 
     JournalEntry journalEntry;
     JournalEntryDao journalEntryDao;
@@ -32,6 +32,7 @@ public abstract class StepActivity extends ActionBarActivity{
         super.onCreate(savedInstanceState);
 
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_cross);
+        setTitle(R.string.four_steps);
 
         //Get the journal entry from the database
         AppDatabase db = AppDatabase.getInstance(this);
@@ -47,12 +48,18 @@ public abstract class StepActivity extends ActionBarActivity{
 
         // Get the elements
         stepEntryInput = (EditText) findViewById(R.id.step_journal);
-        submitButton = (Button) findViewById(R.id.submitButton);
+        nextButton = (Button) findViewById(R.id.next_btn);
+        previousButton = (Button) findViewById(R.id.previous_btn);
 
-        submitButton.setOnClickListener(v -> {
+        nextButton.setOnClickListener(v -> {
             if (stepEmpty()) return;
             save();
             goToNext();
+        });
+
+        previousButton.setOnClickListener(v -> {
+            save();
+            goToPrevious();
         });
     }
 
@@ -63,6 +70,7 @@ public abstract class StepActivity extends ActionBarActivity{
         builder.setMessage(R.string.confirm_save_draft_message)
                 .setTitle(R.string.confirm_save_draft_title)
                 .setPositiveButton(R.string.save, ((dialog, which) -> {
+                    journalEntry.isDraft = true;
                     save();
                     goBackToHabitPage();
                 }))
@@ -121,6 +129,8 @@ public abstract class StepActivity extends ActionBarActivity{
             journalEntryDao.updateJournalEntries(journalEntry);
         });
     }
+
+    protected abstract void goToPrevious();
 
     protected abstract void goToNext();
 

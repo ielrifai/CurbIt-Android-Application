@@ -27,4 +27,12 @@ public class Step4EntryActivity extends StepActivity {
     protected void goToNext() {
         goBackToHabitPage();
     }
+
+    @Override
+    protected void goToPrevious() {
+        //Use intents to move on to the previous step activity
+        Intent intent = new Intent(Step4EntryActivity.this, Step3EntryActivity.class).putExtra("JOURNAL_ID", journalEntry.uid);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
 }
