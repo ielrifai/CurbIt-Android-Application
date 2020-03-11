@@ -61,5 +61,12 @@
     <string name="begin_step1_tutorial">Lets Begin</string>
     <string name="tutorial_introduction_title">An Example of a Bad Habit</string>
     <string name="tutorial_introduction_app_description">This app implements the four step process from the book \"You Are Not Your Brain\", written by two leading experts in neurology. The four step method is an iterative process  which enables individuals to work to minimize negative habits.</string>
+    <string name="tutorial">The Four Steps In Action</string>
+    <string name="tutorial_example_description"> This is Steve. Steve REALLY likes coffee. He drinks 6-10 cups every single day. Steve is worried that his love for java might be problematic.</string>
+    <string name="tutorial_example_start"> Follow along as Steve completes The Four Steps for his habit!</string>
+
+
+
+
 
 </resources>

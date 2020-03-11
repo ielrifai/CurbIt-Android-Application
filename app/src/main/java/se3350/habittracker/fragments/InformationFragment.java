@@ -10,13 +10,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import se3350.habittracker.R;
-import se3350.habittracker.activities.Step1TutorialActivity;
 import se3350.habittracker.activities.TutorialIntroductionActivity;
 
 public class InformationFragment extends Fragment {
@@ -26,11 +23,11 @@ public class InformationFragment extends Fragment {
     private TextView info;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        informationViewModel =ViewModelProviders.of(this).get(InformationViewModel.class);
 
+        informationViewModel =ViewModelProviders.of(this).get(InformationViewModel.class);
         View root = inflater.inflate(R.layout.fragment_information, container, false);
         tutorial = root.findViewById(R.id.begin_tutorial_button);
-        info = root.findViewById(R.id.tutorial_introduction_text);
+        info = root.findViewById(R.id.fragment_information_text);
 
         info.setMovementMethod(new ScrollingMovementMethod());
 

@@ -7,7 +7,7 @@
 
 
     <TextView
-        android:id="@+id/title_tutorial_introduction"
+        android:id="@+id/title_fragment_information"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,30 +32,28 @@
         />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/fragment_information_imageView"
         android:layout_width="244dp"
         android:layout_height="357dp"
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_tutorial_introduction"
+        app:layout_constraintTop_toBottomOf="@+id/title_fragment_information"
         app:srcCompat="@drawable/book_cover" />
 
     <TextView
-        android:id="@+id/tutorial_introduction_text"
+        android:id="@+id/fragment_information_text"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="20sp"
         android:gravity="top"
-        android:hint="@string/step1_journal"
-        android:inputType="textMultiLine"
         android:scrollbars="vertical"
         android:text="@string/tutorial_introduction_app_description"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@id/begin_tutorial_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageView" />
+        app:layout_constraintTop_toBottomOf="@id/fragment_information_imageView" />
 
 
         />
