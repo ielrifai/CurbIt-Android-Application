@@ -18,18 +18,11 @@ public class InformationFragment extends Fragment {
 
     private InformationViewModel informationViewModel;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        informationViewModel =
-                ViewModelProviders.of(this).get(InformationViewModel.class);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        informationViewModel =ViewModelProviders.of(this).get(InformationViewModel.class);
         View root = inflater.inflate(R.layout.fragment_information, container, false);
-        final TextView textView = root.findViewById(R.id.text_information);
-        informationViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+
         return root;
     }
 }

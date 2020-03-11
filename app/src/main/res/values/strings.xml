@@ -2,6 +2,7 @@
     <string name="app_name">Habit Tracker</string>
     <string name="title_home">Home</string>
     <string name="title_information">Information</string>
+    <string name="about_information">The Four Steps</string>
     <string name="habit_list">Habit List</string>
     <string name="add_habit">Add Habit</string>
     <string name="error_add_habit">Please fill in all fields</string>
@@ -56,4 +57,6 @@
     <string name="journal">Journal</string>
     <string name="see_journal">See Journal</string>
     <string name="resume_4_steps">Resume 4 Steps</string>
+    <string name="begin_tutorial">Begin Tutorial</string>
+
 </resources>
