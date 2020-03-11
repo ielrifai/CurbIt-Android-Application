@@ -2,6 +2,7 @@ package se3350.habittracker.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,12 +23,16 @@ public class InformationFragment extends Fragment {
 
     private InformationViewModel informationViewModel;
     private Button tutorial;
+    private TextView info;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         informationViewModel =ViewModelProviders.of(this).get(InformationViewModel.class);
 
         View root = inflater.inflate(R.layout.fragment_information, container, false);
         tutorial = root.findViewById(R.id.begin_tutorial_button);
+        info = root.findViewById(R.id.tutorial_introduction_text);
+
+        info.setMovementMethod(new ScrollingMovementMethod());
 
         // Set add button to open the add habit form
         tutorial.setOnClickListener(event -> {

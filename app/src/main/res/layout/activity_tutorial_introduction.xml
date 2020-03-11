@@ -10,11 +10,10 @@
         android:id="@+id/title_tutorial_introduction"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8sp"
         android:text="@string/tutorial_introduction_title"
         android:textAlignment="center"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
