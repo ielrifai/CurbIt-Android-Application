@@ -58,5 +58,9 @@
     <string name="see_journal">See Journal</string>
     <string name="resume_4_steps">Resume 4 Steps</string>
     <string name="begin_tutorial">Begin Tutorial</string>
+    <string name="begin_step1_tutorial">Lets Begin</string>
+    <string name="tutorial_introduction_title">An Example of a Bad Habit</string>
+
+
 
 </resources>
