@@ -20,16 +20,15 @@
     <TextView
         android:id="@+id/tut_step1_instruct_title"
         android:layout_width="match_parent"
-        app:layout_constraintStart_toStartOf="@id/title"
-        app:layout_constraintTop_toBottomOf="@id/title"
-        android:layout_margin="20sp"
-        android:paddingTop="0sp"
         android:layout_height="0dp"
+        android:layout_margin="20sp"
         android:gravity="top"
         android:hint="@string/step1_journal"
-        android:inputType="textMultiLine"
-        android:text="Instructions:"
-        android:textSize="18sp" />
+        android:paddingTop="0sp"
+        android:text="@string/tutorial_example_instruction"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/title"
+        app:layout_constraintTop_toBottomOf="@id/title" />
 
     <TextView
         android:id="@+id/tut_step1_instruct"
@@ -50,7 +49,7 @@
         android:layout_margin="20sp"
         android:gravity="top"
         android:paddingTop="0dp"
-        android:text="Prompts:"
+        android:text="@string/tutorial_prompt_title"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tut_step1_instruct" />
@@ -74,7 +73,7 @@
         android:layout_margin="20sp"
         android:gravity="top"
         android:paddingTop="0dp"
-        android:text="Steve Says!"
+        android:text="@string/tutorial_example_title"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tut_step1_prompt" />
@@ -86,7 +85,7 @@
         android:layout_margin="20sp"
         android:gravity="top"
         android:paddingTop="0dp"
-        android:text="Steve Says!"
+        android:text="@string/tutorial_example_step1"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@id/tut_to_step2_button"
         app:layout_constraintEnd_toEndOf="parent"

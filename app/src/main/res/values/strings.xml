@@ -57,13 +57,19 @@
     <string name="journal">Journal</string>
     <string name="see_journal">See Journal</string>
     <string name="resume_4_steps">Resume 4 Steps</string>
+
     <string name="begin_tutorial">See The Four Steps in Action</string>
     <string name="begin_step1_tutorial">Lets Begin</string>
     <string name="tutorial_introduction_title">An Example of a Bad Habit</string>
     <string name="tutorial_introduction_app_description">This app implements the four step process from the book \"You Are Not Your Brain\", written by two leading experts in neurology. The four step method is an iterative process  which enables individuals to work to minimize negative habits.</string>
     <string name="tutorial">The Four Steps In Action</string>
     <string name="tutorial_example_description"> This is Steve. Steve REALLY likes coffee. He drinks 6-10 cups every single day. Steve is worried that his love for java might be problematic.</string>
-    <string name="tutorial_example_start"> Follow along as Steve uses HabitTracker to complete The Four Steps for his habit. Each step will be broken down into instructions, prompts and \"Steve Says\". The \"Steve Says\" section will explain Steve\'s answer for each of the steps. </string>
+    <string name="tutorial_example_start">Follow along as Steve uses HabitTracker to complete The Four Steps for his habit. Each step will be broken down into instructions, prompts and \"Steve Says\". The \"Steve Says\" section will explain Steve\'s answer for each of the steps. </string>
+    <string name="tutorial_example_title">Steve Says! </string>
+    <string name="tutorial_prompt_title">Prompts: </string>
+    <string name="tutorial_example_instruction">Steve Says! </string>
+    <string name="tutorial_example_step1">Temporary text here - change this later </string>
+
 
 
 
