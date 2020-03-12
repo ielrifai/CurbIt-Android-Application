@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.TutorialIntroductionActivity"></activity>
+        <activity android:name=".activities.Step4TutorialActivity"></activity>
+        <activity android:name=".activities.Step3TutorialActivity" />
+        <activity android:name=".activities.Step2TutorialActivity" />
+        <activity android:name=".activities.TutorialIntroductionActivity" />
         <activity android:name=".activities.Step1TutorialActivity" />
         <activity
             android:name=".activities.ViewJournalEntryActivity"

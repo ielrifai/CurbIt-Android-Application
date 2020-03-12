@@ -51,7 +51,7 @@
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
-            android:layout_height="213dp"
+            android:layout_height="259dp"
             android:layout_weight="1"
             android:text="@string/tutorial_example_description"
             android:textAlignment="gravity"
@@ -64,7 +64,6 @@
         android:layout_height="216dp"
         android:layout_margin="20sp"
         android:gravity="top"
-        android:scrollbars="vertical"
         android:text="@string/tutorial_example_start"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/begin_tutorial_button"

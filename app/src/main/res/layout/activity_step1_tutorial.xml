@@ -80,6 +80,7 @@
 
     <TextView
         android:id="@+id/tut_step1_steve_says"
+        android:scrollbars="vertical"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="20sp"
