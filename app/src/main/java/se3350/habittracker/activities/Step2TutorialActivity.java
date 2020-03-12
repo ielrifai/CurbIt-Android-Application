@@ -15,6 +15,7 @@ public class Step2TutorialActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step2_tutorial);
+        setTitle(R.string.tutorial);
         text = findViewById(R.id.tut_step2_steve_says);
         text.setMovementMethod(new ScrollingMovementMethod());
     }
