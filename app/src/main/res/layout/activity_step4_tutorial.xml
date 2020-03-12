@@ -88,7 +88,7 @@
         android:gravity="top"
         android:paddingTop="0dp"
         android:scrollbars="vertical"
-        android:text="@string/tutorial_example_step1"
+        android:text="@string/tutorial_example_step4"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@id/tut_to_summary_button"
         app:layout_constraintEnd_toEndOf="parent"

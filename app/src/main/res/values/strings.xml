@@ -63,20 +63,20 @@
     <string name="tutorial_introduction_title">An Example of a Bad Habit</string>
     <string name="tutorial_introduction_app_description">This app implements the four step process from the book \"You Are Not Your Brain\", written by two leading experts in neurology. The four step method is an iterative process  which enables individuals to work to minimize negative habits.</string>
     <string name="tutorial">The Four Steps In Action</string>
-    <string name="tutorial_example_description"> This is Steve. Steve REALLY likes coffee. He drinks 6-10 cups every single day. Steve is worried that his love for java might be problematic.</string>
+    <string name="tutorial_example_description"> This is Steve. Steve REALLY likes coffee. He drinks 6-10 cups every single day. If Steve does not have coffee he develops bad headaches, shakes, struggles to focus, and becomes frusturated easily. Steve is worried that his love for java might be problematic.</string>
     <string name="tutorial_example_start">Follow along as Steve uses HabitTracker to complete The Four Steps for his habit. Each step will be broken down into instructions, prompts and \"Steve Says\". The \"Steve Says\" section will explain Steve\'s answer for each of the steps. </string>
-    <string name="tutorial_example_title">Steve Says! </string>
+    <string name="tutorial_example_title">Steve Says: </string>
     <string name="tutorial_prompt_title">Prompts: </string>
     <string name="tutorial_example_instruction">Instructions: </string>
     <string name="tutorial_next_step_button">Onward we go!</string>
-    <string name="tutorial_example_step1">Temporary text here - change this later </string>
-    <string name="tutorial_example_step2">Temporary text here - change this later </string>
-    <string name="tutorial_example_step3">Temporary text here - change this later </string>
-    <string name="tutorial_example_step4">Temporary text here - change this later </string>
+    <string name="tutorial_example_step1">Here Steve thinks about his inner thoughts and feelings. Steve is honest with himself. He says: \n-I am dependent on coffee \n-I need large amounts of coffee to function correctly </string>
+    <string name="tutorial_example_step2">Here Steve thinks about a Wise Advocate and pictures his best friend, Dave. What would Dave have to say about the coffee drinking? Would Dave be worried? Steve says: \n-My dependence on caffeine is not healthy \n-My body does not function well without caffeine \-Caffeine abuse is bad for my health</string>
+    <string name="tutorial_example_step3">Here Steve thinks about what he can do to minimize his caffeine intake. He thinks about healthy alternatives. Steve says: \n-When I get a longing for a coffee, I can opt for a decaf tea or water \n-I can try to gradually decrease my caffeine intake</string>
+    <string name="tutorial_example_step4"> Here Steve thinks about how his coffee drinking nas negatively affected his life. He also reflects on his progress. Steve says: \n-I sometimes have so much caffeine that my heart races \n-I feel like I am constantly on edge and have trouble sleeping \n\nAs Steve progresses through the four steps iteratively, he can reflect on his progress here.</string>
     <string name="tutorial_summary_title">In Summary</string>
     <string name="tutorial_summary_to_home">Home</string>
-    <string name="tutorial_summary_body">Implement at a later date</string>
-    <string name="tutorial_summary_description">Implement at a later date</string>
+    <string name="tutorial_summary_description">Moving forward, Steve continues to use the Four Step Process. Over time, Steve is able to stop his coffee abuse. It isn\'t easy, but Steve journals his progress and uses this app to curb his habit. </string>
+    <string name="tutorial_summary_body">HabitTracker allows individuals to catalogue, curtail and even curb all types of negative habits. Using HabitTracker, you too can stop negative habits.</string>
 
 
 
