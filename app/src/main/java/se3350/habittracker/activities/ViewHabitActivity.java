@@ -17,6 +17,7 @@ import java.util.concurrent.Executors;
 
 import se3350.habittracker.AppDatabase;
 import se3350.habittracker.R;
+import se3350.habittracker.daos.GoalDao;
 import se3350.habittracker.daos.HabitDao;
 import se3350.habittracker.daos.JournalEntryDao;
 import se3350.habittracker.models.Goal;
@@ -38,6 +39,7 @@ public class ViewHabitActivity extends ActionBarActivity {
 
     private HabitDao habitDao;
     private JournalEntryDao journalEntryDao;
+    private GoalDao goalDao;
 
 
     @Override
@@ -50,6 +52,7 @@ public class ViewHabitActivity extends ActionBarActivity {
         seeJournalButton = findViewById(R.id.see_journal_btn);
         begin4StepsButton = findViewById(R.id.begin_4_steps_btn);
         resume4StepButton = findViewById(R.id.resume_4_steps_btn);
+        viewGoalsButton = findViewById(R.id.view_goals_btn);
 
         habitId = getIntent().getIntExtra("HABIT_ID", -1 );
 
@@ -57,6 +60,7 @@ public class ViewHabitActivity extends ActionBarActivity {
         AppDatabase db = AppDatabase.getInstance(getBaseContext());
         habitDao = db.habitDao();
         journalEntryDao = db.journalEntryDao();
+        goalDao = db.goalDao();
 
         // Get habit from database
         LiveData<Habit> habitLiveData = habitDao.getHabitById(habitId);

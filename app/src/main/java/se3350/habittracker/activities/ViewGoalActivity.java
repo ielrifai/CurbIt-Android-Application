@@ -41,6 +41,7 @@ public class ViewGoalActivity extends ActionBarActivity {
         goalDescriptionTextView = findViewById(R.id.goal_description);
         viewProgressTextView = findViewById(R.id.view_progress);
         editGoalButton = findViewById(R.id.edit_goal_btn);
+        viewSubgoalButton = findViewById(R.id.view_subgoals_btn);
 
 
         goalId = getIntent().getIntExtra("GOAl_ID", -1 );
@@ -49,6 +50,7 @@ public class ViewGoalActivity extends ActionBarActivity {
         AppDatabase db = AppDatabase.getInstance(getBaseContext());
         goalDao = db.goalDao();
         journalEntryDao = db.journalEntryDao();
+        subgoalDao = db.subgoalDao();
 
         // Get goal from database
         LiveData<Goal> goalLiveData = goalDao.getGoalById(goalId);
