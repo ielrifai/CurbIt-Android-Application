@@ -31,7 +31,7 @@ public class InformationFragment extends Fragment {
 
         info.setMovementMethod(new ScrollingMovementMethod());
 
-        // Set add button to open the add habit form
+        // Set button to link next activity
         tutorial.setOnClickListener(event -> {
             Intent intent = new Intent(this.getContext(), TutorialIntroductionActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);

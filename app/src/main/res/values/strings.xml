@@ -67,7 +67,8 @@
     <string name="tutorial_example_start">Follow along as Steve uses HabitTracker to complete The Four Steps for his habit. Each step will be broken down into instructions, prompts and \"Steve Says\". The \"Steve Says\" section will explain Steve\'s answer for each of the steps. </string>
     <string name="tutorial_example_title">Steve Says! </string>
     <string name="tutorial_prompt_title">Prompts: </string>
-    <string name="tutorial_example_instruction">Steve Says! </string>
+    <string name="tutorial_example_instruction">Instructions: </string>
+    <string name="tutorial_next_step_button">Onward we go!</string>
     <string name="tutorial_example_step1">Temporary text here - change this later </string>
 
 
