@@ -7,7 +7,7 @@
     tools:context=".activities.Step1TutorialActivity">
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/tut_step1_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,12 +23,11 @@
         android:layout_height="0dp"
         android:layout_margin="20sp"
         android:gravity="top"
-        android:hint="@string/step1_journal"
         android:paddingTop="0sp"
         android:text="@string/tutorial_example_instruction"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@id/title"
-        app:layout_constraintTop_toBottomOf="@id/title" />
+        app:layout_constraintStart_toStartOf="@id/tut_step1_title"
+        app:layout_constraintTop_toBottomOf="@id/tut_step1_title" />
 
     <TextView
         android:id="@+id/tut_step1_instruct"
@@ -92,7 +91,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tut_step1_steve_says_title" />
-
 
     <Button
         android:id="@+id/tut_to_step2_button"
