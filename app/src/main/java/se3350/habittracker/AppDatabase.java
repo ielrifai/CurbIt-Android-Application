@@ -7,21 +7,21 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
+import se3350.habittracker.daos.GoalDao;
 import se3350.habittracker.daos.HabitDao;
 import se3350.habittracker.daos.JournalEntryDao;
+import se3350.habittracker.models.Goal;
 import se3350.habittracker.models.Habit;
 import se3350.habittracker.models.JournalEntry;
 
-@Database(entities = {Habit.class, JournalEntry.class}, version = 1, exportSchema = false)
+@Database(entities = {Habit.class, JournalEntry.class, Goal.class}, version = 1, exportSchema = false)
 @TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
 
-    //declare Daos - habit,user,etc
+    //declare Daos - habit,goal,user,etc
     public abstract HabitDao habitDao();
     public abstract JournalEntryDao journalEntryDao();
-
-
-
+    public abstract GoalDao goalDao();
 
 
     private static final String DB_NAME = "habitTracker.db";

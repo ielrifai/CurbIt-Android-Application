@@ -42,4 +42,12 @@ public class JournalEntry {
         this.date = new Date();
         this.isDraft = true;
     }
+
+    /*public JournalEntry(int goalId){
+        this.goalId = goalId;
+        this.date = new Date();
+        this.isDraft = true;
+    }
+*/
+
 }

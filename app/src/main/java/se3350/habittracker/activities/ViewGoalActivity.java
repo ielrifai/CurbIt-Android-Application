@@ -17,9 +17,9 @@ import java.util.concurrent.Executors;
 
 import se3350.habittracker.AppDatabase;
 import se3350.habittracker.R;
-import se3350.habittracker.daos.HabitDao;
+import se3350.habittracker.daos.GoalDao;
 import se3350.habittracker.daos.JournalEntryDao;
-import se3350.habittracker.models.Habit;
+import se3350.habittracker.models.Goal;
 import se3350.habittracker.models.JournalEntry;
 
 public class ViewGoalActivity extends ActionBarActivity {
@@ -56,7 +56,7 @@ public class ViewGoalActivity extends ActionBarActivity {
         journalEntryDao = db.journalEntryDao();
 
         // Get goal from database
-        LiveData<Habit> habitLiveData = goalDao.getGoalById(goalId);
+        LiveData<Goal> goalLiveData = goalDao.getGoalById(goalId);
         goalLiveData.observe(this, goal -> {
             // If habit is not in database
             if(goal == null){
