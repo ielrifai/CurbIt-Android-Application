@@ -4,6 +4,7 @@
     <string name="title_information">Information</string>
     <string name="habit_list">Habit List</string>
     <string name="goal_list">Goal List</string>
+    <string name="subgoal_list">Subgoal List</string>
     <string name="add_habit">Add Habit</string>
     <string name="error_add_habit">Please fill in all fields</string>
     <string name="error_add_entry">Please fill in the journal entry</string>
@@ -31,6 +32,7 @@
     <string name="edit_habit_description">Edit Habit Description: </string>
     <string name="apply_changes">Apply Changes</string>
     <string name="edit_goal">Edit Goal</string>
+    <string name="edit_subgoal">Edit Subgoal</string>
     <string name="journal_list">Journal Entries</string>
     <string name="relabel">Relabel</string>
     <string name="reframe">Reframe</string>
@@ -39,7 +41,8 @@
     <string name="submit_final">Save and Finish</string>
     <string name="empty_journal">No journal entry yet!\n\nTo add a journal entry, go back to the previous page and begin the 4 steps.</string>
     <string name="empty_habit">Add a habit to begin !</string>
-    <string name="empty_goal">Add a goal to begin !</string>
+    <string name="empty_goal">Add a goal !</string>
+    <string name="empty_subgoal">Add a Subgoal !</string>
     <string name="delete_habit">Delete Habit</string>
     <string name="yes">Yes</string>
     <string name="cancel">Cancel</string>
@@ -63,6 +66,8 @@
     <string name="resume_4_steps">Resume 4 Steps</string>
     <string name="view_goals">View Goals</string>
     <string name="subgoal">Subgoal</string>
+
+
 
 
 </resources>

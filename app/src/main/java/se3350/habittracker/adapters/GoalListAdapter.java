@@ -29,7 +29,6 @@ public class GoalListAdapter extends ArrayAdapter<Goal> {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.row_goal_list, parent, false);
 
-
         TextView goalNameText = rowView.findViewById(R.id.goal_name);
         TextView goalDescriptionText = rowView.findViewById(R.id.goal_description);
 

@@ -19,20 +19,26 @@ import se3350.habittracker.AppDatabase;
 import se3350.habittracker.R;
 import se3350.habittracker.daos.GoalDao;
 import se3350.habittracker.daos.JournalEntryDao;
+import se3350.habittracker.daos.SubgoalDao;
 import se3350.habittracker.models.Goal;
 import se3350.habittracker.models.JournalEntry;
+import se3350.habittracker.models.Subgoal;
 
 public class ViewGoalActivity extends ActionBarActivity {
 
     String goal_description;
     int goalId;
+    int subgoalId;
     Goal goal;
+    Subgoal subgoal;
     JournalEntry draft;
 
     TextView goalDescriptionTextView, viewProgressTextView;
-    Button seeJournalButton, begin4StepsButton, resume4StepButton, editGoalButton;
+    Button editSubgoalButton, resume4StepButton, editGoalButton;
+
 
     private GoalDao goalDao;
+    private SubgoalDao subgoalDao;
     private JournalEntryDao journalEntryDao;
 
     @Override
@@ -42,41 +48,45 @@ public class ViewGoalActivity extends ActionBarActivity {
 
         goalDescriptionTextView = findViewById(R.id.goal_description);
         viewProgressTextView = findViewById(R.id.view_progress);
-        seeJournalButton = findViewById(R.id.see_journal_btn);
-        begin4StepsButton = findViewById(R.id.begin_4_steps_btn);
-        resume4StepButton = findViewById(R.id.resume_4_steps_btn);
         editGoalButton = findViewById(R.id.edit_goal_btn);
 
 
         goalId = getIntent().getIntExtra("GOAl_ID", -1 );
+        subgoalId = getIntent().getIntExtra("SUBGOAl_ID", -1 );
 
         // Get Daos and DB
         AppDatabase db = AppDatabase.getInstance(getBaseContext());
         goalDao = db.goalDao();
+        subgoalDao = db.subgoalDao();
         journalEntryDao = db.journalEntryDao();
 
         // Get goal from database
         LiveData<Goal> goalLiveData = goalDao.getGoalById(goalId);
         goalLiveData.observe(this, goal -> {
-            // If habit is not in database
+            // If goal is not in database
             if(goal == null){
                 return;
             }
             setGoal(goal);
         });
 
+        // Get subgoal from database
+        LiveData<Subgoal> subgoalLiveData = subgoalDao.getSubgoalById(subgoalId);
+        subgoalLiveData.observe(this, subgoal -> {
+            // If subgoal is not in database
+            if(subgoal == null){
+                return;
+            }
+            setSubgoal(subgoal);
+        });
+
         // Get draft from database
         LiveData<JournalEntry> journalEntryLiveData = journalEntryDao.getDraftOfGoal(goalId);
         journalEntryLiveData.observe(this, journalEntry -> setDraft(journalEntry));
 
-        seeJournalButton.setOnClickListener(event -> {
-            Intent intent = new Intent(ViewGoalActivity.this, JournalListActivity.class).putExtra("HABIT_ID", goalId);
-            startActivity(intent);
-        });
 
-        begin4StepsButton.setOnClickListener(event -> begin4Steps());
-        resume4StepButton.setOnClickListener(event -> begin4Steps(draft.uid));
         editGoalButton.setOnClickListener(event -> editGoal());
+        editSubgoalButton.setOnClickListener(event -> editSubgoal());
     }
 
     @Override
@@ -105,6 +115,12 @@ public class ViewGoalActivity extends ActionBarActivity {
         goalDescriptionTextView.setText(goal.description);
     }
 
+    private void setSubgoal(Subgoal subgoal)
+    {
+        this.subgoal = subgoal;
+        setTitle(subgoal.name);
+    }
+
     private void setDraft(JournalEntry journalEntry){
         draft = journalEntry;
         Log.d("DEBUG", "setDraft: "+draft);
@@ -114,47 +130,14 @@ public class ViewGoalActivity extends ActionBarActivity {
         }
     }
 
-    private void begin4Steps() {
-        JournalEntry journalEntry = new JournalEntry(goalId);
-
-        if(draft!= null) {
-            // Ask the user if they want to erase the current draft
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage(R.string.confirm_begin_4_steps_message)
-                    .setTitle(R.string.confirm_begin_4_steps_title)
-                    .setPositiveButton(R.string.begin_4_steps, ((dialog, which) -> {
-                        // Delete old draft and create a new entry
-                        Executor myExecutor = Executors.newSingleThreadExecutor();
-                        myExecutor.execute(() -> {
-                            journalEntryDao.delete(draft);
-                            int id = (int) journalEntryDao.insertOne(journalEntry);
-                            begin4Steps(id);
-                        });
-                    }))
-                    .setNegativeButton(R.string.cancel, ((dialog, which) -> {}));
-
-            // Show the AlertDialog
-            AlertDialog dialog = builder.create();
-            dialog.show();
-        }
-        else {
-            // Create a new entry
-            Executor myExecutor = Executors.newSingleThreadExecutor();
-            myExecutor.execute(() -> {
-                int id = (int) journalEntryDao.insertOne(journalEntry);
-                begin4Steps(id);
-            });
-        }
-    }
-
-    private void begin4Steps(int journalId) {
-        Intent intent = new Intent(ViewGoalActivity.this, Step1EntryActivity.class).putExtra("JOURNAL_ID", journalId);
+    private void editGoal() {
+        Intent intent = new Intent(ViewGoalActivity.this, EditGoalActivity.class).putExtra("GOAL_ID", goalId);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
     }
 
-
-    private void editGoal() {
-        Intent intent = new Intent(ViewGoalActivity.this, EditGoalActivity.class).putExtra("GOAL_ID", goalId);
+    private void editSubgoal() {
+        Intent intent = new Intent(ViewGoalActivity.this, EditSubgoalActivity.class).putExtra("SUBGOAL_ID", subgoalId);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
     }

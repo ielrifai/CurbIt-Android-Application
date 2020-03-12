@@ -18,6 +18,9 @@ public class JournalEntry {
     @ColumnInfo(name = "goalId") // Foreign key to reference the goal this entry belongs to
     public int goalId;
 
+    @ColumnInfo(name = "subgoalId") // Foreign key to reference the goal this entry belongs to
+    public int subgoalId;
+
     @ColumnInfo(name = "step1") // Step 1 entry
     public String step1;
 
@@ -37,8 +40,10 @@ public class JournalEntry {
     public boolean isDraft;
 
 
-    public JournalEntry(int habitId){
+    public JournalEntry(int habitId, int goalId, int subgoalId){
         this.habitId = habitId;
+        this.goalId = goalId;
+        this.subgoalId = subgoalId;
         this.date = new Date();
         this.isDraft = true;
     }
