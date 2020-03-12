@@ -2,11 +2,6 @@ package se3350.habittracker.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
-
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,21 +9,28 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.lifecycle.LiveData;
+
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import se3350.habittracker.AppDatabase;
-import se3350.habittracker.models.Habit;
-import se3350.habittracker.daos.HabitDao;
-import se3350.habittracker.models.JournalEntry;
-import se3350.habittracker.daos.JournalEntryDao;
 import se3350.habittracker.R;
+import se3350.habittracker.daos.HabitDao;
+import se3350.habittracker.daos.JournalEntryDao;
+import se3350.habittracker.models.Goal;
+import se3350.habittracker.models.Habit;
+import se3350.habittracker.models.JournalEntry;
+import se3350.habittracker.models.Subgoal;
 
 public class ViewHabitActivity extends ActionBarActivity {
 
     String habit_description;
-    int habitId;
+    int habitId, goalId, subgoalId;
     Habit habit;
+    Goal goal;
+    Subgoal subgoal;
     JournalEntry draft;
 
     TextView habitDescriptionTextView, viewProgressTextView;
@@ -115,7 +117,7 @@ public class ViewHabitActivity extends ActionBarActivity {
     }
 
     private void begin4Steps() {
-        JournalEntry journalEntry = new JournalEntry(habitId);
+        JournalEntry journalEntry = new JournalEntry(habitId, goalId, subgoalId);
 
         if(draft!= null) {
             // Ask the user if they want to erase the current draft

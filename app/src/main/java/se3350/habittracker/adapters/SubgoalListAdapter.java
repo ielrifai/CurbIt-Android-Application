@@ -27,11 +27,15 @@ public class SubgoalListAdapter extends ArrayAdapter<Subgoal> {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View checkedTextView= inflater.inflate(R.layout.activity_view_goal, parent, false);
+        View checkedTextView= inflater.inflate(R.layout.checkbox_subgoal_list, parent, false);
 
         TextView subgoalNameText = checkedTextView.findViewById(R.id.subgoal_name);
+        TextView subgoalDescriptionText = checkedTextView.findViewById(R.id.subgoal_description);
+
 
         subgoalNameText.setText(subgoals.get(position).name);
+        subgoalDescriptionText.setText(subgoals.get(position).description);
+
 
         return checkedTextView;
     }

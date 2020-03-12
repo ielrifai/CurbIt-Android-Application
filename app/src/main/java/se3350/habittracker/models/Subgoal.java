@@ -13,9 +13,13 @@ public class Subgoal {
     @ColumnInfo(name = "name")
     public String name;
 
+    @ColumnInfo(name = "description")
+    public String description;
+
     //public - can access outside package (folders)
-    public Subgoal(String name){
+    public Subgoal(String name, String description){
         this.name = name;
+        this.description = description;
     }
 
 }

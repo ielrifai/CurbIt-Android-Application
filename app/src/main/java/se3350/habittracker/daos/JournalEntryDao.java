@@ -31,6 +31,10 @@ public interface JournalEntryDao {
     @Query("SELECT * FROM journalentry WHERE isDraft=1 AND goalId=:goalId")
     LiveData<JournalEntry> getDraftOfGoal(int goalId);
 
+    @Query("SELECT * FROM journalentry WHERE isDraft=1 AND subgoalId=:subgoalId")
+    LiveData<JournalEntry> getDraftOfSubgoal(int subgoalId);
+
+
 
     //insert data
     //... - accept anything that is a list, array, or multiple arguments
@@ -51,5 +55,8 @@ public interface JournalEntryDao {
 
     @Query("DELETE FROM journalentry WHERE goalId=:goalId")
     void deleteAllByGoalId(int goalId);
+
+    @Query("DELETE FROM journalentry WHERE subgoalId=:subgoalId")
+    void deleteAllBySubgoalId(int subgoalId);
 
 }

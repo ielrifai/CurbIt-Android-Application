@@ -34,6 +34,16 @@
             android:parentActivityName=".activities.MainActivity"/>
 
         <activity
+            android:name=".activities.ViewGoalActivity"
+            android:label="@string/title_activity_view_goal"
+            android:parentActivityName=".activities.MainActivity"/>
+
+        <activity
+            android:name=".activities.ViewSubgoalActivity"
+            android:label="@string/title_activity_view_subgoal"
+            android:parentActivityName=".activities.MainActivity"/>
+
+        <activity
             android:name=".activities.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
