@@ -36,12 +36,17 @@
         <activity
             android:name=".activities.ViewGoalActivity"
             android:label="@string/title_activity_view_goal"
-            android:parentActivityName=".activities.MainActivity"/>
+            android:parentActivityName=".activities.GoalActivity"/>
 
         <activity
             android:name=".activities.ViewSubgoalActivity"
             android:label="@string/title_activity_view_subgoal"
-            android:parentActivityName=".activities.MainActivity"/>
+            android:parentActivityName=".activities.ViewGoalActivity"/>
+
+        <activity
+            android:name=".activities.GoalActivity"
+            android:label="@string/goal_list"
+            android:parentActivityName=".activities.ViewHabitActivity"/>
 
         <activity
             android:name=".activities.MainActivity"

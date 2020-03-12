@@ -1,19 +1,13 @@
 package se3350.habittracker.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.LiveData;
-
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 import se3350.habittracker.AppDatabase;
 import se3350.habittracker.R;
@@ -72,7 +66,7 @@ public class ViewSubgoalActivity extends ActionBarActivity {
         LiveData<JournalEntry> journalEntryLiveData = journalEntryDao.getDraftOfSubgoal(subgoalId);
         journalEntryLiveData.observe(this, journalEntry -> setDraft(journalEntry));
 
-        editSubgoalButton.setOnClickListener(event -> editSubgoal());
+       // editSubgoalButton.setOnClickListener(event -> editSubgoal());
     }
 
     @Override
@@ -82,7 +76,7 @@ public class ViewSubgoalActivity extends ActionBarActivity {
         return true;
     }
 
-    @Override
+   /* @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
@@ -92,7 +86,7 @@ public class ViewSubgoalActivity extends ActionBarActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
+    }*/
 
 
     private void setSubgoal(Subgoal subgoal)
@@ -112,9 +106,9 @@ public class ViewSubgoalActivity extends ActionBarActivity {
     }
 
 
-    private void editSubgoal() {
+   /* private void editSubgoal() {
         Intent intent = new Intent(ViewSubgoalActivity.this, EditSubgoalActivity.class).putExtra("SUBGOAL_ID", subgoalId);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
-    }
+    }*/
 }

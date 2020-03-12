@@ -20,8 +20,7 @@ import java.util.List;
 
 import se3350.habittracker.AppDatabase;
 import se3350.habittracker.R;
-import se3350.habittracker.activities.AddHabitActivity;
-import se3350.habittracker.activities.ViewGoalActivity;
+import se3350.habittracker.activities.ViewSubgoalActivity;
 import se3350.habittracker.adapters.SubgoalListAdapter;
 import se3350.habittracker.daos.SubgoalDao;
 import se3350.habittracker.models.Subgoal;
@@ -38,7 +37,7 @@ public class SubgoalFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_goal, container, false);
+        View root = inflater.inflate(R.layout.fragment_subgoal, container, false);
         addButton = root.findViewById(R.id.btn_add);
         emptyListText = root.findViewById(R.id.text_empty_list);
         subgoalListView = root.findViewById(R.id.list_subgoal);
@@ -54,7 +53,7 @@ public class SubgoalFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Subgoal subgoal = subgoals.get(position);
-                Intent intent = new Intent(getContext(), ViewGoalActivity.class).putExtra("SUBGOAL_ID", subgoal.uid);
+                Intent intent = new Intent(getContext(), ViewSubgoalActivity.class).putExtra("SUBGOAL_ID", subgoal.uid);
                 startActivity(intent);
             }
         });
@@ -74,12 +73,12 @@ public class SubgoalFragment extends Fragment {
 
 
         // Set add button to open the add habit form
-        addButton.setOnClickListener(event -> {
-            Intent intent = new Intent(this.getContext(), AddHabitActivity.class);
+       /* addButton.setOnClickListener(event -> {
+            Intent intent = new Intent(this.getContext(), AddSubgoalActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity(intent);
         });
-
+*/
 
 
         return root;

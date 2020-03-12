@@ -20,15 +20,10 @@ import java.util.List;
 
 import se3350.habittracker.AppDatabase;
 import se3350.habittracker.R;
-import se3350.habittracker.activities.AddHabitActivity;
 import se3350.habittracker.activities.ViewGoalActivity;
-import se3350.habittracker.activities.ViewHabitActivity;
 import se3350.habittracker.adapters.GoalListAdapter;
-import se3350.habittracker.adapters.HabitListAdapter;
 import se3350.habittracker.daos.GoalDao;
-import se3350.habittracker.daos.HabitDao;
 import se3350.habittracker.models.Goal;
-import se3350.habittracker.models.Habit;
 
 public class GoalFragment extends Fragment {
 
@@ -78,11 +73,11 @@ public class GoalFragment extends Fragment {
 
 
         // Set add button to open the add habit form
-        addButton.setOnClickListener(event -> {
-            Intent intent = new Intent(this.getContext(), AddHabitActivity.class);
+        /*addButton.setOnClickListener(event -> {
+            Intent intent = new Intent(this.getContext(), AddGoalActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity(intent);
-        });
+        });*/
 
 
 

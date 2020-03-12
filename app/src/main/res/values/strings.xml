@@ -2,6 +2,8 @@
     <string name="app_name">Habit Tracker</string>
     <string name="title_home">Home</string>
     <string name="title_information">Information</string>
+    <string name="title_goal">Goal</string>
+    <string name="title_subgoal">Subgoal</string>
     <string name="habit_list">Habit List</string>
     <string name="goal_list">Goal List</string>
     <string name="subgoal_list">Subgoal List</string>
@@ -70,6 +72,7 @@
     <string name="subgoal">Subgoal</string>
     <string name="subgoal_description">Subgoal Description</string>
     <string name="subgoal_name">Subgoal Name</string>
+
 
 
 

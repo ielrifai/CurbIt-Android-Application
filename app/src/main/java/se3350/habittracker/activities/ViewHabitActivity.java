@@ -34,7 +34,7 @@ public class ViewHabitActivity extends ActionBarActivity {
     JournalEntry draft;
 
     TextView habitDescriptionTextView, viewProgressTextView;
-    Button seeJournalButton, begin4StepsButton, resume4StepButton;
+    Button seeJournalButton, begin4StepsButton, resume4StepButton, viewGoalsButton;
 
     private HabitDao habitDao;
     private JournalEntryDao journalEntryDao;
@@ -77,8 +77,14 @@ public class ViewHabitActivity extends ActionBarActivity {
             startActivity(intent);
         });
 
+        viewGoalsButton.setOnClickListener(event -> {
+            Intent intent = new Intent(ViewHabitActivity.this, GoalActivity.class).putExtra("GOAL_ID", goalId);
+            startActivity(intent);
+        });
+
         begin4StepsButton.setOnClickListener(event -> begin4Steps());
         resume4StepButton.setOnClickListener(event -> begin4Steps(draft.uid));
+
     }
 
     @Override
@@ -160,4 +166,5 @@ public class ViewHabitActivity extends ActionBarActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
     }
+
 }

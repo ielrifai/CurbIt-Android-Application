@@ -4,16 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.LiveData;
-
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 import se3350.habittracker.AppDatabase;
 import se3350.habittracker.R;
@@ -22,7 +17,6 @@ import se3350.habittracker.daos.JournalEntryDao;
 import se3350.habittracker.daos.SubgoalDao;
 import se3350.habittracker.models.Goal;
 import se3350.habittracker.models.JournalEntry;
-import se3350.habittracker.models.Subgoal;
 
 public class ViewGoalActivity extends ActionBarActivity {
 
@@ -32,7 +26,7 @@ public class ViewGoalActivity extends ActionBarActivity {
     JournalEntry draft;
 
     TextView goalDescriptionTextView, viewProgressTextView;
-    Button  resume4StepButton, editGoalButton;
+    Button  resume4StepButton, editGoalButton, viewSubgoalButton;
 
 
     private GoalDao goalDao;
@@ -71,7 +65,11 @@ public class ViewGoalActivity extends ActionBarActivity {
         journalEntryLiveData.observe(this, journalEntry -> setDraft(journalEntry));
 
 
-        editGoalButton.setOnClickListener(event -> editGoal());
+        //editGoalButton.setOnClickListener(event -> editGoal());
+        viewSubgoalButton.setOnClickListener(event -> {
+            Intent intent = new Intent(ViewGoalActivity.this, ViewSubgoalActivity.class).putExtra("GOAL_ID", goalId);
+            startActivity(intent);
+        });
 
     }
 
@@ -82,7 +80,7 @@ public class ViewGoalActivity extends ActionBarActivity {
         return true;
     }
 
-    @Override
+    /*@Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
@@ -93,7 +91,7 @@ public class ViewGoalActivity extends ActionBarActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
+*/
     private void setGoal(Goal goal)
     {
         this.goal = goal;
@@ -110,10 +108,11 @@ public class ViewGoalActivity extends ActionBarActivity {
         }
     }
 
-    private void editGoal() {
+
+   /* private void editGoal() {
         Intent intent = new Intent(ViewGoalActivity.this, EditGoalActivity.class).putExtra("GOAL_ID", goalId);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
-    }
+    }*/
 
 }

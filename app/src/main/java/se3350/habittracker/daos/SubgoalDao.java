@@ -1,6 +1,7 @@
 package se3350.habittracker.daos;
 
 import androidx.lifecycle.LiveData;
+import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -9,6 +10,7 @@ import androidx.room.Update;
 
 import se3350.habittracker.models.Subgoal;
 
+@Dao
 public interface SubgoalDao {
 
     //get all subgoals - list
