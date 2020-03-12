@@ -73,6 +73,11 @@
     <string name="tutorial_example_step2">Temporary text here - change this later </string>
     <string name="tutorial_example_step3">Temporary text here - change this later </string>
     <string name="tutorial_example_step4">Temporary text here - change this later </string>
+    <string name="tutorial_summary_title">In Summary</string>
+    <string name="tutorial_summary_to_home">Home</string>
+    <string name="tutorial_summary_body">Implement at a later date</string>
+    <string name="tutorial_summary_description">Implement at a later date</string>
+
 
 
 
