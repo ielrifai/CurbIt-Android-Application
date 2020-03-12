@@ -7,9 +7,9 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import se3350.habittracker.models.Habit;
+import se3350.habittracker.models.Goal;
 
-public class GoalDao {
+public interface GoalDao {
 
     //get all goals - list
     @Query("SELECT * FROM goal")

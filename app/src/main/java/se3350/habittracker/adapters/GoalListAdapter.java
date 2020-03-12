@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import se3350.habittracker.R;
-import se3350.habittracker.models.Habit;
+import se3350.habittracker.models.Goal;
 
 public class GoalListAdapter extends ArrayAdapter<Goal> {
 
