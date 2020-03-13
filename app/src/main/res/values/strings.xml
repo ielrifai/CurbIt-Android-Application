@@ -56,4 +56,8 @@
     <string name="journal">Journal</string>
     <string name="see_journal">See Journal</string>
     <string name="resume_4_steps">Resume 4 Steps</string>
+    <string name="enterPassword">Enter New Password</string>
+    <string name="reenterPassword">Reenter New Password</string>
+    <string name="loginPassword">Enter Password</string>
+    <string name="enterApp">Login</string>
 </resources>
