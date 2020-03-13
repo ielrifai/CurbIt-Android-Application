@@ -121,5 +121,29 @@
         android:layout_margin="20sp"
         />
 
+    <TextView
+        android:id="@+id/progress_average_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Average Feelings About Habit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/see_progress_btn"
+        android:layout_margin="20sp"
+        android:textSize="20sp"
+        />
+
+    <TextView
+        android:id="@+id/progress_average"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="0/10"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progress_average_header"
+        android:layout_margin="20sp"
+        android:textSize="70sp"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -31,7 +31,7 @@ public class ViewHabitProgress extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_habit_progress);
-
+        setTitle(getString(R.string.habit_progress_header));
         // DateFormat to show the short dates without times
         dateFormat = SimpleDateFormat.getDateInstance(DateFormat.SHORT);
 

@@ -57,6 +57,7 @@
     <string name="submit_next_survey">Submit and Go to Survey</string>
     <string name="habit_progress_header">Habit Progress</string>
     <string name="see_progress">See Progress</string>
+    <string name="avg_progress_score">%1$.2f/10</string>
 
     <!-- Survey Levels -->
     <!-- TODO: May want to change these -->

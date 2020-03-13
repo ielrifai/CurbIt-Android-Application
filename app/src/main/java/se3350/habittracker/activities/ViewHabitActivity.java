@@ -31,7 +31,7 @@ public class ViewHabitActivity extends ActionBarActivity {
     Habit habit;
     JournalEntry draft;
 
-    TextView habitDescriptionTextView;
+    TextView habitDescriptionTextView, progressAverageTextView;
     Button seeJournalButton, begin4StepsButton, resume4StepButton, seeProgressButton;
 
     private HabitDao habitDao;
@@ -44,6 +44,7 @@ public class ViewHabitActivity extends ActionBarActivity {
         setContentView(R.layout.activity_view_habit);
 
         habitDescriptionTextView = findViewById(R.id.habit_description);
+        progressAverageTextView = findViewById(R.id.progress_average);
         seeJournalButton = findViewById(R.id.see_journal_btn);
         begin4StepsButton = findViewById(R.id.begin_4_steps_btn);
         resume4StepButton = findViewById(R.id.resume_4_steps_btn);
@@ -104,6 +105,7 @@ public class ViewHabitActivity extends ActionBarActivity {
         this.habit = habit;
         setTitle(habit.name);
         habitDescriptionTextView.setText(habit.description);
+        progressAverageTextView.setText(getString(R.string.avg_progress_score, Math.round(habit.avgScore * 100.0) / 100.0));
     }
 
     private void setDraft(JournalEntry journalEntry){
