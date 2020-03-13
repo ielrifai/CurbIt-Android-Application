@@ -52,6 +52,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:gravity="center"
+        android:text="@string/submit_next_survey"
         android:layout_margin="20sp"
         android:orientation="horizontal">
 

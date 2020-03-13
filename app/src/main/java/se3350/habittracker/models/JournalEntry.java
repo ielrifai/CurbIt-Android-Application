@@ -33,7 +33,6 @@ public class JournalEntry {
     @ColumnInfo(name = "isDraft")
     public boolean isDraft;
 
-
     public JournalEntry(int habitId){
         this.habitId = habitId;
         this.date = new Date();

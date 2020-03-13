@@ -2,7 +2,6 @@
     <string name="app_name">Habit Tracker</string>
     <string name="title_home">Home</string>
     <string name="title_information">Information</string>
-    <string name="about_information">About The Four Steps</string>
     <string name="habit_list">Habit List</string>
     <string name="add_habit">Add Habit</string>
     <string name="error_add_habit">Please fill in all fields</string>
@@ -34,7 +33,7 @@
     <string name="reframe">Reframe</string>
     <string name="refocus">Refocus</string>
     <string name="revalue">Revalue</string>
-    <string name="submit_final">Save and Finish</string>
+    <string name="submit_final">Save and return to habit details</string>
     <string name="empty_journal">No journal entry yet!\n\nTo add a journal entry, go back to the previous page and begin the 4 steps.</string>
     <string name="empty_habit">Add a habit to begin !</string>
     <string name="delete_habit">Delete Habit</string>
@@ -81,4 +80,32 @@
 
 
 
+    <string name="survey_title">How are you feeling?</string>
+    <string name="survey_prompt">On a scale of 1 to 10, how much better are you feeling about your habit after going through the 4 step process?</string>
+    <string name="submit_survey">Save and Finish Process</string>
+    <string name="progress_score_title">Progress Score</string>
+    <string name="overwrite_progress">This will overwrite any progress score already logged for this habit today. </string>
+    <string name="submit_next_survey">Submit and Go to Survey</string>
+    <string name="habit_progress_header">Habit Progress</string>
+    <string name="see_progress">See Progress</string>
+    <string name="avg_progress_score">%1$.2f/10</string>
+
+    <!-- Survey Levels -->
+    <!-- TODO: May want to change these -->
+    <string name="level_10">Excellent</string>
+    <string name="level_9">Awesome</string>
+    <string name="level_8">Great</string>
+    <string name="level_7">Good</string>
+    <string name="level_6">Okay</string>
+    <string name="level_5">Meh</string>
+    <string name="level_4">Not great</string>
+    <string name="level_3">Discouraged</string>
+    <string name="level_2">:(</string>
+    <string name="level_1">Very Sad</string>
+    <string name="level_0">Terrible</string>
+
+    <!-- Chart -->
+    <string name="progress_chart_title">Habit Progress</string>
+    <string name="progress_chart_yaxis">How you felt about your Habit</string>
+    <string name="progress_chart_xaxis">Date</string>
 </resources>

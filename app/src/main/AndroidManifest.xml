@@ -33,6 +33,8 @@
         <activity
             android:name=".activities.Step4EntryActivity"
             android:parentActivityName=".activities.ViewHabitActivity" />
+        <activity android:name=".activities.ViewHabitProgress"/>
+        <activity android:name=".activities.SurveyActivity" />
         <activity
             android:name=".activities.ViewHabitActivity"
             android:label="@string/title_activity_view_habit"

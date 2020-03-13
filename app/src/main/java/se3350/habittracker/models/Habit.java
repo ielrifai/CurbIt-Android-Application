@@ -15,6 +15,9 @@ public class Habit {
     @ColumnInfo(name = "description")
     public String description;
 
+    @ColumnInfo(name = "avgScore")
+    public double avgScore;
+
     //public - can access outside package (folders)
     public Habit(String name, String description){
         this.name = name;

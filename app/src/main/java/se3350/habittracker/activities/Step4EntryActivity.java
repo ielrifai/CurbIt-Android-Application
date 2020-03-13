@@ -24,8 +24,12 @@ public class Step4EntryActivity extends StepActivity {
     }
 
     @Override
-    protected void goToNext() {
-        goBackToHabitPage();
+    protected void goToNext()
+    {
+        //Use intents to move on to the next survey activity
+        Intent intent = new Intent(Step4EntryActivity.this, SurveyActivity.class);
+        intent.putExtra("HABIT_ID", journalEntry.habitId);
+        startActivity(intent);
     }
 
     @Override

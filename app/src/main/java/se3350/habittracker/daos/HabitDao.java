@@ -29,4 +29,13 @@ public interface HabitDao {
 
     @Delete
     void delete(Habit habit);
+
+    // SQL query to get the avg of the scores of progresses for this habit and update the habit
+    @Query("UPDATE habit " +
+            "SET avgScore = (" +
+                "SELECT AVG(surveyScore) " +
+                "from progress as p " +
+                "WHERE p.habitId = :id)" +
+                "WHERE uid=:id")
+    void updateAvgScore(int id);
 }
