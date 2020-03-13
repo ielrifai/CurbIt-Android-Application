@@ -53,7 +53,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:gravity="center"
-        android:text="@string/submit_final"
+        android:text="@string/submit_next_survey"
         android:layout_margin="20sp"
         android:backgroundTint="@color/colorPrimary"
         />

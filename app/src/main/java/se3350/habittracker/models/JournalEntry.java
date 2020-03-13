@@ -33,9 +33,6 @@ public class JournalEntry {
     @ColumnInfo(name = "isDraft")
     public boolean isDraft;
 
-    @ColumnInfo(name = "surveyScore")
-    public int surveyScore;
-
     public JournalEntry(int habitId){
         this.habitId = habitId;
         this.date = new Date();

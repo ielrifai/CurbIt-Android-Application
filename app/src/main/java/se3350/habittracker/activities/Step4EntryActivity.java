@@ -28,7 +28,6 @@ public class Step4EntryActivity extends StepActivity {
     {
         //Use intents to move on to the next survey activity
         Intent intent = new Intent(Step4EntryActivity.this, SurveyActivity.class);
-        intent.putExtra("JOURNAL_ID", journalEntry.uid);
         intent.putExtra("HABIT_ID", journalEntry.habitId);
         startActivity(intent);
     }

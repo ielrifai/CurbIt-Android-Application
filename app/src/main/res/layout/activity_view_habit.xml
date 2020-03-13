@@ -67,6 +67,7 @@
         />
 
     <LinearLayout
+        android:id="@+id/buttons_4_steps"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
@@ -96,16 +97,29 @@
 
     </LinearLayout>
 
-
     <TextView
-        android:id="@+id/view_progress"
+        android:id="@+id/see_progress_header"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/habit_progress_header"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttons_4_steps"
         android:layout_margin="20sp"
-        android:text="The progress will be shown here"
-        android:gravity="center"
-         />
+        android:textSize="20sp"
+        />
+
+    <Button
+        android:id="@+id/see_progress_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/see_progress"
+        android:backgroundTint="@color/colorPrimary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/see_progress_header"
+        android:layout_margin="20sp"
+        />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,7 +8,9 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -16,9 +18,9 @@ import java.util.concurrent.Executors;
 import se3350.habittracker.AppDatabase;
 import se3350.habittracker.R;
 import se3350.habittracker.daos.HabitDao;
-import se3350.habittracker.daos.JournalEntryDao;
+import se3350.habittracker.daos.ProgressDao;
 import se3350.habittracker.models.Habit;
-import se3350.habittracker.models.JournalEntry;
+import se3350.habittracker.models.Progress;
 
 public class SurveyActivity extends AppCompatActivity {
 
@@ -29,35 +31,65 @@ public class SurveyActivity extends AppCompatActivity {
     Button submitButton;
 
     // Values
-    int currentProgressValue = 0; // Variable to keep track of user's selected progress value
+    int currentProgressValue = 5; // Variable to keep track of user's selected progress value
 
-    JournalEntry journalEntry;
-    JournalEntryDao journalEntryDao;
+    // The progress item that holds survey score for one day of a habit
+    Progress progress;
+    ProgressDao progressDao;
 
     Habit habit;
     HabitDao habitDao;
+
+    int habit_id; // Id of the habit being surveyed on
+    long newId; // For a new progress, keep track of its ID after being inserted
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey);
 
-        // Get the journal entry from database
+        Toast.makeText(getApplicationContext(), R.string.overwrite_progress, Toast.LENGTH_LONG);
+        // Use database
         AppDatabase db = AppDatabase.getInstance(this);
-        journalEntryDao = db.journalEntryDao();
+        habit_id = getIntent().getIntExtra("HABIT_ID", -1 );
 
-        int journal_id = getIntent().getIntExtra("JOURNAL_ID", -1 );
-        LiveData<JournalEntry> journalEntryLive = journalEntryDao.getById(journal_id);
+        // Check if there is an existing progress item for today's date and create a new one if there isn't
+        // Start Date
+        Date start = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(start);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        start = calendar.getTime();
 
-        journalEntryLive.observe(this, entry -> {
-            if(entry == null) return;
-            setJournalEntry(entry);
+        // End Date
+        Date end = new Date();
+        calendar.setTime(end);
+        calendar.set(Calendar.HOUR_OF_DAY, 23);
+        calendar.set(Calendar.MINUTE, 59);
+        calendar.set(Calendar.SECOND, 59);
+        end = calendar.getTime();
+
+        progressDao = db.progressDao();
+        LiveData<Progress> progressLive = progressDao.getProgressByDate(habit_id, start, end);
+
+        progressLive.observe(this, progressItem -> {
+            if(progressItem == null) {
+                // insert a new progress for the habit for today
+                Executor myExecutor = Executors.newSingleThreadExecutor();
+                myExecutor.execute(() -> {
+                    newId = progressDao.insertOne(new Progress(habit_id));
+                });
+            }
+            else {
+                setProgress(progressItem); // Set progress item
+            }
         });
+
 
         // Get the habit from the database
         habitDao = db.habitDao();
-
-        int habit_id = getIntent().getIntExtra("HABIT_ID", -1 );
         LiveData<Habit> habitLive = habitDao.getHabitById(habit_id);
 
         habitLive.observe(this, entry -> {
@@ -134,50 +166,58 @@ public class SurveyActivity extends AppCompatActivity {
 
         // Submit Button Listener
         submitButton.setOnClickListener(v -> {
+            if (progress == null){
+                getProgress();
+            }
             save();
             goToNext();
         });
-
     }
 
-    // Function to set the journal entry
-    private void setJournalEntry(JournalEntry journalEntry){
-        this.journalEntry = journalEntry;
-    }
 
     // Function to set the habit
     private void setHabitEntry(Habit habit){
         this.habit = habit;
     }
 
-    // Add the progress value (points) to the entry and update the average score of the habit
+    // Function to set the progress item
+    private void setProgress(Progress progress){
+        this.progress = progress;
+    }
+
+    // Add the progress value (points) to the progress entity and update the average score of the habit
     private void save(){
-        // Update the date
-        journalEntry.date = new Date();
 
         // Update the progress
-        journalEntry.surveyScore = currentProgressValue;
+        progress.surveyScore = currentProgressValue;
 
-        //Update the journal entry with the progress score
-        Executor jExecutor = Executors.newSingleThreadExecutor();
-        jExecutor.execute(() -> {
-            journalEntryDao.updateJournalEntries(journalEntry);
+        //Update the Progress entry with the progress score
+        Executor pExecutor = Executors.newSingleThreadExecutor();
+        pExecutor.execute(() -> {
+            progressDao.updateProgress(progress);
 
             // Update the habit with the new avg score
             Executor hExecutor = Executors.newSingleThreadExecutor();
             hExecutor.execute(() -> {
                 habitDao.updateAvgScore(habit.uid);
             });
-
         });
     }
 
     private void goToNext(){
         // Go back to habit page
-        Intent intent = new Intent(getBaseContext(), ViewHabitActivity.class).putExtra("HABIT_ID", journalEntry.habitId);
+        Intent intent = new Intent(getBaseContext(), ViewHabitActivity.class).putExtra("HABIT_ID", habit_id);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 
-    //TODO: Add ability to go back???
+    // If needed to insert a new progress, get it here to set the progress
+    private void getProgress(){
+        Executor myExecutor = Executors.newSingleThreadExecutor();
+                myExecutor.execute(() -> {
+                    newId = progressDao.insertOne(new Progress(habit_id));
+                    LiveData<Progress> progressLive = progressDao.getProgressById(newId);
+                    progressLive.observe(this, progress -> setProgress(progress));
+                });
+    }
 }

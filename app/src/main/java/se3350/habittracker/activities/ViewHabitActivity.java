@@ -31,8 +31,8 @@ public class ViewHabitActivity extends ActionBarActivity {
     Habit habit;
     JournalEntry draft;
 
-    TextView habitDescriptionTextView, viewProgressTextView;
-    Button seeJournalButton, begin4StepsButton, resume4StepButton;
+    TextView habitDescriptionTextView;
+    Button seeJournalButton, begin4StepsButton, resume4StepButton, seeProgressButton;
 
     private HabitDao habitDao;
     private JournalEntryDao journalEntryDao;
@@ -44,10 +44,10 @@ public class ViewHabitActivity extends ActionBarActivity {
         setContentView(R.layout.activity_view_habit);
 
         habitDescriptionTextView = findViewById(R.id.habit_description);
-        viewProgressTextView = findViewById(R.id.view_progress);
         seeJournalButton = findViewById(R.id.see_journal_btn);
         begin4StepsButton = findViewById(R.id.begin_4_steps_btn);
         resume4StepButton = findViewById(R.id.resume_4_steps_btn);
+        seeProgressButton = findViewById(R.id.see_progress_btn);
 
         habitId = getIntent().getIntExtra("HABIT_ID", -1 );
 
@@ -77,6 +77,7 @@ public class ViewHabitActivity extends ActionBarActivity {
 
         begin4StepsButton.setOnClickListener(event -> begin4Steps());
         resume4StepButton.setOnClickListener(event -> begin4Steps(draft.uid));
+        seeProgressButton.setOnClickListener(event -> goToProgress());
     }
 
     @Override
@@ -158,4 +159,11 @@ public class ViewHabitActivity extends ActionBarActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
     }
+
+    private void goToProgress(){
+        Intent intent = new Intent(ViewHabitActivity.this, ViewHabitProgress.class).putExtra("HABIT_ID", habitId);
+        startActivity(intent);
+    }
+
+    // TODO: Show the average score progress of the habit
 }
