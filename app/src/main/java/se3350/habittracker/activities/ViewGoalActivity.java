@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.lifecycle.LiveData;
 
+import java.util.Random;
+
 import se3350.habittracker.AppDatabase;
 import se3350.habittracker.R;
 import se3350.habittracker.daos.GoalDao;
@@ -17,6 +19,9 @@ import se3350.habittracker.daos.JournalEntryDao;
 import se3350.habittracker.daos.SubgoalDao;
 import se3350.habittracker.models.Goal;
 import se3350.habittracker.models.JournalEntry;
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+import butterknife.OnClick;
 
 public class ViewGoalActivity extends ActionBarActivity {
 
@@ -32,6 +37,10 @@ public class ViewGoalActivity extends ActionBarActivity {
     private GoalDao goalDao;
     private SubgoalDao subgoalDao;
     private JournalEntryDao journalEntryDao;
+
+    @InjectView(R.id.progressBar) GoalProgressBar progressBar;
+
+    private final Random random = new Random();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +81,14 @@ public class ViewGoalActivity extends ActionBarActivity {
             Intent intent = new Intent(ViewGoalActivity.this, ViewSubgoalActivity.class).putExtra("GOAL_ID", goalId);
             startActivity(intent);
         });
+
+        ButterKnife.inject(this);
+
+        progressBar.setGoal(70);
+
+        if (savedInstanceState == null) {
+            resetProgress();
+        }
 
     }
 
@@ -117,4 +134,9 @@ public class ViewGoalActivity extends ActionBarActivity {
         startActivity(intent);
     }*/
 
+    @OnClick(R.id.resetProgressBtn)
+    public void resetProgress() {
+        int prog = random.nextInt(100);
+        progressBar.setProgress(prog);
+    }
 }

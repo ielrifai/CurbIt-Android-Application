@@ -29,20 +29,38 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/goal_description_title" />
 
-    <TextView
-        android:id="@+id/view_progress"
-        android:layout_width="383dp"
-        android:layout_height="451dp"
-        android:layout_margin="20sp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="20dp"
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:gravity="center"
-        android:text="The progress will be shown here"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.8"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_goal_btn" />
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin">
+
+        <com.codepath.customprogressbar.GoalProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:goalIndicatorHeight="16dp"
+            app:goalIndicatorThickness="4dp"
+            app:goalReachedColor="@color/green"
+            app:goalNotReachedColor="@color/dark_gray"
+            app:unfilledSectionColor="@color/gray"
+            app:barThickness="4dp"
+            app:indicatorType="square"/>
+
+        <Button
+            android:id="@+id/resetProgressBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/reset_progress"/>
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/edit_goal_btn"
