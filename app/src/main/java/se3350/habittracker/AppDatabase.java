@@ -1,11 +1,18 @@
 package se3350.habittracker;
 
+
 import android.content.Context;
+
 
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
+
+//import android.database.sqlite.SQLiteDatabase;
+//use sqlcipher instead of sqlite to create db
+import net.sqlcipher.database.SQLiteDatabase;
+import net.sqlcipher.database.SupportFactory;
 
 import se3350.habittracker.daos.HabitDao;
 import se3350.habittracker.daos.JournalEntryDao;
@@ -19,6 +26,7 @@ public abstract class AppDatabase extends RoomDatabase {
     //declare Daos - habit,user,etc
     public abstract HabitDao habitDao();
     public abstract JournalEntryDao journalEntryDao();
+
 
 
 
@@ -38,6 +46,15 @@ public abstract class AppDatabase extends RoomDatabase {
         //Comment the following line to not destroy the database on launch
 //        context.getApplicationContext().deleteDatabase(DB_NAME);
 
-        return Room.databaseBuilder(context,AppDatabase.class,DB_NAME).build();
+        //connect Room to SQLCipher API - now Room uses SQLCipher
+        //idk if i need this line
+        SQLiteDatabase.loadLibs(context);
+        char[] myPassphrase = {};
+        final byte[] passphrase = SQLiteDatabase.getBytes(myPassphrase);
+        final SupportFactory factory = new SupportFactory(passphrase);
+
+        return Room.databaseBuilder(context,AppDatabase.class,DB_NAME)
+                .openHelperFactory(factory)
+                .build();
     }
 }
