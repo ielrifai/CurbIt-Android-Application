@@ -2,6 +2,7 @@ package se3350.habittracker.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import se3350.habittracker.AppDatabase;
 import se3350.habittracker.R;
 
 import android.content.Intent;
@@ -44,6 +45,7 @@ public class CreatePasswordActivity extends AppCompatActivity {
                         editor.putString("password", pass).apply();
 
                         //enter main app
+                        AppDatabase.setPassword(pass);
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(intent);
                         finish();

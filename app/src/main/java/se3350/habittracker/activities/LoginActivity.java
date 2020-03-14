@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import se3350.habittracker.AppDatabase;
 import se3350.habittracker.R;
 
 public class LoginActivity extends AppCompatActivity {
@@ -40,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
                 //correct password entered
                 if(pass.equals(password)){
                     //enter main app
+                    AppDatabase.setPassword(password);
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                     finish();

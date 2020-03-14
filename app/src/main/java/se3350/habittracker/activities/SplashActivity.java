@@ -17,27 +17,21 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
         //load password
         SharedPreferences settings = getSharedPreferences("PREFS", 0);
         password = settings.getString("password", "");
 
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                //if no password
-                if(password.equals("")){
-                    Intent intent = new Intent(getApplicationContext(), CreatePasswordActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
-                else{
-                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
-
-            }
-        },2000);
+        //if no password
+        if(password.equals("")){
+            Intent intent = new Intent(getApplicationContext(), CreatePasswordActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        else{
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 }
