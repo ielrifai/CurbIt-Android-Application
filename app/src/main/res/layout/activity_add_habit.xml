@@ -17,7 +17,7 @@
         />
 
     <EditText
-        android:id="@+id/habit_name"
+        android:id="@+id/habitName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/title"
@@ -28,10 +28,10 @@
         android:inputType="text" />
 
     <EditText
-        android:id="@+id/habit_description"
+        android:id="@+id/habitDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/habit_name"
+        app:layout_constraintTop_toBottomOf="@id/habitName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="20sp"
@@ -39,14 +39,14 @@
         android:inputType="textMultiLine" />
 
     <Button
-        android:id="@+id/submit_btn"
+        android:id="@+id/submitButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:gravity="center"
-        android:text="@string/add_habit"
+        android:text="@string/submit"
         android:layout_margin="20sp"
         android:backgroundTint="@color/colorPrimary"
         />
