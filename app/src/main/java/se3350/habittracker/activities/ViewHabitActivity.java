@@ -2,11 +2,6 @@ package se3350.habittracker.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
-
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,28 +9,39 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.lifecycle.LiveData;
+
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import se3350.habittracker.AppDatabase;
-import se3350.habittracker.models.Habit;
-import se3350.habittracker.daos.HabitDao;
-import se3350.habittracker.models.JournalEntry;
-import se3350.habittracker.daos.JournalEntryDao;
 import se3350.habittracker.R;
+import se3350.habittracker.daos.GoalDao;
+import se3350.habittracker.daos.HabitDao;
+import se3350.habittracker.daos.JournalEntryDao;
+import se3350.habittracker.models.Goal;
+import se3350.habittracker.models.Habit;
+import se3350.habittracker.models.JournalEntry;
+import se3350.habittracker.models.Subgoal;
 
 public class ViewHabitActivity extends ActionBarActivity {
 
     String habit_description;
-    int habitId;
+    int habitId, goalId, subgoalId;
     Habit habit;
+    Goal goal;
+    Subgoal subgoal;
     JournalEntry draft;
 
+
     TextView habitDescriptionTextView, progressAverageTextView;
-    Button seeJournalButton, begin4StepsButton, resume4StepButton, seeProgressButton;
+    Button seeJournalButton, begin4StepsButton, resume4StepButton, seeProgressButton, viewGoalsButton;
 
     private HabitDao habitDao;
     private JournalEntryDao journalEntryDao;
+    private GoalDao goalDao;
+
 
 
     @Override
@@ -49,6 +55,7 @@ public class ViewHabitActivity extends ActionBarActivity {
         begin4StepsButton = findViewById(R.id.begin_4_steps_btn);
         resume4StepButton = findViewById(R.id.resume_4_steps_btn);
         seeProgressButton = findViewById(R.id.see_progress_btn);
+        viewGoalsButton = findViewById(R.id.view_goals_btn);
 
         habitId = getIntent().getIntExtra("HABIT_ID", -1 );
 
@@ -56,6 +63,7 @@ public class ViewHabitActivity extends ActionBarActivity {
         AppDatabase db = AppDatabase.getInstance(getBaseContext());
         habitDao = db.habitDao();
         journalEntryDao = db.journalEntryDao();
+        goalDao = db.goalDao();
 
         // Get habit from database
         LiveData<Habit> habitLiveData = habitDao.getHabitById(habitId);
@@ -73,6 +81,11 @@ public class ViewHabitActivity extends ActionBarActivity {
 
         seeJournalButton.setOnClickListener(event -> {
             Intent intent = new Intent(ViewHabitActivity.this, JournalListActivity.class).putExtra("HABIT_ID", habitId);
+            startActivity(intent);
+        });
+
+        viewGoalsButton.setOnClickListener(event -> {
+            Intent intent = new Intent(ViewHabitActivity.this, GoalActivity.class).putExtra("GOAL_ID", goalId);
             startActivity(intent);
         });
 

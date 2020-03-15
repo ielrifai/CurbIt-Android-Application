@@ -54,6 +54,19 @@
         android:layout_margin="20sp"
        />
 
+    <Button
+        android:id="@+id/view_goals_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/view_goals"
+        android:backgroundTint="@color/colorPrimary"
+        app:layout_constraintStart_toStartOf="@id/habit_description"
+        app:layout_constraintEnd_toEndOf="@id/habit_description"
+        app:layout_constraintTop_toBottomOf="@id/see_journal_btn"
+        android:layout_margin="20sp"
+        />
+
+
     <TextView
         android:id="@+id/begin_4_steps_header"
         android:layout_width="match_parent"
@@ -61,7 +74,7 @@
         android:text="@string/four_steps"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/see_journal_btn"
+        app:layout_constraintTop_toBottomOf="@+id/view_goals_btn"
         android:layout_margin="20sp"
         android:textSize="20sp"
         />

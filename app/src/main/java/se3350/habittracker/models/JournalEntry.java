@@ -15,6 +15,12 @@ public class JournalEntry {
     @ColumnInfo(name = "habitId") // Foreign key to reference the habit this entry belongs to
     public int habitId;
 
+    @ColumnInfo(name = "goalId") // Foreign key to reference the goal this entry belongs to
+    public int goalId;
+
+    @ColumnInfo(name = "subgoalId") // Foreign key to reference the goal this entry belongs to
+    public int subgoalId;
+
     @ColumnInfo(name = "step1") // Step 1 entry
     public String step1;
 
