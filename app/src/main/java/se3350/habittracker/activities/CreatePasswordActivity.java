@@ -8,10 +8,13 @@ import se3350.habittracker.R;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import at.favre.lib.crypto.bcrypt.*;
 
 public class CreatePasswordActivity extends AppCompatActivity {
 
@@ -32,20 +35,26 @@ public class CreatePasswordActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String pass = inputPassword.getText().toString();
                 String pass2 = inputPassword2.getText().toString();
+                //hash password using BCrypt
+                String bcryptHashStringPass = BCrypt.withDefaults().hashToString(12, pass.toCharArray());
+                //Log.v("hash pass",bcryptHashStringPass);
+                // compare pass2 to pass1 hash
+                BCrypt.Result result = BCrypt.verifyer().verify(pass2.toCharArray(), bcryptHashStringPass);
                 //if no pass entered
                 if(pass.equals("") || pass2.equals("")){
-                    Toast.makeText(CreatePasswordActivity.this, "No password entered", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreatePasswordActivity.this, "Please enter password", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     //if passwords match
-                    if(pass.equals(pass2)){
+                    if(result.verified == true){
                         //save password
                         SharedPreferences settings = getSharedPreferences("PREFS",0);
                         SharedPreferences.Editor editor = settings.edit();
-                        editor.putString("password", pass).apply();
+                        //saved hashed pass to preferences
+                        editor.putString("password", bcryptHashStringPass).apply();
 
                         //enter main app
-                        AppDatabase.setPassword(pass);
+                        AppDatabase.setPassword(bcryptHashStringPass);
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(intent);
                         finish();

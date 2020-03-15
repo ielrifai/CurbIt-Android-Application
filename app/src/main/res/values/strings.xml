@@ -60,4 +60,5 @@
     <string name="reenterPassword">Reenter New Password</string>
     <string name="loginPassword">Enter Password</string>
     <string name="enterApp">Login</string>
+    <string name="loading">loading...</string>
 </resources>
