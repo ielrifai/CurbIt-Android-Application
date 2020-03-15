@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.Step1EntryActivity">
+    tools:context=".Step1EntryActivity">
 
 
     <TextView
@@ -31,7 +31,7 @@
         />
 
     <EditText
-        android:id="@+id/step_journal"
+        android:id="@+id/step1_journal"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:minLines="10"
@@ -39,41 +39,23 @@
         app:layout_constraintTop_toBottomOf="@id/step1_desc"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/prv_nxt_btn"
+        app:layout_constraintBottom_toTopOf="@id/submitButton"
         android:layout_margin="20sp"
         android:hint="@string/step1_journal"
         android:inputType="textMultiLine"
         android:gravity="top" />
 
-    <LinearLayout
-        android:id="@+id/prv_nxt_btn"
+    <Button
+        android:id="@+id/submitButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center"
+        android:text="@string/submit_next"
         android:layout_margin="20sp"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/previous_btn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="@color/colorPrimary"
-            android:text="@string/previous_step"
-            android:visibility="invisible"
-            />
-
-        <Button
-            android:id="@+id/next_btn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="@color/colorPrimary"
-            android:gravity="center"
-            android:text="@string/next_step"
-            />
-    </LinearLayout>
+        android:backgroundTint="@color/colorPrimary"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
