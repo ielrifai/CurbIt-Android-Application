@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+    <TextView
+        android:id="@+id/habit_description_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/habit_description"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="20sp"
+        android:textSize="20sp"
+         />
+
+    <TextView
+        android:id="@+id/habit_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="The description of the habit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/habit_description_title"
+        android:layout_margin="20sp"
+        />
+
+    <TextView
+        android:id="@+id/journal_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/journal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/habit_description"
+        android:layout_margin="20sp"
+        android:textSize="20sp"
+        />
+
+    <Button
+        android:id="@+id/see_journal_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/see_journal"
+        android:backgroundTint="@color/colorPrimary"
+        app:layout_constraintStart_toStartOf="@id/habit_description"
+        app:layout_constraintEnd_toEndOf="@id/habit_description"
+        app:layout_constraintTop_toBottomOf="@id/journal_header"
+        android:layout_margin="20sp"
+       />
+
+    <Button
+        android:id="@+id/view_goals_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/view_goals"
+        android:backgroundTint="@color/colorPrimary"
+        app:layout_constraintStart_toStartOf="@id/habit_description"
+        app:layout_constraintEnd_toEndOf="@id/habit_description"
+        app:layout_constraintTop_toBottomOf="@id/see_journal_btn"
+        android:layout_margin="20sp"
+        />
+
+
+    <TextView
+        android:id="@+id/begin_4_steps_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/four_steps"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_goals_btn"
+        android:layout_margin="20sp"
+        android:textSize="20sp"
+        />
+
+    <LinearLayout
+        android:id="@+id/buttons_4_steps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/begin_4_steps_header"
+        android:orientation="horizontal"
+        android:layout_margin="20sp">
+
+
+        <Button
+            android:id="@+id/resume_4_steps_btn"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/resume_4_steps"
+            android:backgroundTint="@color/colorPrimary"
+            />
+        
+        <Button
+            android:id="@+id/begin_4_steps_btn"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/begin_4_steps"
+            android:backgroundTint="@color/colorPrimary"
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/see_progress_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/habit_progress_header"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttons_4_steps"
+        android:layout_margin="20sp"
+        android:textSize="20sp"
+        />
+
+    <Button
+        android:id="@+id/see_progress_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/see_progress"
+        android:backgroundTint="@color/colorPrimary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/see_progress_header"
+        android:layout_margin="20sp"
+        />
+
+    <TextView
+        android:id="@+id/progress_average_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Average Feelings About Habit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/see_progress_btn"
+        android:layout_margin="20sp"
+        android:textSize="20sp"
+        />
+
+    <TextView
+        android:id="@+id/progress_average_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progress_average_header"
+        android:layout_marginTop="10sp"
+        android:layout_marginBottom="10sp"
+        android:layout_marginLeft="20sp"
+        android:layout_marginRight="20sp"
+        android:textSize="15sp"
+        />
+
+    <TextView
+        android:id="@+id/progress_average"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="0/10"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progress_average_message"
+        android:layout_margin="10sp"
+        android:textSize="60sp"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

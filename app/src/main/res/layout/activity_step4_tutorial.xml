@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.Step1TutorialActivity">
+
+    <TextView
+        android:id="@+id/tut_step4_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="20sp"
+        android:text="@string/step4"
+        android:textSize="20sp"
+        />
+
+    <TextView
+        android:id="@+id/tut_step4_instruct_title"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="20sp"
+        android:gravity="top"
+        android:paddingTop="0sp"
+        android:text="@string/tutorial_example_instruction"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/tut_step4_title"
+        app:layout_constraintTop_toBottomOf="@id/tut_step4_title" />
+
+    <TextView
+        android:id="@+id/tut_step4_instruct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20sp"
+        android:gravity="top"
+        android:paddingTop="0dp"
+        android:text="@string/step4_desc"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tut_step4_instruct_title" />
+
+    <TextView
+        android:id="@+id/tut_step4_prompt_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20sp"
+        android:gravity="top"
+        android:paddingTop="0dp"
+        android:text="@string/tutorial_prompt_title"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tut_step4_instruct" />
+
+    <TextView
+        android:id="@+id/tut_step4_prompt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20sp"
+        android:gravity="top"
+        android:paddingTop="0dp"
+        android:text="@string/step4_journal"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tut_step4_prompt_title" />
+
+    <TextView
+        android:id="@+id/tut_step4_steve_says_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20sp"
+        android:gravity="top"
+        android:paddingTop="0dp"
+        android:text="@string/tutorial_example_title"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tut_step4_prompt" />
+
+    <TextView
+        android:id="@+id/tut_step4_steve_says"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="20sp"
+        android:gravity="top"
+        android:paddingTop="0dp"
+        android:scrollbars="vertical"
+        android:text="@string/tutorial_example_step4"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/tut_to_summary_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tut_step4_steve_says_title" />
+
+    <Button
+        android:id="@+id/tut_to_summary_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20sp"
+        android:backgroundTint="@color/colorPrimary"
+        android:gravity="center"
+        android:text="@string/tutorial_next_step_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
