@@ -96,18 +96,23 @@
     <string name="tutorial_summary_description">Moving forward, Steve continues to use the Four Step Process. Over time, Steve is able to stop his coffee abuse. It isn\'t easy, but Steve journals his progress and uses this app to curb his habit. </string>
     <string name="tutorial_summary_body">HabitTracker allows individuals to catalogue, curtail and even curb all types of negative habits. Using HabitTracker, you too can stop negative habits.</string>
 
-
-
-
     <string name="survey_title">How are you feeling?</string>
     <string name="survey_prompt">On a scale of 1 to 10, how much better are you feeling about your habit after going through the 4 step process?</string>
     <string name="submit_survey">Save and Finish Process</string>
     <string name="progress_score_title">Progress Score</string>
-    <string name="overwrite_progress">This will overwrite any progress score already logged for this habit today. </string>
     <string name="submit_next_survey">Submit and Go to Survey</string>
     <string name="habit_progress_header">Habit Progress</string>
     <string name="see_progress">See Progress</string>
     <string name="avg_progress_score">%1$.2f/10</string>
+    <string name="alert_skip_survey_message">Are you sure you don\'t want to complete the survey?</string>
+    <string name="alert_skip_survey_title">Exit survey?</string>
+    <string name="no">No</string>
+    <string name="ok">OK</string>
+    <string name="alert_progress_may_overwrite_message">Any progress score already logged for this habit today will be overwritten.</string>
+    <string name="alert_progress_may_overwrite_title">Progress Score</string>
+    <string name="no_progress_logged">No progress scores logged. Complete the survey at the end of the 4 Step Process.</string>
+    <string name="overall_progress_message">Here is the average of your feelings about this habit. </string>
+    <string name="no_progress_show">No progress to show.</string>
 
     <!-- Survey Levels -->
     <!-- TODO: May want to change these -->

@@ -2,6 +2,7 @@ package se3350.habittracker.daos;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -27,4 +28,10 @@ public interface ProgressDao {
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void updateProgress(Progress progress);
+
+    @Delete
+    void delete(Progress progress);
+
+    @Query("DELETE FROM progress WHERE habitId=:habitId")
+    void deleteAllByHabitId(int habitId);
 }

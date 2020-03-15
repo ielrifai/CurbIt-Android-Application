@@ -3,6 +3,10 @@ package se3350.habittracker.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.lifecycle.LiveData;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,12 +22,17 @@ import java.util.concurrent.Executors;
 import se3350.habittracker.AppDatabase;
 import se3350.habittracker.R;
 import se3350.habittracker.daos.GoalDao;
+import se3350.habittracker.daos.ProgressDao;
+import se3350.habittracker.models.Habit;
 import se3350.habittracker.daos.HabitDao;
 import se3350.habittracker.daos.JournalEntryDao;
 import se3350.habittracker.models.Goal;
 import se3350.habittracker.models.Habit;
 import se3350.habittracker.models.JournalEntry;
 import se3350.habittracker.models.Subgoal;
+import se3350.habittracker.daos.JournalEntryDao;
+import se3350.habittracker.R;
+import se3350.habittracker.models.Progress;
 
 public class ViewHabitActivity extends ActionBarActivity {
 
@@ -34,6 +43,8 @@ public class ViewHabitActivity extends ActionBarActivity {
     Subgoal subgoal;
     JournalEntry draft;
 
+    TextView habitDescriptionTextView, progressAverageTextView, progressAverageMessageTextView;
+    Button seeJournalButton, begin4StepsButton, resume4StepButton, seeProgressButton;
 
     TextView habitDescriptionTextView, progressAverageTextView;
     Button seeJournalButton, begin4StepsButton, resume4StepButton, seeProgressButton, viewGoalsButton;
@@ -41,7 +52,7 @@ public class ViewHabitActivity extends ActionBarActivity {
     private HabitDao habitDao;
     private JournalEntryDao journalEntryDao;
     private GoalDao goalDao;
-
+    private ProgressDao progressDao;
 
 
     @Override
@@ -51,6 +62,7 @@ public class ViewHabitActivity extends ActionBarActivity {
 
         habitDescriptionTextView = findViewById(R.id.habit_description);
         progressAverageTextView = findViewById(R.id.progress_average);
+        progressAverageMessageTextView = findViewById(R.id.progress_average_message);
         seeJournalButton = findViewById(R.id.see_journal_btn);
         begin4StepsButton = findViewById(R.id.begin_4_steps_btn);
         resume4StepButton = findViewById(R.id.resume_4_steps_btn);
@@ -64,6 +76,8 @@ public class ViewHabitActivity extends ActionBarActivity {
         habitDao = db.habitDao();
         journalEntryDao = db.journalEntryDao();
         goalDao = db.goalDao();
+        progressDao = db.progressDao();
+
 
         // Get habit from database
         LiveData<Habit> habitLiveData = habitDao.getHabitById(habitId);
@@ -74,6 +88,12 @@ public class ViewHabitActivity extends ActionBarActivity {
             }
             setHabit(habit);
         });
+
+        LiveData<Progress[]> progressLiveData = progressDao.getAllByHabit(habitId);
+        progressLiveData.observe(this, progresses -> {
+            setProgressText(progresses);
+        });
+
 
         // Get draft from database
         LiveData<JournalEntry> journalEntryLiveData = journalEntryDao.getDraftOfHabit(habitId);
@@ -123,7 +143,6 @@ public class ViewHabitActivity extends ActionBarActivity {
 
     private void setDraft(JournalEntry journalEntry){
         draft = journalEntry;
-        Log.d("DEBUG", "setDraft: "+draft);
         // if there is no draft, hide the resume button from layout
         if(draft == null) {
             resume4StepButton.setVisibility(View.GONE);
@@ -176,9 +195,18 @@ public class ViewHabitActivity extends ActionBarActivity {
     }
 
     private void goToProgress(){
-        Intent intent = new Intent(ViewHabitActivity.this, ViewHabitProgress.class).putExtra("HABIT_ID", habitId);
+        Intent intent = new Intent(ViewHabitActivity.this, ViewHabitProgressActivity.class).putExtra("HABIT_ID", habitId);
         startActivity(intent);
     }
 
-    // TODO: Show the average score progress of the habit
+    private void setProgressText(Progress[] progresses){
+        if(progresses.length == 0){
+            progressAverageMessageTextView.setText(R.string.no_progress_logged);
+            progressAverageTextView.setVisibility(TextView.INVISIBLE);
+        }
+        else{
+            progressAverageMessageTextView.setText(R.string.overall_progress_message);
+        }
+    }
+
 }

@@ -17,6 +17,7 @@ import java.util.concurrent.Executors;
 
 import se3350.habittracker.AppDatabase;
 import se3350.habittracker.daos.JournalEntryDao;
+import se3350.habittracker.daos.ProgressDao;
 import se3350.habittracker.models.Habit;
 import se3350.habittracker.daos.HabitDao;
 import se3350.habittracker.R;
@@ -30,6 +31,7 @@ public class EditHabitActivity extends ActionBarActivity {
 
     HabitDao habitDao;
     JournalEntryDao journalEntryDao;
+    ProgressDao progressDao;
 
     private void setHabit(Habit habit)
     {
@@ -51,6 +53,7 @@ public class EditHabitActivity extends ActionBarActivity {
         AppDatabase db = AppDatabase.getInstance(getBaseContext());
         habitDao = db.habitDao();
         journalEntryDao = db.journalEntryDao();
+        progressDao = db.progressDao();
 
         LiveData<Habit> habitLiveData = habitDao.getHabitById(habitId);
         habitLiveData.observe(this, habit -> {
@@ -102,6 +105,7 @@ public class EditHabitActivity extends ActionBarActivity {
             myExecutor.execute(() -> {
                 // Delete habit and all its journal entries
                 journalEntryDao.deleteAllByHabitId(habit.uid);
+                progressDao.deleteAllByHabitId(habit.uid);
                 habitDao.delete(habit);
 
                 // Go back to Habit List and clear task (clear all stacks)

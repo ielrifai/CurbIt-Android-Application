@@ -38,4 +38,5 @@ public interface HabitDao {
                 "WHERE p.habitId = :id)" +
                 "WHERE uid=:id")
     void updateAvgScore(int id);
+
 }
