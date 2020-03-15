@@ -39,4 +39,20 @@
         android:visibility="invisible"
         />
 
+    <Button
+        android:id="@+id/btn_add"
+        android:layout_width="55sp"
+        android:layout_height="55sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="20sp"
+
+        android:layout_gravity="center"
+        android:background="@drawable/shape_round_button"
+        android:drawableStart="@drawable/ic_add"
+        android:drawableTint="#FFFF"
+
+        android:padding="15dp"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
