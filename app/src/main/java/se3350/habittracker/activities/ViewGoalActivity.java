@@ -19,9 +19,6 @@ import se3350.habittracker.daos.JournalEntryDao;
 import se3350.habittracker.daos.SubgoalDao;
 import se3350.habittracker.models.Goal;
 import se3350.habittracker.models.JournalEntry;
-import butterknife.ButterKnife;
-import butterknife.InjectView;
-import butterknife.OnClick;
 
 public class ViewGoalActivity extends ActionBarActivity {
 
@@ -38,7 +35,7 @@ public class ViewGoalActivity extends ActionBarActivity {
     private SubgoalDao subgoalDao;
     private JournalEntryDao journalEntryDao;
 
-    @InjectView(R.id.progressBar) GoalProgressBar progressBar;
+   // @InjectView(R.id.progressBar) GoalProgressBar progressBar;
 
     private final Random random = new Random();
 
@@ -82,14 +79,14 @@ public class ViewGoalActivity extends ActionBarActivity {
             startActivity(intent);
         });
 
-        ButterKnife.inject(this);
+       /* ButterKnife.inject(this);
 
         progressBar.setGoal(70);
 
         if (savedInstanceState == null) {
             resetProgress();
         }
-
+*/
     }
 
     @Override
@@ -134,9 +131,9 @@ public class ViewGoalActivity extends ActionBarActivity {
         startActivity(intent);
     }*/
 
-    @OnClick(R.id.resetProgressBtn)
+   /* @OnClick(R.id.resetProgressBtn)
     public void resetProgress() {
         int prog = random.nextInt(100);
         progressBar.setProgress(prog);
-    }
+    }*/
 }
