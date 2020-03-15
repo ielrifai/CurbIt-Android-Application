@@ -1,5 +1,6 @@
 package se3350.habittracker.activities;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 
@@ -22,7 +23,7 @@ import se3350.habittracker.daos.ProgressDao;
 import se3350.habittracker.models.Habit;
 import se3350.habittracker.models.Progress;
 
-public class SurveyActivity extends AppCompatActivity {
+public class SurveyActivity extends ActionBarActivity {
 
     // Elements
     SeekBar surveySeekbar;
@@ -48,7 +49,6 @@ public class SurveyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey);
 
-        Toast.makeText(getApplicationContext(), R.string.overwrite_progress, Toast.LENGTH_LONG);
         // Use database
         AppDatabase db = AppDatabase.getInstance(this);
         habit_id = getIntent().getIntExtra("HABIT_ID", -1 );
@@ -164,6 +164,17 @@ public class SurveyActivity extends AppCompatActivity {
             }
         });
 
+        // Alert user that only one progress can be logged a day and will be overwritten
+        // If the back nav button is pressed alert user they will skip the survey
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.alert_progress_may_overwrite_message)
+                .setTitle(R.string.alert_progress_may_overwrite_title)
+                .setPositiveButton(R.string.ok, ((dialog, which) -> {}));
+
+        // Show the AlertDialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
         // Submit Button Listener
         submitButton.setOnClickListener(v -> {
             if (progress == null){
@@ -219,5 +230,30 @@ public class SurveyActivity extends AppCompatActivity {
                     LiveData<Progress> progressLive = progressDao.getProgressById(newId);
                     progressLive.observe(this, progress -> setProgress(progress));
                 });
+    }
+
+    @Override
+    public void onBackPressed(){
+        // If the back nav button is pressed alert user they will skip the survey
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.alert_skip_survey_message)
+                .setTitle(R.string.alert_skip_survey_title)
+                .setNegativeButton(R.string.yes, ((dialog, which) -> {
+                    // Discard new insertion and go back to habit page
+                    discardProgress();
+                    goToNext();
+                }))
+                .setPositiveButton(R.string.no, ((dialog, which) -> {}));
+
+        // Show the AlertDialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void discardProgress(){
+        Executor myExecutor = Executors.newSingleThreadExecutor();
+        myExecutor.execute(() -> {
+            progressDao.delete(progress);
+        });
     }
 }
