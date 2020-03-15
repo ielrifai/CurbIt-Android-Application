@@ -44,9 +44,6 @@ public class ViewHabitActivity extends ActionBarActivity {
     JournalEntry draft;
 
     TextView habitDescriptionTextView, progressAverageTextView, progressAverageMessageTextView;
-    Button seeJournalButton, begin4StepsButton, resume4StepButton, seeProgressButton;
-
-    TextView habitDescriptionTextView, progressAverageTextView;
     Button seeJournalButton, begin4StepsButton, resume4StepButton, seeProgressButton, viewGoalsButton;
 
     private HabitDao habitDao;
