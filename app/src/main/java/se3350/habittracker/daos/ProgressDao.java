@@ -31,4 +31,7 @@ public interface ProgressDao {
 
     @Delete
     void delete(Progress progress);
+
+    @Query("DELETE FROM progress WHERE habitId=:habitId")
+    void deleteAllByHabitId(int habitId);
 }

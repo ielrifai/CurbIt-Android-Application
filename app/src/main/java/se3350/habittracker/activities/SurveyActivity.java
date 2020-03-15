@@ -33,6 +33,7 @@ public class SurveyActivity extends ActionBarActivity {
 
     // Values
     int currentProgressValue = 5; // Variable to keep track of user's selected progress value
+    boolean progressCreated = false;
 
     // The progress item that holds survey score for one day of a habit
     Progress progress;
@@ -75,7 +76,8 @@ public class SurveyActivity extends ActionBarActivity {
         LiveData<Progress> progressLive = progressDao.getProgressByDate(habit_id, start, end);
 
         progressLive.observe(this, progressItem -> {
-            if(progressItem == null) {
+            if((progressItem == null) && !progressCreated) {
+                progressCreated = true;
                 // insert a new progress for the habit for today
                 Executor myExecutor = Executors.newSingleThreadExecutor();
                 myExecutor.execute(() -> {
@@ -251,9 +253,13 @@ public class SurveyActivity extends ActionBarActivity {
     }
 
     private void discardProgress(){
-        Executor myExecutor = Executors.newSingleThreadExecutor();
-        myExecutor.execute(() -> {
-            progressDao.delete(progress);
-        });
+        // Delete the newly inserted progress if the user backs out
+        if(progressCreated){
+            Executor myExecutor = Executors.newSingleThreadExecutor();
+            myExecutor.execute(() -> {
+                progressDao.delete(progress);
+            });
+        }
+        // An existing progress won't be touched
     }
 }

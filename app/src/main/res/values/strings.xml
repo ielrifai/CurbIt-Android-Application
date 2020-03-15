@@ -91,7 +91,7 @@
     <string name="no">No</string>
     <string name="ok">OK</string>
     <string name="alert_progress_may_overwrite_message">Any progress score already logged for this habit today will be overwritten.</string>
-    <string name="alert_progress_may_overwrite_title">New Progress Score Log</string>
+    <string name="alert_progress_may_overwrite_title">Progress Score</string>
     <string name="no_progress_logged">No progress scores logged. Complete the survey at the end of the 4 Step Process.</string>
     <string name="overall_progress_message">Here is the average of your feelings about this habit. </string>
     <string name="no_progress_show">No progress to show.</string>

@@ -183,7 +183,6 @@ public class ViewHabitActivity extends ActionBarActivity {
         }
         else{
             progressAverageMessageTextView.setText(R.string.overall_progress_message);
-            progressAverageTextView.setText(getString(R.string.avg_progress_score, Math.round(habit.avgScore * 100.0) / 100.0));
         }
     }
 
