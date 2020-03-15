@@ -4,10 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,7 +30,6 @@ public class ViewHabitActivity extends ActionBarActivity {
     int habitId;
     Habit habit;
     JournalEntry draft;
-    boolean progressEmpty = false;
 
     TextView habitDescriptionTextView, progressAverageTextView, progressAverageMessageTextView;
     Button seeJournalButton, begin4StepsButton, resume4StepButton, seeProgressButton;
@@ -71,18 +68,12 @@ public class ViewHabitActivity extends ActionBarActivity {
             if(habit == null){
                 return;
             }
+            setHabit(habit);
+        });
 
-            Executor myExecutor = Executors.newSingleThreadExecutor();
-            myExecutor.execute(() -> {
-                int count = habitDao.numProgresses(habitId);
-                if (count == 0){
-                    progressEmpty = true;
-                }
-                else {
-                    progressEmpty = false;
-                }
-                setHabit(habit);
-            });
+        LiveData<Progress[]> progressLiveData = progressDao.getAllByHabit(habitId);
+        progressLiveData.observe(this, progresses -> {
+            setProgressText(progresses);
         });
 
 
@@ -124,14 +115,7 @@ public class ViewHabitActivity extends ActionBarActivity {
         this.habit = habit;
         setTitle(habit.name);
         habitDescriptionTextView.setText(habit.description);
-        if(progressEmpty){
-            progressAverageMessageTextView.setText(R.string.no_progress_logged);
-            progressAverageTextView.setVisibility(TextView.INVISIBLE);
-        }
-        else{
-            progressAverageMessageTextView.setText(R.string.overall_progress_message);
-            progressAverageTextView.setText(getString(R.string.avg_progress_score, Math.round(habit.avgScore * 100.0) / 100.0));
-        }
+        progressAverageTextView.setText(getString(R.string.avg_progress_score, Math.round(habit.avgScore * 100.0) / 100.0));
     }
 
     private void setDraft(JournalEntry journalEntry){
@@ -188,8 +172,19 @@ public class ViewHabitActivity extends ActionBarActivity {
     }
 
     private void goToProgress(){
-        Intent intent = new Intent(ViewHabitActivity.this, ViewHabitProgress.class).putExtra("HABIT_ID", habitId);
+        Intent intent = new Intent(ViewHabitActivity.this, ViewHabitProgressActivity.class).putExtra("HABIT_ID", habitId);
         startActivity(intent);
+    }
+
+    private void setProgressText(Progress[] progresses){
+        if(progresses.length == 0){
+            progressAverageMessageTextView.setText(R.string.no_progress_logged);
+            progressAverageTextView.setVisibility(TextView.INVISIBLE);
+        }
+        else{
+            progressAverageMessageTextView.setText(R.string.overall_progress_message);
+            progressAverageTextView.setText(getString(R.string.avg_progress_score, Math.round(habit.avgScore * 100.0) / 100.0));
+        }
     }
 
 }

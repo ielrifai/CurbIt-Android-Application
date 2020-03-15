@@ -94,6 +94,7 @@
     <string name="alert_progress_may_overwrite_title">New Progress Score Log</string>
     <string name="no_progress_logged">No progress scores logged. Complete the survey at the end of the 4 Step Process.</string>
     <string name="overall_progress_message">Here is the average of your feelings about this habit. </string>
+    <string name="no_progress_show">No progress to show.</string>
 
     <!-- Survey Levels -->
     <!-- TODO: May want to change these -->
