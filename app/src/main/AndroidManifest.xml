@@ -9,15 +9,53 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Step1EntryActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".activities.TutorialSummaryActivity"></activity>
+        <activity android:name=".activities.Step4TutorialActivity" />
+        <activity android:name=".activities.Step3TutorialActivity" />
+        <activity android:name=".activities.Step2TutorialActivity" />
+        <activity android:name=".activities.TutorialIntroductionActivity" />
+        <activity android:name=".activities.Step1TutorialActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.ViewJournalEntryActivity"
+            android:parentActivityName=".activities.JournalListActivity" />
+        <activity
+            android:name=".activities.JournalListActivity"
+            android:parentActivityName=".activities.ViewHabitActivity" />
+        <activity
+            android:name=".activities.Step1EntryActivity"
+            android:parentActivityName=".activities.ViewHabitActivity" />
+        <activity
+            android:name=".activities.Step2EntryActivity"
+            android:parentActivityName=".activities.ViewHabitActivity" />
+        <activity
+            android:name=".activities.Step3EntryActivity"
+            android:parentActivityName=".activities.ViewHabitActivity" />
+        <activity
+            android:name=".activities.Step4EntryActivity"
+            android:parentActivityName=".activities.ViewHabitActivity" />
+        <activity android:name=".activities.ViewHabitProgressActivity"/>
+        <activity android:name=".activities.SurveyActivity" />
+        <activity
+            android:name=".activities.ViewHabitActivity"
+            android:label="@string/title_activity_view_habit"
+            android:parentActivityName=".activities.MainActivity" />
+        <activity
+            android:name=".activities.ViewGoalActivity"
+            android:label="@string/title_activity_view_goal"
+            android:parentActivityName=".activities.GoalActivity"/>
+
+        <activity
+            android:name=".activities.ViewSubgoalActivity"
+            android:label="@string/title_activity_view_subgoal"
+            android:parentActivityName=".activities.ViewGoalActivity"/>
+
+        <activity
+            android:name=".activities.GoalActivity"
+            android:label="@string/goal_list"
+            android:parentActivityName=".activities.ViewHabitActivity"/>
+
+        <activity
+            android:name=".activities.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,8 +64,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AddHabitActivity"
-            android:launchMode="singleInstance"></activity>
+            android:name=".activities.AddHabitActivity"
+            android:parentActivityName=".activities.MainActivity" />
+        <activity
+            android:name=".activities.EditHabitActivity"
+            android:parentActivityName=".activities.ViewHabitActivity" />
     </application>
 
 </manifest>
