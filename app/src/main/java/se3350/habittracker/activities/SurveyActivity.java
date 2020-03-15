@@ -212,7 +212,7 @@ public class SurveyActivity extends ActionBarActivity {
             // Update the habit with the new avg score
             Executor hExecutor = Executors.newSingleThreadExecutor();
             hExecutor.execute(() -> {
-                habitDao.updateAvgScore(habit.uid);
+                habitDao.updateAvgScore(habit_id);
             });
         });
     }
