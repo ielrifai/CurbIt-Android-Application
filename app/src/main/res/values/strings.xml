@@ -10,12 +10,16 @@
     <string name="subgoal_list">Subgoal List</string>
     <string name="add_habit">Add Habit</string>
     <string name="add_goal">Add Goal</string>
+    <string name="add_subgoal">Add Subgoal</string>
+    <string name="add_subgoal_description">Add Subgoal Description</string>
+    <string name="subgoal_name">Name the subgoal</string>
     <string name="error_add_habit">Please fill in all fields</string>
     <string name="error_add_goal">Please fill in all fields</string>
     <string name="error_add_entry">Please fill in the journal entry</string>
     <string name="name">Name the habit</string>
     <string name="goal_name">Name the goal</string>
     <string name="description">Describe the habit</string>
+    <string name="goal_description_subheading">Describe the goal</string>
     <string name="add_goal_description">Describe the goal</string>
     <string name="submit">Submit</string>
     <string name="step1">Step 1: Relabel</string>
@@ -37,7 +41,9 @@
     <string name="edit_goal">Edit Goal</string>
     <string name="edit_subgoal">Edit Subgoal</string>
     <string name="edit_habit_name">Edit Habit Name: </string>
+    <string name="edit_goal_name">Edit Goal Name: </string>
     <string name="edit_habit_description">Edit Habit Description: </string>
+    <string name="edit_goal_description">Edit Goal Description: </string>
     <string name="apply_changes">Apply Changes</string>
     <string name="journal_list">Journal Entries</string>
     <string name="relabel">Relabel</string>
@@ -50,6 +56,7 @@
     <string name="empty_goal">Add a goal !</string>
     <string name="empty_subgoal">Add a subgoal !</string>
     <string name="delete_habit">Delete Habit</string>
+    <string name="delete_goal">Delete Goal</string>
     <string name="yes">Yes</string>
     <string name="cancel">Cancel</string>
     <string name="confirm_delete_popup_message">Delete "%1$s" ?</string>
@@ -79,6 +86,9 @@
     <string name="title_activity_view_subgoal">View Subgoal</string>
     <string name="title_goal">Goal</string>
     <string name="title_subgoal">Subgoal</string>
+    <string name="edit_subgoal_name">Edit Subgoal Name:</string>
+    <string name="edit_subgoal_description">Edit Subgoal Description:</string>
+    <string name="subgoal_description_subheading">Describe the Subgoal</string>
 
     <string name="begin_tutorial">See The Four Steps in Action</string>
     <string name="begin_step1_tutorial">Lets Begin</string>
@@ -141,4 +151,6 @@
     <string name="loginPassword">Enter Password</string>
     <string name="enterApp">Login</string>
     <string name="loading">loading...</string>
+    <string name="delete_subgoal">Delete Subgoal</string>
+
 </resources>

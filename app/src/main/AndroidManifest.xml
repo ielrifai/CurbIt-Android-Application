@@ -47,12 +47,17 @@
         <activity
             android:name=".activities.ViewSubgoalActivity"
             android:label="@string/title_activity_view_subgoal"
-            android:parentActivityName=".activities.ViewGoalActivity"/>
+            android:parentActivityName=".activities.SubgoalActivity"/>
 
         <activity
             android:name=".activities.GoalActivity"
             android:label="@string/goal_list"
             android:parentActivityName=".activities.ViewHabitActivity"/>
+
+        <activity
+            android:name=".activities.SubgoalActivity"
+            android:label="@string/subgoal_list"
+            android:parentActivityName=".activities.ViewGoalActivity"/>
 
         <activity
             android:name=".activities.MainActivity"
@@ -72,6 +77,18 @@
         <activity
             android:name=".activities.AddGoalActivity"
             android:parentActivityName=".activities.GoalActivity" />
+
+        <activity
+            android:name=".activities.AddSubgoalActivity"
+            android:parentActivityName=".activities.SubgoalActivity" />
+
+        <activity
+            android:name=".activities.EditGoalActivity"
+            android:parentActivityName=".activities.ViewGoalActivity" />
+
+        <activity
+            android:name=".activities.EditSubgoalActivity"
+            android:parentActivityName=".activities.ViewSubgoalActivity" />
     </application>
 
 </manifest>

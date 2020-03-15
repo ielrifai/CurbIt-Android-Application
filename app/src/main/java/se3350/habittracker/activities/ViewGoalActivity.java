@@ -2,10 +2,7 @@ package se3350.habittracker.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -16,25 +13,19 @@ import java.util.Random;
 import se3350.habittracker.AppDatabase;
 import se3350.habittracker.R;
 import se3350.habittracker.daos.GoalDao;
-import se3350.habittracker.daos.JournalEntryDao;
-import se3350.habittracker.daos.SubgoalDao;
 import se3350.habittracker.models.Goal;
-import se3350.habittracker.models.JournalEntry;
 
 public class ViewGoalActivity extends ActionBarActivity {
 
     String goal_description;
     int goalId;
+    int subgoalId;
     Goal goal;
-    JournalEntry draft;
+    GoalDao goalDao;
 
-    TextView goalDescriptionTextView;
-    Button  resume4StepButton, editGoalButton, viewSubgoalButton;
+    TextView goalNameTextView, goalDescriptionTextView;
+    Button editGoalButton, viewSubgoalButton;
 
-
-    private GoalDao goalDao;
-    private SubgoalDao subgoalDao;
-    private JournalEntryDao journalEntryDao;
 
    // @InjectView(R.id.progressBar) GoalProgressBar progressBar;
 
@@ -45,22 +36,23 @@ public class ViewGoalActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_goal);
 
+
         goalDescriptionTextView = findViewById(R.id.goal_description);
         editGoalButton = findViewById(R.id.edit_goal_btn);
         viewSubgoalButton = findViewById(R.id.view_subgoals_btn);
 
 
-        goalId = getIntent().getIntExtra("GOAl_ID", -1 );
+        goalId = getIntent().getIntExtra("GOAL_ID", -1 );
 
         // Get Daos and DB
         AppDatabase db = AppDatabase.getInstance(getBaseContext());
         goalDao = db.goalDao();
-        journalEntryDao = db.journalEntryDao();
-        subgoalDao = db.subgoalDao();
+        //journalEntryDao = db.journalEntryDao();
+        //subgoalDao = db.subgoalDao();
 
         // Get goal from database
         LiveData<Goal> goalLiveData = goalDao.getGoalById(goalId);
-        goalLiveData.observe(this, goal -> {
+        goalLiveData.observe(this, goal ->{
             // If goal is not in database
             if(goal == null){
                 return;
@@ -70,9 +62,9 @@ public class ViewGoalActivity extends ActionBarActivity {
 
 
 
-        //editGoalButton.setOnClickListener(event -> editGoal());
+        editGoalButton.setOnClickListener(event -> editGoal());
         viewSubgoalButton.setOnClickListener(event -> {
-            Intent intent = new Intent(ViewGoalActivity.this, ViewSubgoalActivity.class).putExtra("GOAL_ID", goalId);
+            Intent intent = new Intent(ViewGoalActivity.this, SubgoalActivity.class).putExtra("SUBGOAL_ID", subgoalId);
             startActivity(intent);
         });
 
@@ -93,7 +85,7 @@ public class ViewGoalActivity extends ActionBarActivity {
         return true;
     }
 
-    @Override
+    /*@Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
@@ -103,7 +95,7 @@ public class ViewGoalActivity extends ActionBarActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
+    }*/
 
     private void setGoal(Goal goal)
     {
@@ -112,14 +104,6 @@ public class ViewGoalActivity extends ActionBarActivity {
         goalDescriptionTextView.setText(goal.description);
     }
 
-    private void setDraft(JournalEntry journalEntry){
-        draft = journalEntry;
-        Log.d("DEBUG", "setDraft: "+draft);
-        // if there is no draft, hide the resume button from layout
-        if(draft == null) {
-            resume4StepButton.setVisibility(View.GONE);
-        }
-    }
 
 
     private void editGoal() {

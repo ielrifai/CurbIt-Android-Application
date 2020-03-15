@@ -1,5 +1,6 @@
 package se3350.habittracker.activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,28 +9,29 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import se3350.habittracker.AppDatabase;
+import se3350.habittracker.models.Subgoal;
+import se3350.habittracker.daos.SubgoalDao;
 import se3350.habittracker.R;
-import se3350.habittracker.daos.GoalDao;
-import se3350.habittracker.models.Goal;
 
-public class EditGoalActivity extends ActionBarActivity {
-    EditText goalDescriptionEditView;
-    EditText goalNameEditView;
+public class EditSubgoalActivity extends ActionBarActivity {
+    EditText subgoalDescriptionEditView;
+    EditText subgoalNameEditView;
 
-    Goal goal;
-    int goalId;
+    Subgoal subgoal;
+    int subgoalId;
 
-    GoalDao goalDao;
+    SubgoalDao subgoalDao;
 
-    private void setGoal(Goal goal)
+    private void setSubgoal(Subgoal goal)
     {
-        this.goal = goal;
+        this.subgoal = goal;
     }
 
     Button applyChangesButton;
@@ -37,28 +39,28 @@ public class EditGoalActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        goalId = getIntent().getIntExtra("GOAL_ID", -1);
+        subgoalId = getIntent().getIntExtra("SUBGOAL_ID", -1);
 
-        setContentView(R.layout.activity_edit_goal);
-        goalDescriptionEditView = findViewById(R.id.goal_description);
-        goalNameEditView = findViewById(R.id.goal_name);
+        setContentView(R.layout.activity_edit_subgoal);
+        subgoalDescriptionEditView = findViewById(R.id.subgoal_description);
+        subgoalNameEditView = findViewById(R.id.subgoal_name);
         applyChangesButton = findViewById(R.id.apply_btn);
 
         AppDatabase db = AppDatabase.getInstance(getBaseContext());
-        goalDao = db.goalDao();
+        subgoalDao = db.subgoalDao();
 
-        LiveData<Goal> goalLiveData = goalDao.getGoalById(goalId);
-        goalLiveData.observe(this, goal -> {
-            if(goal == null)
+        LiveData<Subgoal> goalLiveData = subgoalDao.getSubgoalById(subgoalId);
+        goalLiveData.observe(this, subgoal -> {
+            if(subgoal == null)
                 return;
 
-            setGoal(goal);
-            goalDescriptionEditView.setText(goal.description);
-            goalNameEditView.setText(goal.name);
+            setSubgoal(subgoal);
+            subgoalDescriptionEditView.setText(subgoal.description);
+            subgoalNameEditView.setText(subgoal.name);
         });
 
         applyChangesButton.setOnClickListener(event -> {
-            saveGoal();
+            saveSubgoal();
             onBackPressed();
         });
     }
@@ -66,7 +68,7 @@ public class EditGoalActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_edit_goal, menu);
+        getMenuInflater().inflate(R.menu.menu_edit_subgoal, menu);
         return true;
     }
 
@@ -74,20 +76,20 @@ public class EditGoalActivity extends ActionBarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
-            case R.id.delete_goal:
-                deleteGoal();
+            case R.id.delete_subgoal:
+                deleteSubgoal();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
-    private void deleteGoal() {
+    private void deleteSubgoal() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         // Add title and text to confirmation popup
-        builder.setMessage(getString(R.string.confirm_delete_popup_message, goal.name))
+        builder.setMessage(getString(R.string.confirm_delete_popup_message, subgoal.name))
                 .setTitle(R.string.confirm_delete_popup_title);
 
         // Add the buttons
@@ -95,11 +97,11 @@ public class EditGoalActivity extends ActionBarActivity {
             // Delete the habit if confirmed
             Executor myExecutor = Executors.newSingleThreadExecutor();
             myExecutor.execute(() -> {
-                // Delete habit and all its journal entries
-                goalDao.delete(goal);
+                // Delete subgoal and all its journal entries
+                subgoalDao.delete(subgoal);
 
-                // Go back to Habit List and clear task (clear all stacks)
-                Intent intent = new Intent(EditGoalActivity.this, MainActivity.class);
+                // Go back to Subgoal List and clear task (clear all stacks)
+                Intent intent = new Intent(EditSubgoalActivity.this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             });
@@ -112,13 +114,13 @@ public class EditGoalActivity extends ActionBarActivity {
         dialog.show();
     }
 
-    private void saveGoal() {
-        goal.description = goalDescriptionEditView.getText().toString();
-        goal.name = goalNameEditView.getText().toString();
+    private void saveSubgoal() {
+        subgoal.description = subgoalDescriptionEditView.getText().toString();
+        subgoal.name = subgoalNameEditView.getText().toString();
 
         Executor myExecutor = Executors.newSingleThreadExecutor();
         myExecutor.execute(() -> {
-            goalDao.updateGoals(goal);
+            subgoalDao.updateSubgoals(subgoal);
         });
     }
 }

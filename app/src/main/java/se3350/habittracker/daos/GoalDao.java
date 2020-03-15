@@ -17,8 +17,8 @@ public interface GoalDao {
     @Query("SELECT * FROM goal")
     LiveData<Goal[]> getAll();
 
-    @Query("SELECT * FROM goal WHERE uid=:id")
-    LiveData<Goal> getGoalById(int id);
+    @Query("SELECT * FROM goal WHERE uid=:uid")
+    LiveData<Goal> getGoalById(int uid);
 
     @Query("SELECT * FROM journalentry WHERE goalId=:goalId")
     LiveData<Goal[]> getAllByGoal(int goalId);

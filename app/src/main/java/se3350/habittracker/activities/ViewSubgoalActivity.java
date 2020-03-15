@@ -1,5 +1,6 @@
 package se3350.habittracker.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -44,7 +45,7 @@ public class ViewSubgoalActivity extends ActionBarActivity {
         //viewProgressTextView = findViewById(R.id.view_progress);
         editSubgoalButton = findViewById(R.id.edit_subgoal_btn);
 
-        subgoalId = getIntent().getIntExtra("SUBGOAl_ID", -1 );
+        subgoalId = getIntent().getIntExtra("SUBGOAL_ID", -1 );
 
         // Get Daos and DB
         AppDatabase db = AppDatabase.getInstance(getBaseContext());
@@ -62,11 +63,8 @@ public class ViewSubgoalActivity extends ActionBarActivity {
             setSubgoal(subgoal);
         });
 
-        // Get draft from database
-        LiveData<JournalEntry> journalEntryLiveData = journalEntryDao.getDraftOfSubgoal(subgoalId);
-        journalEntryLiveData.observe(this, journalEntry -> setDraft(journalEntry));
 
-       // editSubgoalButton.setOnClickListener(event -> editSubgoal());
+        editSubgoalButton.setOnClickListener(event -> editSubgoal());
     }
 
     @Override
@@ -106,9 +104,9 @@ public class ViewSubgoalActivity extends ActionBarActivity {
     }
 
 
-   /* private void editSubgoal() {
+    private void editSubgoal() {
         Intent intent = new Intent(ViewSubgoalActivity.this, EditSubgoalActivity.class).putExtra("SUBGOAL_ID", subgoalId);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
-    }*/
+    }
 }
