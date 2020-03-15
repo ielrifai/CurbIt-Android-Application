@@ -16,9 +16,14 @@ public class Goal {
     public String description;
 
     //public - can access outside package (folders)
-    public Goal(String name, String description){
+
+   public Goal(String name, String description){
         this.name = name;
         this.description = description;
     }
+
+    //public Goal(int goalId){
+        //this.goalId = goalId;
+    //}
 
 }

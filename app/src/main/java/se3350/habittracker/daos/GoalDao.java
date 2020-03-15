@@ -20,6 +20,12 @@ public interface GoalDao {
     @Query("SELECT * FROM goal WHERE uid=:id")
     LiveData<Goal> getGoalById(int id);
 
+    @Query("SELECT * FROM journalentry WHERE goalId=:goalId")
+    LiveData<Goal[]> getAllByGoal(int goalId);
+
+    @Query("SELECT * FROM journalentry WHERE habitId=:habitId")
+    LiveData<Goal[]> getAllByHabit(int habitId);
+
     //insert data
     //... - accept anything that is a list, array, or multiple arguments
     @Insert(onConflict = OnConflictStrategy.REPLACE)
