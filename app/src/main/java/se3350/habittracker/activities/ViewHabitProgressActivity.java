@@ -38,8 +38,6 @@ public class ViewHabitProgressActivity extends ActionBarActivity {
 
     int habitId;
 
-    boolean progressEmpty = false;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
