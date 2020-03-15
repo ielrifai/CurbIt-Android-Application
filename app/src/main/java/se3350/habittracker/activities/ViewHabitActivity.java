@@ -18,11 +18,13 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import se3350.habittracker.AppDatabase;
+import se3350.habittracker.daos.ProgressDao;
 import se3350.habittracker.models.Habit;
 import se3350.habittracker.daos.HabitDao;
 import se3350.habittracker.models.JournalEntry;
 import se3350.habittracker.daos.JournalEntryDao;
 import se3350.habittracker.R;
+import se3350.habittracker.models.Progress;
 
 public class ViewHabitActivity extends ActionBarActivity {
 
@@ -30,12 +32,14 @@ public class ViewHabitActivity extends ActionBarActivity {
     int habitId;
     Habit habit;
     JournalEntry draft;
+    boolean progressEmpty = false;
 
-    TextView habitDescriptionTextView, progressAverageTextView;
+    TextView habitDescriptionTextView, progressAverageTextView, progressAverageMessageTextView;
     Button seeJournalButton, begin4StepsButton, resume4StepButton, seeProgressButton;
 
     private HabitDao habitDao;
     private JournalEntryDao journalEntryDao;
+    private ProgressDao progressDao;
 
 
     @Override
@@ -45,6 +49,7 @@ public class ViewHabitActivity extends ActionBarActivity {
 
         habitDescriptionTextView = findViewById(R.id.habit_description);
         progressAverageTextView = findViewById(R.id.progress_average);
+        progressAverageMessageTextView = findViewById(R.id.progress_average_message);
         seeJournalButton = findViewById(R.id.see_journal_btn);
         begin4StepsButton = findViewById(R.id.begin_4_steps_btn);
         resume4StepButton = findViewById(R.id.resume_4_steps_btn);
@@ -56,6 +61,8 @@ public class ViewHabitActivity extends ActionBarActivity {
         AppDatabase db = AppDatabase.getInstance(getBaseContext());
         habitDao = db.habitDao();
         journalEntryDao = db.journalEntryDao();
+        progressDao = db.progressDao();
+
 
         // Get habit from database
         LiveData<Habit> habitLiveData = habitDao.getHabitById(habitId);
@@ -64,8 +71,20 @@ public class ViewHabitActivity extends ActionBarActivity {
             if(habit == null){
                 return;
             }
-            setHabit(habit);
+
+            Executor myExecutor = Executors.newSingleThreadExecutor();
+            myExecutor.execute(() -> {
+                int count = habitDao.numProgresses(habitId);
+                if (count == 0){
+                    progressEmpty = true;
+                }
+                else {
+                    progressEmpty = false;
+                }
+                setHabit(habit);
+            });
         });
+
 
         // Get draft from database
         LiveData<JournalEntry> journalEntryLiveData = journalEntryDao.getDraftOfHabit(habitId);
@@ -105,12 +124,18 @@ public class ViewHabitActivity extends ActionBarActivity {
         this.habit = habit;
         setTitle(habit.name);
         habitDescriptionTextView.setText(habit.description);
-        progressAverageTextView.setText(getString(R.string.avg_progress_score, Math.round(habit.avgScore * 100.0) / 100.0));
+        if(progressEmpty){
+            progressAverageMessageTextView.setText(R.string.no_progress_logged);
+            progressAverageTextView.setVisibility(TextView.INVISIBLE);
+        }
+        else{
+            progressAverageMessageTextView.setText(R.string.overall_progress_message);
+            progressAverageTextView.setText(getString(R.string.avg_progress_score, Math.round(habit.avgScore * 100.0) / 100.0));
+        }
     }
 
     private void setDraft(JournalEntry journalEntry){
         draft = journalEntry;
-        Log.d("DEBUG", "setDraft: "+draft);
         // if there is no draft, hide the resume button from layout
         if(draft == null) {
             resume4StepButton.setVisibility(View.GONE);
@@ -167,5 +192,4 @@ public class ViewHabitActivity extends ActionBarActivity {
         startActivity(intent);
     }
 
-    // TODO: Show the average score progress of the habit
 }
