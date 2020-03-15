@@ -136,4 +136,9 @@
     <string name="progress_chart_title">Habit Progress</string>
     <string name="progress_chart_yaxis">How you felt about your Habit</string>
     <string name="progress_chart_xaxis">Date</string>
+    <string name="enterPassword">Enter New Password</string>
+    <string name="reenterPassword">Reenter New Password</string>
+    <string name="loginPassword">Enter Password</string>
+    <string name="enterApp">Login</string>
+    <string name="loading">loading...</string>
 </resources>
