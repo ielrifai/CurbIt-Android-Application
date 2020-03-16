@@ -154,5 +154,6 @@
     <string name="enterApp">Login</string>
     <string name="loading">loading...</string>
     <string name="delete_subgoal">Delete Subgoal</string>
+    <string name="chk_ios" />
 
 </resources>

@@ -1,20 +1,18 @@
 package se3350.habittracker.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.lifecycle.LiveData;
 
 import se3350.habittracker.AppDatabase;
 import se3350.habittracker.R;
-import se3350.habittracker.daos.GoalDao;
-import se3350.habittracker.daos.JournalEntryDao;
 import se3350.habittracker.daos.SubgoalDao;
 import se3350.habittracker.models.Goal;
 import se3350.habittracker.models.JournalEntry;
@@ -33,9 +31,9 @@ public class ViewSubgoalActivity extends ActionBarActivity {
     Button editSubgoalButton, resume4StepButton, editGoalButton;
 
 
-    private GoalDao goalDao;
     private SubgoalDao subgoalDao;
-    private JournalEntryDao journalEntryDao;
+    private CheckBox checkBox;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,14 +43,13 @@ public class ViewSubgoalActivity extends ActionBarActivity {
         subgoalDescriptionTextView = findViewById(R.id.subgoal_description);
         //viewProgressTextView = findViewById(R.id.view_progress);
         editSubgoalButton = findViewById(R.id.edit_subgoal);
+        checkBox = findViewById(R.id.checkBox);
 
         subgoalId = getIntent().getIntExtra("SUBGOAL_ID", -1 );
 
         // Get Daos and DB
         AppDatabase db = AppDatabase.getInstance(getBaseContext());
-        goalDao = db.goalDao();
         subgoalDao = db.subgoalDao();
-        journalEntryDao = db.journalEntryDao();
 
         // Get subgoal from database
         LiveData<Subgoal> subgoalLiveData = subgoalDao.getSubgoalById(subgoalId);
@@ -64,8 +61,22 @@ public class ViewSubgoalActivity extends ActionBarActivity {
             setSubgoal(subgoal);
         });
 
+        SharedPreferences settings = getSharedPreferences("mysettings", 0);
+        SharedPreferences.Editor editor = settings.edit();
 
-        //editSubgoalButton.setOnClickListener(event -> editSubgoal());
+        boolean checkBoxValue = checkBox.isChecked();
+        editor.putBoolean("checkBox", checkBoxValue);
+        editor.commit();
+
+        checkBox.setChecked(settings.getBoolean("checkBox", false));
+
+
+        //CheckBox checkBox = (CheckBox) findViewById(R.id.checkBox);
+        //boolean checked = settings.getBoolean("checkBox", false);
+        //checkBox.setChecked(checked);
+
+
+
     }
 
     @Override
@@ -87,7 +98,6 @@ public class ViewSubgoalActivity extends ActionBarActivity {
         }
     }
 
-
     private void setSubgoal(Subgoal subgoal)
     {
         this.subgoal = subgoal;
@@ -95,14 +105,16 @@ public class ViewSubgoalActivity extends ActionBarActivity {
         subgoalDescriptionTextView.setText(subgoal.description);
     }
 
-    private void setDraft(JournalEntry journalEntry){
-        draft = journalEntry;
-        Log.d("DEBUG", "setDraft: "+draft);
-        // if there is no draft, hide the resume button from layout
-        if(draft == null) {
-            resume4StepButton.setVisibility(View.GONE);
+    /*public void onCheckboxClicked(View view) {
+        // Is the view now checked?
+        boolean checked = ((CheckBox) view).isChecked();
+        switch (view.getId()) {
+            case R.id.checkBox:
+                PreferenceManager.getDefaultSharedPreferences(this).edit()
+                        .putBoolean("checkBox", checked).commit();
+                break;
         }
-    }
+    }*/
 
 
     private void editSubgoal() {

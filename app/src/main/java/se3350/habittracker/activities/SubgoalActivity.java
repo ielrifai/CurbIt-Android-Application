@@ -56,6 +56,10 @@ public class SubgoalActivity extends ActionBarActivity {
         });
 
 
+
+        //addListenerOnChkIos();
+
+
         int subgoalId = getIntent().getIntExtra("SUBGOAL_ID", -1);
 
         // Get Daos
@@ -91,6 +95,24 @@ public class SubgoalActivity extends ActionBarActivity {
         subgoals.addAll(Arrays.asList(newSubgoals));
         adapter.notifyDataSetChanged();
     }
+
+    /*public void addListenerOnChkIos() {
+
+        chkIos = (CheckBox) findViewById(R.id.checkbox);
+
+        chkIos.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                //is chkIos checked?
+                if (((CheckBox) v).isChecked()) {
+
+                }
+
+            }
+        });
+
+    }*/
 }
 
     /*TextView emptyListText;
