@@ -11,8 +11,6 @@ import se3350.habittracker.R;
 
 public class TutorialIntroductionActivity extends AppCompatActivity {
 
-    Button btn;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

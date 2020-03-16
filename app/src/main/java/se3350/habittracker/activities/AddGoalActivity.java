@@ -32,6 +32,7 @@ public class AddGoalActivity extends ActionBarActivity {
         //link to id with xml files
         goalNameInput = (EditText) findViewById(R.id.goal_name);
         goalDescriptionInput = (EditText) findViewById(R.id.goal_description);
+        //links goal to habit
         habitId = getIntent().getIntExtra("HABIT_ID", -1);
 
         submitButton = (Button) findViewById(R.id.submit_btn);

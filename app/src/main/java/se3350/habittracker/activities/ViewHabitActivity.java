@@ -36,11 +36,8 @@ import se3350.habittracker.models.Progress;
 
 public class ViewHabitActivity extends ActionBarActivity {
 
-    String habit_description;
-    int habitId, goalId, subgoalId;
+    int habitId, goalId;
     Habit habit;
-    Goal goal;
-    Subgoal subgoal;
     JournalEntry draft;
 
     TextView habitDescriptionTextView, progressAverageTextView, progressAverageMessageTextView;
@@ -74,7 +71,6 @@ public class ViewHabitActivity extends ActionBarActivity {
         journalEntryDao = db.journalEntryDao();
         goalDao = db.goalDao();
         progressDao = db.progressDao();
-
 
         // Get habit from database
         LiveData<Habit> habitLiveData = habitDao.getHabitById(habitId);

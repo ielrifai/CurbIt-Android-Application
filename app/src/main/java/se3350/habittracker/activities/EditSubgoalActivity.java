@@ -92,10 +92,10 @@ public class EditSubgoalActivity extends ActionBarActivity {
 
         // Add the buttons
         builder.setPositiveButton(R.string.delete, ((dialog, which) -> {
-            // Delete the habit if confirmed
+            // Delete the subgoal if confirmed
             Executor myExecutor = Executors.newSingleThreadExecutor();
             myExecutor.execute(() -> {
-                // Delete subgoal and all its journal entries
+                // Delete subgoal
                 subgoalDao.delete(subgoal);
 
                 // Go back to Subgoal List and clear task (clear all stacks)

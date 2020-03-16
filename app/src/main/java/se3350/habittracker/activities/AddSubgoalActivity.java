@@ -23,7 +23,6 @@ public class AddSubgoalActivity extends ActionBarActivity {
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_add_subgoal);
-            // getSupportActionBar().setDisplayShowHomeEnabled(true);
 
             subgoalNameInput = (EditText) findViewById(R.id.subgoal_name);
             subgoalDescriptionInput = (EditText) findViewById(R.id.subgoal_description);

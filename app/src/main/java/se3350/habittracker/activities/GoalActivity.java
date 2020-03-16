@@ -62,13 +62,11 @@ public class GoalActivity extends ActionBarActivity {
         AppDatabase db = AppDatabase.getInstance(getBaseContext());
         goalDao = db.goalDao();
 
-        // get habits and goals from database
+        // get goals by habit id from database
         LiveData<Goal[]> goalList = goalDao.getGoalsByHabitId(habitId);
 
         // Get goal entries from database
         goalList.observe(this, newGoals -> setGoals(newGoals));
-
-
 
         addButton = findViewById(R.id.btn_add);
 

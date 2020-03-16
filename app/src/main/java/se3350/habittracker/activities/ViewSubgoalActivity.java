@@ -20,20 +20,14 @@ import se3350.habittracker.models.Subgoal;
 
 public class ViewSubgoalActivity extends ActionBarActivity {
 
-    String goal_description;
-    int goalId;
     int subgoalId;
-    Goal goal;
     Subgoal subgoal;
-    JournalEntry draft;
 
-    TextView goalDescriptionTextView, subgoalDescriptionTextView, viewProgressTextView;
-    Button editSubgoalButton, resume4StepButton, editGoalButton;
-
+    TextView subgoalDescriptionTextView;
+    Button editSubgoalButton;
 
     private SubgoalDao subgoalDao;
     private CheckBox checkBox;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +35,6 @@ public class ViewSubgoalActivity extends ActionBarActivity {
         setContentView(R.layout.activity_view_subgoal);
 
         subgoalDescriptionTextView = findViewById(R.id.subgoal_description);
-        //viewProgressTextView = findViewById(R.id.view_progress);
         editSubgoalButton = findViewById(R.id.edit_subgoal);
         checkBox = findViewById(R.id.checkBox);
 
@@ -60,7 +53,7 @@ public class ViewSubgoalActivity extends ActionBarActivity {
             }
             setSubgoal(subgoal);
         });
-
+        //configuring checkbox
         SharedPreferences settings = getSharedPreferences("mysettings", 0);
         SharedPreferences.Editor editor = settings.edit();
 
@@ -69,14 +62,6 @@ public class ViewSubgoalActivity extends ActionBarActivity {
         editor.commit();
 
         checkBox.setChecked(settings.getBoolean("checkBox", false));
-
-
-        //CheckBox checkBox = (CheckBox) findViewById(R.id.checkBox);
-        //boolean checked = settings.getBoolean("checkBox", false);
-        //checkBox.setChecked(checked);
-
-
-
     }
 
     @Override
@@ -104,18 +89,6 @@ public class ViewSubgoalActivity extends ActionBarActivity {
         setTitle(subgoal.name);
         subgoalDescriptionTextView.setText(subgoal.description);
     }
-
-    /*public void onCheckboxClicked(View view) {
-        // Is the view now checked?
-        boolean checked = ((CheckBox) view).isChecked();
-        switch (view.getId()) {
-            case R.id.checkBox:
-                PreferenceManager.getDefaultSharedPreferences(this).edit()
-                        .putBoolean("checkBox", checked).commit();
-                break;
-        }
-    }*/
-
 
     private void editSubgoal() {
         Intent intent = new Intent(ViewSubgoalActivity.this, EditSubgoalActivity.class).putExtra("SUBGOAL_ID", subgoalId);

@@ -18,16 +18,12 @@ import se3350.habittracker.models.Goal;
 
 public class ViewGoalActivity extends ActionBarActivity {
 
-    String goal_description;
     int goalId;
-    int subgoalId;
     Goal goal;
     GoalDao goalDao;
 
-    TextView goalNameTextView, goalDescriptionTextView;
-    Button editGoalButton, viewSubgoalButton;
-
-
+    TextView goalDescriptionTextView;
+    Button viewSubgoalButton;
 
     private final Random random = new Random();
 
@@ -36,10 +32,8 @@ public class ViewGoalActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_goal);
 
-
         goalDescriptionTextView = findViewById(R.id.goal_description);
         viewSubgoalButton = findViewById(R.id.view_subgoals_btn);
-
 
         goalId = getIntent().getIntExtra("GOAL_ID", -1 );
 
@@ -57,9 +51,6 @@ public class ViewGoalActivity extends ActionBarActivity {
             setGoal(goal);
         });
 
-
-
-        //editGoalButton.setOnClickListener(event -> editGoal());
         viewSubgoalButton.setOnClickListener(event -> {
             Intent intent = new Intent(ViewGoalActivity.this, SubgoalActivity.class).putExtra("GOAL_ID", goalId);
             startActivity(intent);
