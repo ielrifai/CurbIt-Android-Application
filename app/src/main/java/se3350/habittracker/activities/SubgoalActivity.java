@@ -25,6 +25,7 @@ public class SubgoalActivity extends ActionBarActivity {
     TextView emptyListText;
     ListView subgoalListView;
     List<Subgoal> subgoals;
+    int goalId;
 
     SubgoalDao subgoalDao;
     SubgoalListAdapter adapter;
@@ -36,11 +37,12 @@ public class SubgoalActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subgoals);
         subgoals = new ArrayList<>();
+        goalId = getIntent().getIntExtra("GOAL_ID", -1);
 
         subgoalListView = findViewById(R.id.list_subgoal);
         emptyListText = findViewById(R.id.text_empty_list);
 
-        // Set the journal list adapter
+        // Set the subgoal list adapter
         adapter = new SubgoalListAdapter(getBaseContext(), subgoals);
         subgoalListView.setAdapter(adapter);
 
@@ -55,30 +57,25 @@ public class SubgoalActivity extends ActionBarActivity {
             }
         });
 
-
-
-        //addListenerOnChkIos();
-
-
         int subgoalId = getIntent().getIntExtra("SUBGOAL_ID", -1);
 
         // Get Daos
         AppDatabase db = AppDatabase.getInstance(getBaseContext());
         subgoalDao = db.subgoalDao();
 
-        // get habits and goals from database
-        LiveData<Subgoal[]> subgoalList = subgoalDao.getAll();
+        // get subgoals and goals from database
+        LiveData<Subgoal[]> subgoalList = subgoalDao.getSubgoalsByGoalId(goalId);
 
-        // Get journal entries from database
+        // Get subgoal entries from database
         subgoalList.observe(this, newSubgoals -> setSubgoals(newSubgoals));
-
 
 
         addButton = findViewById(R.id.btn_add);
 
-        // Set add button to open the add goal form
+        // Set add button to open the add subgoal form
         addButton.setOnClickListener(event -> {
             Intent intent = new Intent(SubgoalActivity.this, AddSubgoalActivity.class).putExtra("SUBGOAL_ID", subgoalId);
+            intent.putExtra("GOAL_ID", goalId);
             startActivity(intent);
         });
 
@@ -95,90 +92,4 @@ public class SubgoalActivity extends ActionBarActivity {
         subgoals.addAll(Arrays.asList(newSubgoals));
         adapter.notifyDataSetChanged();
     }
-
-    /*public void addListenerOnChkIos() {
-
-        chkIos = (CheckBox) findViewById(R.id.checkbox);
-
-        chkIos.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                //is chkIos checked?
-                if (((CheckBox) v).isChecked()) {
-
-                }
-
-            }
-        });
-
-    }*/
 }
-
-    /*TextView emptyListText;
-
-    ListView goalListView;
-    List<Goal> goals;
-
-    GoalDao goalDao;
-    GoalListAdapter adapter;
-
-    private Button addButton;
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_goals);
-        goals = new ArrayList<>();
-        addButton = findViewById(R.id.btn_add);
-
-        goalListView = findViewById(R.id.list_goal);
-        emptyListText = findViewById(R.id.text_empty_list);
-
-        // Set the journal list adapter
-        adapter = new GoalListAdapter(getBaseContext(), goals);
-        goalListView.setAdapter(adapter);
-
-        // Set the listener on item click
-        goalListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Goal goal = goals.get(position);
-                Intent intent = new Intent(getBaseContext(), ViewGoalActivity.class)
-                        .putExtra("GOAL_ID", goal.uid);
-                startActivity(intent);
-            }
-        });
-
-        int goalId = getIntent().getIntExtra("GOAL_ID", -1);
-
-        // Get Daos
-        AppDatabase db = AppDatabase.getInstance(getBaseContext());
-        goalDao = db.goalDao();
-
-        // Get journal entries from database
-        goalDao.getAllByGoal(goalId)
-                .observe(this, newGoals -> setGoals(newGoals));
-
-        // Set add button to open the add goal form
-        addButton.setOnClickListener(event -> {
-            Intent intent = new Intent(GoalActivity.this, AddGoalActivity.class).putExtra("GOAL_ID", goalId);
-            startActivity(intent);
-        });
-
-
-    }
-
-    private void setGoals(Goal[] newGoals) {
-        // If list is empty show the empty list message
-        if (newGoals.length == 0)
-            emptyListText.setVisibility(View.VISIBLE);
-        else
-            emptyListText.setVisibility(View.INVISIBLE);
-
-        goals.clear();
-        goals.addAll(Arrays.asList(newGoals));
-        adapter.notifyDataSetChanged();
-    }*/
-

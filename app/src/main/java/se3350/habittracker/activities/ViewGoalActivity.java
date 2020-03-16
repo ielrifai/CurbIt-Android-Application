@@ -28,7 +28,6 @@ public class ViewGoalActivity extends ActionBarActivity {
     Button editGoalButton, viewSubgoalButton;
 
 
-   // @InjectView(R.id.progressBar) GoalProgressBar progressBar;
 
     private final Random random = new Random();
 
@@ -39,7 +38,6 @@ public class ViewGoalActivity extends ActionBarActivity {
 
 
         goalDescriptionTextView = findViewById(R.id.goal_description);
-        //editGoalButton = findViewById(R.id.edit_goal);
         viewSubgoalButton = findViewById(R.id.view_subgoals_btn);
 
 
@@ -48,8 +46,6 @@ public class ViewGoalActivity extends ActionBarActivity {
         // Get Daos and DB
         AppDatabase db = AppDatabase.getInstance(getBaseContext());
         goalDao = db.goalDao();
-        //journalEntryDao = db.journalEntryDao();
-        //subgoalDao = db.subgoalDao();
 
         // Get goal from database
         LiveData<Goal> goalLiveData = goalDao.getGoalById(goalId);
@@ -65,18 +61,10 @@ public class ViewGoalActivity extends ActionBarActivity {
 
         //editGoalButton.setOnClickListener(event -> editGoal());
         viewSubgoalButton.setOnClickListener(event -> {
-            Intent intent = new Intent(ViewGoalActivity.this, SubgoalActivity.class).putExtra("SUBGOAL_ID", subgoalId);
+            Intent intent = new Intent(ViewGoalActivity.this, SubgoalActivity.class).putExtra("GOAL_ID", goalId);
             startActivity(intent);
         });
 
-       /* ButterKnife.inject(this);
-
-        progressBar.setGoal(70);
-
-        if (savedInstanceState == null) {
-            resetProgress();
-        }
-*/
     }
 
     @Override
@@ -113,9 +101,4 @@ public class ViewGoalActivity extends ActionBarActivity {
         startActivity(intent);
     }
 
-   /* @OnClick(R.id.resetProgressBtn)
-    public void resetProgress() {
-        int prog = random.nextInt(100);
-        progressBar.setProgress(prog);
-    }*/
 }

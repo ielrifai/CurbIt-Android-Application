@@ -29,10 +29,10 @@ public class AddGoalActivity extends ActionBarActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_goal);
-        // getSupportActionBar().setDisplayShowHomeEnabled(true);
-
+        //link to id with xml files
         goalNameInput = (EditText) findViewById(R.id.goal_name);
         goalDescriptionInput = (EditText) findViewById(R.id.goal_description);
+        habitId = getIntent().getIntExtra("HABIT_ID", -1);
 
         submitButton = (Button) findViewById(R.id.submit_btn);
 
@@ -40,7 +40,7 @@ public class AddGoalActivity extends ActionBarActivity {
             //save goal info
             goalName = goalNameInput.getText().toString();
             goalDescription = goalDescriptionInput.getText().toString();
-
+            //if goal name or description is left blank
             if(goalName.length() == 0 || goalDescription.length() == 0){
                 Toast.makeText(getApplicationContext(), R.string.error_add_goal,Toast.LENGTH_SHORT).show();
                 return;

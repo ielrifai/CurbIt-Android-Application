@@ -13,6 +13,7 @@ import se3350.habittracker.R;
 public class AddSubgoalActivity extends ActionBarActivity {
 
         String subgoalName, subgoalDescription;
+        int goalId;
 
         EditText subgoalNameInput, subgoalDescriptionInput;
 
@@ -26,11 +27,12 @@ public class AddSubgoalActivity extends ActionBarActivity {
 
             subgoalNameInput = (EditText) findViewById(R.id.subgoal_name);
             subgoalDescriptionInput = (EditText) findViewById(R.id.subgoal_description);
+            goalId = getIntent().getIntExtra("GOAL_ID", -1);
 
             submitButton = (Button) findViewById(R.id.submit_btn);
 
             submitButton.setOnClickListener(v -> {
-                //save habit info
+                //save subgoal info
                 subgoalName = subgoalNameInput.getText().toString();
                 subgoalDescription = subgoalDescriptionInput.getText().toString();
 
@@ -39,8 +41,8 @@ public class AddSubgoalActivity extends ActionBarActivity {
                     return;
                 }
 
-                //add habit to db
-                Subgoal newSubgoal = new Subgoal(subgoalName, subgoalDescription);
+                //add subgoal to db
+                Subgoal newSubgoal = new Subgoal(subgoalName, subgoalDescription, goalId);
 
                 AppDatabase db = AppDatabase.getInstance(this);
 
