@@ -88,7 +88,7 @@ public class EditGoalActivity extends ActionBarActivity {
 
         // Add title and text to confirmation popup
         builder.setMessage(getString(R.string.confirm_delete_popup_message, goal.name))
-                .setTitle(R.string.confirm_delete_popup_title);
+                .setTitle(R.string.confirm_delete_popup_title_goal);
 
         // Add the buttons
         builder.setPositiveButton(R.string.delete, ((dialog, which) -> {
@@ -99,7 +99,7 @@ public class EditGoalActivity extends ActionBarActivity {
                 goalDao.delete(goal);
 
                 // Go back to Habit List and clear task (clear all stacks)
-                Intent intent = new Intent(EditGoalActivity.this, MainActivity.class);
+                Intent intent = new Intent(EditGoalActivity.this, GoalActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             });

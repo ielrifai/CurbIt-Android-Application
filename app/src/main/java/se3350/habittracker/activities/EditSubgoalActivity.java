@@ -1,6 +1,5 @@
 package se3350.habittracker.activities;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,16 +8,15 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import se3350.habittracker.AppDatabase;
-import se3350.habittracker.models.Subgoal;
-import se3350.habittracker.daos.SubgoalDao;
 import se3350.habittracker.R;
+import se3350.habittracker.daos.SubgoalDao;
+import se3350.habittracker.models.Subgoal;
 
 public class EditSubgoalActivity extends ActionBarActivity {
     EditText subgoalDescriptionEditView;
@@ -90,7 +88,7 @@ public class EditSubgoalActivity extends ActionBarActivity {
 
         // Add title and text to confirmation popup
         builder.setMessage(getString(R.string.confirm_delete_popup_message, subgoal.name))
-                .setTitle(R.string.confirm_delete_popup_title);
+                .setTitle(R.string.confirm_delete_popup_title_subgoal);
 
         // Add the buttons
         builder.setPositiveButton(R.string.delete, ((dialog, which) -> {
@@ -101,7 +99,7 @@ public class EditSubgoalActivity extends ActionBarActivity {
                 subgoalDao.delete(subgoal);
 
                 // Go back to Subgoal List and clear task (clear all stacks)
-                Intent intent = new Intent(EditSubgoalActivity.this, MainActivity.class);
+                Intent intent = new Intent(EditSubgoalActivity.this, SubgoalActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             });

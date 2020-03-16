@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -43,7 +44,7 @@ public class ViewSubgoalActivity extends ActionBarActivity {
 
         subgoalDescriptionTextView = findViewById(R.id.subgoal_description);
         //viewProgressTextView = findViewById(R.id.view_progress);
-        editSubgoalButton = findViewById(R.id.edit_subgoal_btn);
+        editSubgoalButton = findViewById(R.id.edit_subgoal);
 
         subgoalId = getIntent().getIntExtra("SUBGOAL_ID", -1 );
 
@@ -64,7 +65,7 @@ public class ViewSubgoalActivity extends ActionBarActivity {
         });
 
 
-        editSubgoalButton.setOnClickListener(event -> editSubgoal());
+        //editSubgoalButton.setOnClickListener(event -> editSubgoal());
     }
 
     @Override
@@ -74,7 +75,7 @@ public class ViewSubgoalActivity extends ActionBarActivity {
         return true;
     }
 
-   /* @Override
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
@@ -84,7 +85,7 @@ public class ViewSubgoalActivity extends ActionBarActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }*/
+    }
 
 
     private void setSubgoal(Subgoal subgoal)

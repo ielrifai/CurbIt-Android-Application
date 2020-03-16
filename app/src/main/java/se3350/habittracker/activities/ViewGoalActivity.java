@@ -3,6 +3,7 @@ package se3350.habittracker.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -38,7 +39,7 @@ public class ViewGoalActivity extends ActionBarActivity {
 
 
         goalDescriptionTextView = findViewById(R.id.goal_description);
-        editGoalButton = findViewById(R.id.edit_goal_btn);
+        //editGoalButton = findViewById(R.id.edit_goal);
         viewSubgoalButton = findViewById(R.id.view_subgoals_btn);
 
 
@@ -62,7 +63,7 @@ public class ViewGoalActivity extends ActionBarActivity {
 
 
 
-        editGoalButton.setOnClickListener(event -> editGoal());
+        //editGoalButton.setOnClickListener(event -> editGoal());
         viewSubgoalButton.setOnClickListener(event -> {
             Intent intent = new Intent(ViewGoalActivity.this, SubgoalActivity.class).putExtra("SUBGOAL_ID", subgoalId);
             startActivity(intent);
@@ -85,7 +86,7 @@ public class ViewGoalActivity extends ActionBarActivity {
         return true;
     }
 
-    /*@Override
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
@@ -95,7 +96,7 @@ public class ViewGoalActivity extends ActionBarActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }*/
+    }
 
     private void setGoal(Goal goal)
     {

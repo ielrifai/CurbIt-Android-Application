@@ -61,6 +61,8 @@
     <string name="cancel">Cancel</string>
     <string name="confirm_delete_popup_message">Delete "%1$s" ?</string>
     <string name="confirm_delete_popup_title">Delete Habit ?</string>
+    <string name="confirm_delete_popup_title_goal">Delete Goal ?</string>
+    <string name="confirm_delete_popup_title_subgoal">Delete Subgoal ?</string>
     <string name="delete">Delete</string>
     <string name="discard">Discard</string>
     <string name="save">Save</string>
