@@ -20,12 +20,11 @@
 
     <TextView
         android:id="@+id/subgoal_description"
-        android:layout_width="367dp"
-        android:layout_height="351dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="20sp"
         android:text="The description of the subgoal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.619"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/subgoal_description_title" />
 
@@ -38,8 +37,7 @@
         android:layout_marginBottom="19dp"
         app:layout_constraintBottom_toTopOf="@+id/subgoal_description"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
