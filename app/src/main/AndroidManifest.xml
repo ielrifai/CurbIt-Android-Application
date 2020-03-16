@@ -45,24 +45,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.ViewJournalEntryActivity"
-            android:parentActivityName=".activities.JournalListActivity" />
-        <activity
-            android:name=".activities.JournalListActivity"
-            android:parentActivityName=".activities.ViewHabitActivity" />
-        <activity
-            android:name=".activities.Step1EntryActivity"
-            android:parentActivityName=".activities.ViewHabitActivity" />
-        <activity
-            android:name=".activities.Step2EntryActivity"
-            android:parentActivityName=".activities.ViewHabitActivity" />
-        <activity
-            android:name=".activities.Step3EntryActivity"
-            android:parentActivityName=".activities.ViewHabitActivity" />
-        <activity
-            android:name=".activities.Step4EntryActivity"
-            android:parentActivityName=".activities.ViewHabitActivity" />
-        <activity
             android:name=".activities.ViewHabitActivity"
             android:label="@string/title_activity_view_habit"
             android:parentActivityName=".activities.MainActivity" />
@@ -98,9 +80,6 @@
         <activity
             android:name=".activities.EditHabitActivity"
             android:parentActivityName=".activities.ViewHabitActivity" />
-        <activity
-            android:name=".activities.AddGoalActivity"
-            android:parentActivityName=".activities.GoalActivity" />
 
         <activity
             android:name=".activities.AddSubgoalActivity"

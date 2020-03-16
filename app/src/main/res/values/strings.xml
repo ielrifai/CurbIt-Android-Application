@@ -10,7 +10,6 @@
     <string name="subgoal_list">Subgoal List</string>
     <string name="add_habit">Add Habit</string>
     <string name="add_goal">Add Goal</string>
-    <string name="add_goal">Add Goal</string>
     <string name="add_subgoal">Add Subgoal</string>
     <string name="add_subgoal_description">Add Subgoal Description</string>
     <string name="subgoal_name">Name the subgoal</string>
@@ -22,7 +21,6 @@
     <string name="description">Describe the habit</string>
     <string name="add_goal_description">Describe the goal</string>
     <string name="goal_description_subheading">Describe the goal</string>
-    <string name="add_goal_description">Describe the goal</string>
     <string name="submit">Submit</string>
     <string name="step1">Step 1: Relabel</string>
     <string name="step2">Step 2: Reframe</string>
@@ -93,6 +91,13 @@
     <string name="edit_subgoal_name">Edit Subgoal Name:</string>
     <string name="edit_subgoal_description">Edit Subgoal Description:</string>
     <string name="subgoal_description_subheading">Describe the Subgoal</string>
+    <string name="enterPassword">Enter New Password</string>
+    <string name="reenterPassword">Reenter New Password</string>
+    <string name="loginPassword">Enter Password</string>
+    <string name="enterApp">Login</string>
+    <string name="loading">loading...</string>
+    <string name="delete_subgoal">Delete Subgoal</string>
+    <string name="chk_ios" />
 
     <string name="begin_tutorial">See The Four Steps in Action</string>
     <string name="begin_step1_tutorial">Lets Begin</string>
@@ -132,6 +137,7 @@
     <string name="overall_progress_message">Here is the average of your feelings about this habit. </string>
     <string name="no_progress_show">No progress to show.</string>
 
+
     <!-- Survey Levels -->
     <!-- TODO: May want to change these -->
     <string name="level_10">Excellent</string>
@@ -150,17 +156,5 @@
     <string name="progress_chart_title">Habit Progress</string>
     <string name="progress_chart_yaxis">How you felt about your Habit</string>
     <string name="progress_chart_xaxis">Date</string>
-    <string name="enterPassword">Enter New Password</string>
-    <string name="reenterPassword">Reenter New Password</string>
-    <string name="loginPassword">Enter Password</string>
-    <string name="enterApp">Login</string>
-    <string name="loading">loading...</string>
-    <string name="enterPassword">Enter New Password</string>
-    <string name="reenterPassword">Reenter New Password</string>
-    <string name="loginPassword">Enter Password</string>
-    <string name="enterApp">Login</string>
-    <string name="loading">loading...</string>
-    <string name="delete_subgoal">Delete Subgoal</string>
-    <string name="chk_ios" />
 
 </resources>
