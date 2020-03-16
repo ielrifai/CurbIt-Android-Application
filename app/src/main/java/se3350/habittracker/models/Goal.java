@@ -14,11 +14,18 @@ public class Goal {
 
     @ColumnInfo(name = "description")
     public String description;
+    //goal is linked to a habit
+    @ColumnInfo(name = "habitId")
+    public int habitId;
 
     //public - can access outside package (folders)
-    public Goal(String name, String description){
+
+   public Goal(String name, String description,int habitId){
         this.name = name;
         this.description = description;
+        this.habitId = habitId;
     }
+
+
 
 }

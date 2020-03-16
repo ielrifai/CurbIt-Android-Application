@@ -1,4 +1,6 @@
 package se3350.habittracker.activities;
+
+
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -6,13 +8,17 @@ import android.widget.Toast;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
+
 import se3350.habittracker.AppDatabase;
-import se3350.habittracker.models.Goal;
-import se3350.habittracker.daos.GoalDao;
 import se3350.habittracker.R;
+import se3350.habittracker.daos.GoalDao;
+import se3350.habittracker.models.Goal;
 
 public class AddGoalActivity extends ActionBarActivity {
+
+    //vars to hold input data
     String goalName, goalDescription;
+    int habitId;
 
     EditText goalNameInput, goalDescriptionInput;
 
@@ -23,25 +29,26 @@ public class AddGoalActivity extends ActionBarActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_goal);
-        // getSupportActionBar().setDisplayShowHomeEnabled(true);
-
+        //link to id with xml files
         goalNameInput = (EditText) findViewById(R.id.goal_name);
         goalDescriptionInput = (EditText) findViewById(R.id.goal_description);
+        //links goal to habit
+        habitId = getIntent().getIntExtra("HABIT_ID", -1);
 
         submitButton = (Button) findViewById(R.id.submit_btn);
 
         submitButton.setOnClickListener(v -> {
-            //save habit info
+            //save goal info
             goalName = goalNameInput.getText().toString();
             goalDescription = goalDescriptionInput.getText().toString();
-
+            //if goal name or description is left blank
             if(goalName.length() == 0 || goalDescription.length() == 0){
                 Toast.makeText(getApplicationContext(), R.string.error_add_goal,Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            //add habit to db
-            Goal newGoal = new Goal(goalName, goalDescription);
+            //add goal to db
+            Goal newGoal = new Goal(goalName, goalDescription, habitId);
 
             AppDatabase db = AppDatabase.getInstance(this);
 
@@ -62,6 +69,3 @@ public class AddGoalActivity extends ActionBarActivity {
 
 
 }
-
-
-

@@ -20,6 +20,9 @@ public interface SubgoalDao {
     @Query("SELECT * FROM subgoal WHERE uid=:id")
     LiveData<Subgoal> getSubgoalById(int id);
 
+    @Query("SELECT * FROM subgoal WHERE goalId=:goalId")
+    LiveData<Subgoal[]> getSubgoalsByGoalId(int goalId);
+
     //insert data
     //... - accept anything that is a list, array, or multiple arguments
     @Insert(onConflict = OnConflictStrategy.REPLACE)

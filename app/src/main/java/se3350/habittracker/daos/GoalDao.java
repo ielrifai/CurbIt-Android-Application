@@ -17,8 +17,11 @@ public interface GoalDao {
     @Query("SELECT * FROM goal")
     LiveData<Goal[]> getAll();
 
-    @Query("SELECT * FROM goal WHERE uid=:id")
-    LiveData<Goal> getGoalById(int id);
+    @Query("SELECT * FROM goal WHERE uid=:uid")
+    LiveData<Goal> getGoalById(int uid);
+
+    @Query("SELECT * FROM goal WHERE habitId=:habitId")
+    LiveData<Goal[]> getGoalsByHabitId(int habitId);
 
     //insert data
     //... - accept anything that is a list, array, or multiple arguments
