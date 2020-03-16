@@ -103,6 +103,7 @@ public class ViewHabitActivity extends ActionBarActivity {
 
         viewGoalsButton.setOnClickListener(event -> {
             Intent intent = new Intent(ViewHabitActivity.this, GoalActivity.class).putExtra("GOAL_ID", goalId);
+            intent.putExtra("HABIT_ID", habitId);
             startActivity(intent);
         });
 

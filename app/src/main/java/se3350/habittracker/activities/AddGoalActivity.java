@@ -18,6 +18,7 @@ public class AddGoalActivity extends ActionBarActivity {
 
     //vars to hold input data
     String goalName, goalDescription;
+    int habitId;
 
     EditText goalNameInput, goalDescriptionInput;
 
@@ -36,7 +37,7 @@ public class AddGoalActivity extends ActionBarActivity {
         submitButton = (Button) findViewById(R.id.submit_btn);
 
         submitButton.setOnClickListener(v -> {
-            //save habit info
+            //save goal info
             goalName = goalNameInput.getText().toString();
             goalDescription = goalDescriptionInput.getText().toString();
 
@@ -46,7 +47,7 @@ public class AddGoalActivity extends ActionBarActivity {
             }
 
             //add goal to db
-            Goal newGoal = new Goal(goalName, goalDescription);
+            Goal newGoal = new Goal(goalName, goalDescription, habitId);
 
             AppDatabase db = AppDatabase.getInstance(this);
 

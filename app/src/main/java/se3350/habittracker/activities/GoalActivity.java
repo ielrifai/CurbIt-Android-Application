@@ -25,7 +25,7 @@ public class GoalActivity extends ActionBarActivity {
     TextView emptyListText;
     ListView goalListView;
     List<Goal> goals;
-
+    int habitId;
     GoalDao goalDao;
     GoalListAdapter adapter;
 
@@ -36,6 +36,7 @@ public class GoalActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goals);
         goals = new ArrayList<>();
+        habitId = getIntent().getIntExtra("HABIT ID", -1);
 
         goalListView = findViewById(R.id.list_goal);
         emptyListText = findViewById(R.id.text_empty_list);
@@ -54,7 +55,6 @@ public class GoalActivity extends ActionBarActivity {
                 startActivity(intent);
             }
         });
-
 
         int goalId = getIntent().getIntExtra("GOAL_ID", -1);
 
@@ -75,6 +75,7 @@ public class GoalActivity extends ActionBarActivity {
         // Set add button to open the add goal form
         addButton.setOnClickListener(event -> {
             Intent intent = new Intent(GoalActivity.this, AddGoalActivity.class).putExtra("GOAL_ID", goalId);
+            intent.putExtra("HABIT_ID", habitId);
             startActivity(intent);
         });
 
