@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import se3350.habittracker.R;
 
-public class Step3TutorialActivity extends AppCompatActivity {
+public class Step3TutorialActivity extends ActionBarActivity {
 
     private TextView text;
 

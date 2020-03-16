@@ -9,7 +9,7 @@ import android.widget.Button;
 
 import se3350.habittracker.R;
 
-public class TutorialIntroductionActivity extends AppCompatActivity {
+public class TutorialIntroductionActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

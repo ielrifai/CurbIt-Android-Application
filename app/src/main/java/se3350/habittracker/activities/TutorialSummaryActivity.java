@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import se3350.habittracker.R;
 
-public class TutorialSummaryActivity extends AppCompatActivity {
+public class TutorialSummaryActivity extends ActionBarActivity {
 
     private TextView text;
     @Override
@@ -25,6 +25,7 @@ public class TutorialSummaryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(TutorialSummaryActivity.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         });

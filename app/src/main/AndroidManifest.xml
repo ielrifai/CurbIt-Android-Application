@@ -9,12 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.TutorialSummaryActivity"></activity>
-        <activity android:name=".activities.Step4TutorialActivity" />
-        <activity android:name=".activities.Step3TutorialActivity" />
-        <activity android:name=".activities.Step2TutorialActivity" />
-        <activity android:name=".activities.TutorialIntroductionActivity" />
-        <activity android:name=".activities.Step1TutorialActivity" />
+        <activity android:name=".activities.TutorialSummaryActivity"
+            android:parentActivityName=".activities.Step4TutorialActivity"></activity>
+        <activity android:name=".activities.Step4TutorialActivity"
+            android:parentActivityName=".activities.Step3TutorialActivity"/>
+        <activity android:name=".activities.Step3TutorialActivity"
+            android:parentActivityName=".activities.Step2TutorialActivity"/>
+        <activity android:name=".activities.Step2TutorialActivity"
+            android:parentActivityName=".activities.Step1TutorialActivity"/>
+        <activity android:name=".activities.TutorialIntroductionActivity"
+            android:parentActivityName=".activities.MainActivity"/>
+        <activity android:name=".activities.Step1TutorialActivity"
+            android:parentActivityName=".activities.TutorialIntroductionActivity"/>
         <activity
             android:name=".activities.ViewJournalEntryActivity"
             android:parentActivityName=".activities.JournalListActivity" />
@@ -33,8 +39,10 @@
         <activity
             android:name=".activities.Step4EntryActivity"
             android:parentActivityName=".activities.ViewHabitActivity" />
-        <activity android:name=".activities.ViewHabitProgressActivity"/>
-        <activity android:name=".activities.SurveyActivity" />
+        <activity android:name=".activities.ViewHabitProgressActivity"
+            android:parentActivityName=".activities.ViewHabitActivity"/>
+        <activity android:name=".activities.SurveyActivity"
+            android:parentActivityName=".activities.ViewHabitActivity"/>
         <activity android:name=".activities.CreatePasswordActivity"></activity>
         <activity android:name=".activities.LoginActivity"></activity>
         <activity android:name=".activities.SplashActivity">
