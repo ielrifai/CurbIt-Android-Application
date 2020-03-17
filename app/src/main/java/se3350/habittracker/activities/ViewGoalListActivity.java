@@ -20,7 +20,7 @@ import se3350.habittracker.adapters.GoalListAdapter;
 import se3350.habittracker.daos.GoalDao;
 import se3350.habittracker.models.Goal;
 
-public class GoalActivity extends ActionBarActivity {
+public class ViewGoalListActivity extends ActionBarActivity {
 
     TextView emptyListText;
     ListView goalListView;
@@ -72,7 +72,7 @@ public class GoalActivity extends ActionBarActivity {
 
         // Set add button to open the add goal form
         addButton.setOnClickListener(event -> {
-            Intent intent = new Intent(GoalActivity.this, AddGoalActivity.class).putExtra("GOAL_ID", goalId);
+            Intent intent = new Intent(ViewGoalListActivity.this, AddGoalActivity.class).putExtra("GOAL_ID", goalId);
             intent.putExtra("HABIT_ID", habitId);
             startActivity(intent);
         });

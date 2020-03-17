@@ -52,7 +52,7 @@ public class ViewGoalActivity extends ActionBarActivity {
         });
 
         viewSubgoalButton.setOnClickListener(event -> {
-            Intent intent = new Intent(ViewGoalActivity.this, SubgoalActivity.class).putExtra("GOAL_ID", goalId);
+            Intent intent = new Intent(ViewGoalActivity.this, ViewSubgoalListActivity.class).putExtra("GOAL_ID", goalId);
             startActivity(intent);
         });
 

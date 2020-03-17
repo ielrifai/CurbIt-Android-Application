@@ -99,7 +99,7 @@ public class EditSubgoalActivity extends ActionBarActivity {
                 subgoalDao.delete(subgoal);
 
                 // Go back to Subgoal List and clear task (clear all stacks)
-                Intent intent = new Intent(EditSubgoalActivity.this, SubgoalActivity.class);
+                Intent intent = new Intent(EditSubgoalActivity.this, ViewSubgoalListActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             });

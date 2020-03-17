@@ -2,7 +2,6 @@ package se3350.habittracker.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.LiveData;
@@ -12,9 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.lifecycle.LiveData;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -26,12 +22,7 @@ import se3350.habittracker.daos.ProgressDao;
 import se3350.habittracker.models.Habit;
 import se3350.habittracker.daos.HabitDao;
 import se3350.habittracker.daos.JournalEntryDao;
-import se3350.habittracker.models.Goal;
-import se3350.habittracker.models.Habit;
 import se3350.habittracker.models.JournalEntry;
-import se3350.habittracker.models.Subgoal;
-import se3350.habittracker.daos.JournalEntryDao;
-import se3350.habittracker.R;
 import se3350.habittracker.models.Progress;
 
 public class ViewHabitActivity extends ActionBarActivity {
@@ -98,7 +89,7 @@ public class ViewHabitActivity extends ActionBarActivity {
         });
 
         viewGoalsButton.setOnClickListener(event -> {
-            Intent intent = new Intent(ViewHabitActivity.this, GoalActivity.class).putExtra("GOAL_ID", goalId);
+            Intent intent = new Intent(ViewHabitActivity.this, ViewGoalListActivity.class).putExtra("GOAL_ID", goalId);
             intent.putExtra("HABIT_ID", habitId);
             startActivity(intent);
         });

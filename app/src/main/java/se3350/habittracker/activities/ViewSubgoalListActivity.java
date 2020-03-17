@@ -20,7 +20,7 @@ import se3350.habittracker.adapters.SubgoalListAdapter;
 import se3350.habittracker.daos.SubgoalDao;
 import se3350.habittracker.models.Subgoal;
 
-public class SubgoalActivity extends ActionBarActivity {
+public class ViewSubgoalListActivity extends ActionBarActivity {
 
     TextView emptyListText;
     ListView subgoalListView;
@@ -74,7 +74,7 @@ public class SubgoalActivity extends ActionBarActivity {
 
         // Set add button to open the add subgoal form
         addButton.setOnClickListener(event -> {
-            Intent intent = new Intent(SubgoalActivity.this, AddSubgoalActivity.class).putExtra("SUBGOAL_ID", subgoalId);
+            Intent intent = new Intent(ViewSubgoalListActivity.this, AddSubgoalActivity.class).putExtra("SUBGOAL_ID", subgoalId);
             intent.putExtra("GOAL_ID", goalId);
             startActivity(intent);
         });
