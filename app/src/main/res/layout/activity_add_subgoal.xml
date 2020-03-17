@@ -11,12 +11,11 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_margin="20sp"
-        android:text="Add Subgoal"
+        android:text="@string/add_subgoal_title"
         android:textSize="20sp"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/subgoal_name"

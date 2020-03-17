@@ -23,12 +23,11 @@
         android:id="@+id/habit_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="The description of the habit"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/habit_description_title"
         android:layout_margin="20sp"
-        />
+        android:text="@string/view_habit_description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/habit_description_title" />
 
     <TextView
         android:id="@+id/journal_header"
@@ -138,13 +137,12 @@
         android:id="@+id/progress_average_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Average Feelings About Habit"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/see_progress_btn"
         android:layout_margin="20sp"
+        android:text="@string/view_habit_feelings"
         android:textSize="20sp"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/see_progress_btn" />
 
     <TextView
         android:id="@+id/progress_average_message"
@@ -165,13 +163,12 @@
         android:id="@+id/progress_average"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="0/10"
-        android:textAlignment="center"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progress_average_message"
         android:layout_margin="10sp"
+        android:text="@string/view_habit_ranking_scale"
+        android:textAlignment="center"
         android:textSize="60sp"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progress_average_message" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -49,8 +49,70 @@
     <string name="tutorial_summary_description">Moving forward, Steve continues to use the Four Step Process. Over time, Steve is able to stop his coffee abuse. It isn\'t easy, but Steve journals his progress and uses this app to curb his habit. </string>
     <string name="tutorial_summary_body">HabitTracker allows individuals to catalogue, curtail and even curb all types of negative habits. Using HabitTracker, you too can stop negative habits.</string>
 
+    
+    <!--Survey-->
+    <string name="survey_title">How are you feeling?</string>
+    <string name="survey_prompt">On a scale of 1 to 10, how much better are you feeling about your habit after going through the 4 step process?</string>
+    <string name="submit_survey">Save and Finish Process</string>
+    <string name="progress_score_title">Progress Score</string>
+    <string name="submit_next_survey">Submit and Go to Survey</string>
+    <string name="habit_progress_header">Habit Progress</string>
+    <string name="see_progress">See Progress</string>
+    <string name="avg_progress_score">%1$.2f/10</string>
+    <string name="alert_skip_survey_message">Are you sure you don\'t want to complete the survey?</string>
+    <string name="alert_skip_survey_title">Exit survey?</string>
+    <string name="no">No</string>
+    <string name="ok">OK</string>
+    <string name="alert_progress_may_overwrite_message">Any progress score already logged for this habit today will be overwritten.</string>
+    <string name="alert_progress_may_overwrite_title">Progress Score</string>
+    <string name="no_progress_logged">No progress scores logged. Complete the survey at the end of the 4 Step Process.</string>
+    <string name="overall_progress_message">Here is the average of your feelings about this habit. </string>
+    <string name="no_progress_show">No progress to show.</string>
+    <string name="survey_progress_value_text">5</string>
 
 
+    <!-- Survey Levels -->
+    <!-- TODO: May want to change these -->
+    <string name="level_10">Excellent</string>
+    <string name="level_9">Awesome</string>
+    <string name="level_8">Great</string>
+    <string name="level_7">Good</string>
+    <string name="level_6">Okay</string>
+    <string name="level_5">Meh</string>
+    <string name="level_4">Not great</string>
+    <string name="level_3">Discouraged</string>
+    <string name="level_2">:(</string>
+    <string name="level_1">Very Sad</string>
+    <string name="level_0">Terrible</string>
+
+
+    <!-- Chart -->
+    <string name="progress_chart_title">Habit Progress</string>
+    <string name="progress_chart_yaxis">How you felt about your Habit</string>
+    <string name="progress_chart_xaxis">Date</string>
+
+
+    <!--Goal-->
+    <string name="add_goal_title">Add Goal</string>
+    <string name="goal_name">Name the goal</string>
+    <string name="add_goal_description">Describe the goal</string>
+    <string name="view_goal_description">The description of the goal</string>
+
+
+    <!--SubGoal-->
+    <string name="add_subgoal_title">Add Subgoal</string>
+    <string name="subgoal_name">Name the subgoal</string>
+    <string name="add_subgoal_description">Add Subgoal Description</string>
+    <string name="view_subgoal_description">The description of the subgoal</string>
+
+
+    <!--Habit-->
+    <string name="view_habit_description">The description of the habit</string>
+    <string name="view_habit_feelings"> Average Feelings About Habit</string>
+    <string name="view_habit_ranking_scale">0/10</string>
+
+
+    <!--Miscellaneous-->
     <string name="app_name">Habit Tracker</string>
     <string name="title_home">Home</string>
     <string name="title_information">Information</string>
@@ -63,18 +125,13 @@
     <string name="add_habit">Add Habit</string>
     <string name="add_goal">Add Goal</string>
     <string name="add_subgoal">Add Subgoal</string>
-    <string name="add_subgoal_description">Add Subgoal Description</string>
-    <string name="subgoal_name">Name the subgoal</string>
     <string name="error_add_habit">Please fill in all fields</string>
     <string name="error_add_goal">Please fill in all fields</string>
     <string name="error_add_entry">Please fill in the journal entry</string>
     <string name="name">Name the habit</string>
-    <string name="goal_name">Name the goal</string>
     <string name="description">Describe the habit</string>
-    <string name="add_goal_description">Describe the goal</string>
     <string name="goal_description_subheading">Describe the goal</string>
     <string name="submit">Submit</string>
-
     <string name="submit_next">Save and move to next step</string>
     <string name="title_activity_view_habit">ViewHabit</string>
     <string name="action_settings">Settings</string>
@@ -87,7 +144,6 @@
     <string name="edit_goal_description">Edit Goal Description: </string>
     <string name="apply_changes">Apply Changes</string>
     <string name="journal_list">Journal Entries</string>
-
     <string name="submit_final">Save and return to habit details</string>
     <string name="empty_journal">No journal entry yet!\n\nTo add a journal entry, go back to the previous page and begin the 4 steps.</string>
     <string name="empty_habit">Add a habit to begin !</string>
@@ -106,7 +162,6 @@
     <string name="save">Save</string>
     <string name="confirm_save_draft_message">You are going to exit the 4 steps.\nDo you want to save your progress ?</string>
     <string name="confirm_save_draft_title">Exit 4 Steps Process ?</string>
-
     <string name="habit_description">Habit Description</string>
     <string name="goal_description">Goal Description</string>
     <string name="subgoal_description">Subgoal Description</string>
@@ -131,44 +186,5 @@
     <string name="delete_subgoal">Delete Subgoal</string>
     <string name="chk_ios" />
 
-
-    <!--Survey-->
-    <string name="survey_title">How are you feeling?</string>
-    <string name="survey_prompt">On a scale of 1 to 10, how much better are you feeling about your habit after going through the 4 step process?</string>
-    <string name="submit_survey">Save and Finish Process</string>
-    <string name="progress_score_title">Progress Score</string>
-    <string name="submit_next_survey">Submit and Go to Survey</string>
-    <string name="habit_progress_header">Habit Progress</string>
-    <string name="see_progress">See Progress</string>
-    <string name="avg_progress_score">%1$.2f/10</string>
-    <string name="alert_skip_survey_message">Are you sure you don\'t want to complete the survey?</string>
-    <string name="alert_skip_survey_title">Exit survey?</string>
-    <string name="no">No</string>
-    <string name="ok">OK</string>
-    <string name="alert_progress_may_overwrite_message">Any progress score already logged for this habit today will be overwritten.</string>
-    <string name="alert_progress_may_overwrite_title">Progress Score</string>
-    <string name="no_progress_logged">No progress scores logged. Complete the survey at the end of the 4 Step Process.</string>
-    <string name="overall_progress_message">Here is the average of your feelings about this habit. </string>
-    <string name="no_progress_show">No progress to show.</string>
-
-
-    <!-- Survey Levels -->
-    <!-- TODO: May want to change these -->
-    <string name="level_10">Excellent</string>
-    <string name="level_9">Awesome</string>
-    <string name="level_8">Great</string>
-    <string name="level_7">Good</string>
-    <string name="level_6">Okay</string>
-    <string name="level_5">Meh</string>
-    <string name="level_4">Not great</string>
-    <string name="level_3">Discouraged</string>
-    <string name="level_2">:(</string>
-    <string name="level_1">Very Sad</string>
-    <string name="level_0">Terrible</string>
-
-    <!-- Chart -->
-    <string name="progress_chart_title">Habit Progress</string>
-    <string name="progress_chart_yaxis">How you felt about your Habit</string>
-    <string name="progress_chart_xaxis">Date</string>
 
 </resources>
