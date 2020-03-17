@@ -21,6 +21,18 @@
             android:parentActivityName=".activities.MainActivity"/>
         <activity android:name=".activities.Step1TutorialActivity"
             android:parentActivityName=".activities.TutorialIntroductionActivity"/>
+
+        <!-- this is the searchable activity; it performs searches -->
+        <activity
+            android:name=".activities.SearchableActivity"
+            android:parentActivityName=".activities.JournalListActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
         <activity
             android:name=".activities.ViewJournalEntryActivity"
             android:parentActivityName=".activities.JournalListActivity" />

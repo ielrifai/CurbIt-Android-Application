@@ -1,12 +1,14 @@
 package se3350.habittracker.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -14,10 +16,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import se3350.habittracker.AppDatabase;
-import se3350.habittracker.models.JournalEntry;
-import se3350.habittracker.daos.JournalEntryDao;
 import se3350.habittracker.R;
 import se3350.habittracker.adapters.JournalListAdapter;
+import se3350.habittracker.daos.JournalEntryDao;
+import se3350.habittracker.models.JournalEntry;
 
 public class JournalListActivity extends ActionBarActivity {
 
@@ -76,5 +78,22 @@ public class JournalListActivity extends ActionBarActivity {
         journalEntries.clear();
         journalEntries.addAll(Arrays.asList(newJournalEntries));
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.options_menu, menu);
+
+        // Associate searchable configuration with the SearchView
+        SearchManager searchManager =
+                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView =
+                (SearchView) menu.findItem(R.id.search).getActionView();
+        searchView.setSearchableInfo(
+                searchManager.getSearchableInfo(getComponentName()));
+        searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
+
+
+        return true;
     }
 }
