@@ -35,7 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="20sp"
-        android:gravity="bottom"
+        android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/tut_summary_text2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,15 +44,16 @@
 
         <ImageView
             android:id="@+id/steve"
-            android:layout_width="199dp"
-            android:layout_height="match_parent"
+            android:layout_width="210dp"
+            android:layout_height="344dp"
             app:srcCompat="@drawable/steve_after" />
 
         <TextView
             android:id="@+id/tut_summary_text1"
-            android:layout_width="0dp"
-            android:layout_height="259dp"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:scrollbars="vertical"
             android:text="@string/tutorial_summary_description"
             android:textAlignment="gravity"
             android:textSize="18sp" />
@@ -61,11 +62,12 @@
     <TextView
         android:id="@+id/tut_summary_text2"
         android:layout_width="366dp"
-        android:layout_height="216dp"
+        android:layout_height="wrap_content"
         android:layout_margin="20sp"
         android:gravity="top"
         android:text="@string/tutorial_summary_body"
         android:textSize="18sp"
+        android:scrollbars="vertical"
         app:layout_constraintBottom_toTopOf="@+id/summary_to_home_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
