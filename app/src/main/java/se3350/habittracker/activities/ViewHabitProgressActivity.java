@@ -81,12 +81,13 @@ public class ViewHabitProgressActivity extends ActionBarActivity {
             lineChart.xAxis(0).title(getString(R.string.progress_chart_xaxis));
             lineChart.yAxis(0).title(getString(R.string.progress_chart_yaxis));
             lineChart.title(getString(R.string.progress_chart_title));
-            lineChart.yScale().maximum(10);
+            lineChart.yScale().maximum(11);
 
-            lineChart.data(data); // Set the data to the chart
-
-            // Markers
+            // Set the data and Markers
             lineChart.line(data).markers().enabled(true);
+
+            // Series Names
+            lineChart.getSeriesAt(0).name("Score");
 
             anyChartView = (AnyChartView) findViewById(R.id.any_chart_view);
             anyChartView.setChart(lineChart);

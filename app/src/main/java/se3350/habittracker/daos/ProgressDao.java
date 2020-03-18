@@ -9,6 +9,7 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import java.util.Date;
+import java.util.List;
 
 import se3350.habittracker.models.Progress;
 
@@ -25,6 +26,9 @@ public interface ProgressDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     long insertOne(Progress progress);
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertAll(List<Progress> progresses);
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void updateProgress(Progress progress);

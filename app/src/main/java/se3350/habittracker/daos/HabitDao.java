@@ -24,8 +24,14 @@ public interface HabitDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(Habit... habits);
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    long insertOne(Habit habit);
+
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void updateHabits(Habit... habits);
+
+    @Query("UPDATE habit SET name=:newName, description=:newDesc WHERE uid=:id")
+    void updateHabitNameDesc(int id, String newName, String newDesc);
 
     @Delete
     void delete(Habit habit);
