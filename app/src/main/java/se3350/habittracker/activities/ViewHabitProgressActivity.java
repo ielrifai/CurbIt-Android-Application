@@ -9,15 +9,12 @@ import com.anychart.AnyChartView;
 import com.anychart.chart.common.dataentry.DataEntry;
 import com.anychart.chart.common.dataentry.ValueDataEntry;
 import com.anychart.charts.Cartesian;
-import com.anychart.core.ui.MarkersFactory;
-import com.anychart.enums.MarkerType;
+import com.anychart.core.cartesian.series.Line;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 import se3350.habittracker.AppDatabase;
 import se3350.habittracker.R;
@@ -53,6 +50,8 @@ public class ViewHabitProgressActivity extends ActionBarActivity {
         progressDao = db.progressDao();
         habitDao = db.habitDao();
 
+        habitDao.getHabitById(habitId).observe(this, habit -> setTitle(getString(R.string.view_progress_title, habit.name)));
+
         viewProgressMessage = findViewById(R.id.view_progress_message);
 
         // Get progresses from database
@@ -81,13 +80,30 @@ public class ViewHabitProgressActivity extends ActionBarActivity {
             lineChart.xAxis(0).title(getString(R.string.progress_chart_xaxis));
             lineChart.yAxis(0).title(getString(R.string.progress_chart_yaxis));
             lineChart.title(getString(R.string.progress_chart_title));
+
+            lineChart.yScale().minimum(0);
             lineChart.yScale().maximum(10);
 
-            lineChart.data(data); // Set the data to the chart
+            lineChart.yScale().ticks().interval(1);
 
-            // Markers
-            lineChart.line(data).markers().enabled(true);
+            // Set the data into a series and Markers
+            Line lineChartLine = lineChart.line(data);
+            lineChartLine.markers().enabled(true);
+            lineChartLine.markers().fill("#FFFFFF");
+            lineChartLine.stroke("3 white");
 
+            // Series Names
+            lineChart.getSeriesAt(0).name(getString(R.string.chart_score));
+
+            // Scroller
+            lineChart.xScroller(true);
+
+            // Set the gradient background
+            String[] colours = { "#B22222" , "#FFA500",  "#FFD700", "#8BC34A" };
+            lineChart.dataArea().background().enabled(true);
+            lineChart.dataArea().background().fill(colours, 90, true, 100);
+
+            // Put the chart in the  view
             anyChartView = (AnyChartView) findViewById(R.id.any_chart_view);
             anyChartView.setChart(lineChart);
             anyChartView.setVisibility(View.VISIBLE);

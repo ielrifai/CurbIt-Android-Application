@@ -2,6 +2,7 @@ package se3350.habittracker.models;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.util.Date;
@@ -23,5 +24,12 @@ public class Progress {
     public Progress(int habitId){
         this.habitId = habitId;
         this.date = new Date();
+    }
+
+    @Ignore
+    public Progress(int habitId, Date date, int score){
+        this.habitId = habitId;
+        this.date = date;
+        this.surveyScore = score;
     }
 }

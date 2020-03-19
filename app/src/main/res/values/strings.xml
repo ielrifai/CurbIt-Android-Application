@@ -90,6 +90,8 @@
     <string name="progress_chart_title">Habit Progress</string>
     <string name="progress_chart_yaxis">How you felt about your Habit</string>
     <string name="progress_chart_xaxis">Date</string>
+    <string name="view_progress_title">%1$s Progress</string>
+    <string name="chart_score">Score</string>
 
 
     <!--Goal-->
