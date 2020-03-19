@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
 
         // Insert Mock Data for Demo Purposes
-        //insertMockData(); // COMMENT OUT TO STOP GENERATING DATA
+        insertMockData(); // COMMENT OUT TO STOP GENERATING DATA
     }
 
     private void insertMockData(){
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
             List<Progress> progresses = new ArrayList<>();
 
             for (int i = 0; i < 15; i++ ){
-                calendar.set(2020, 3, 12 + i);
+                calendar.set(2020, 2, 12 + i);
                 progresses.add(new Progress((int)habit_id, calendar.getTime(), new Random().nextInt(11)));
             }
 
