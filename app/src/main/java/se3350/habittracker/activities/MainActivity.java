@@ -26,6 +26,7 @@ import se3350.habittracker.models.Progress;
 
 public class MainActivity extends AppCompatActivity {
     long habit_id;
+    private static boolean mockDataLoaded = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +43,13 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
 
         // Insert Mock Data for Demo Purposes
-        insertMockData(); // COMMENT OUT TO STOP GENERATING DATA
+        if(!mockDataLoaded){
+            insertMockData(); // COMMENT OUT TO STOP GENERATING DATA
+        }
     }
 
     private void insertMockData(){
+        mockDataLoaded = true;
         AppDatabase db = AppDatabase.getInstance(getBaseContext());
         ProgressDao progressDao = db.progressDao();
         HabitDao habitDao = db.habitDao();
@@ -62,8 +66,8 @@ public class MainActivity extends AppCompatActivity {
             Calendar calendar = Calendar.getInstance();
             List<Progress> progresses = new ArrayList<>();
 
-            for (int i = 0; i < 15; i++ ){
-                calendar.set(2020, 2, 12 + i);
+            for (int i = 0; i < 10; i++ ){
+                calendar.set(2020, 2, 7 + i); // Start at March 7th
                 progresses.add(new Progress((int)habit_id, calendar.getTime(), new Random().nextInt(11)));
             }
 
