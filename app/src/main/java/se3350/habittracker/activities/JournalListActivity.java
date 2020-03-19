@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -14,6 +15,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import se3350.habittracker.AppDatabase;
 import se3350.habittracker.R;
@@ -30,6 +33,7 @@ public class JournalListActivity extends ActionBarActivity {
 
     JournalEntryDao journalEntryDao;
     JournalListAdapter adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +69,31 @@ public class JournalListActivity extends ActionBarActivity {
         journalEntryDao.getAllByHabit(habitId)
                 .observe(this, newJournalEntries -> setJournalEntries(newJournalEntries));
 
+        handleIntent(getIntent());
+
+        // Get the intent, verify the action and get the query
+        Intent intent = getIntent();
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            //doMySearch(query);
+        }
 
     }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        handleIntent(intent);
+    }
+
+    private void handleIntent(Intent intent) {
+
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            //use the query to search your data somehow
+        }
+    }
+
 
     private void setJournalEntries(JournalEntry[] newJournalEntries) {
         // If list is empty show the empty list message
@@ -82,7 +109,7 @@ public class JournalListActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.options_menu, menu);
+        getMenuInflater().inflate(R.menu.menu_search, menu);
 
         // Associate searchable configuration with the SearchView
         SearchManager searchManager =
@@ -95,5 +122,31 @@ public class JournalListActivity extends ActionBarActivity {
 
 
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle presses on the action bar items
+        switch (item.getItemId()) {
+            case R.id.search:
+                search();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void search() {
+
+        int date = getIntent().getIntExtra("DATE", -1);
+
+        Executor myExecutor = Executors.newSingleThreadExecutor();
+        myExecutor.execute(() -> {
+            // Display entries
+            journalEntryDao.getBySearch(date);
+                  //  .observe(this, newJournalEntries -> setJournalEntries(newJournalEntries));
+
+        });
+
     }
 }

@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="se3350.habittracker.activities.SearchableActivity">
+    tools:context="se3350.habittracker.activities.JournalListActivity">
 
     <item android:id="@+id/search"
         android:orderInCategory="100"
