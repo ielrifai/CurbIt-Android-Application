@@ -1,9 +1,6 @@
 package se3350.habittracker.activities;
 
-import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.ListView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -12,11 +9,9 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.room.Room;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.Executor;
@@ -47,11 +42,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
 
         // Insert Mock Data for Demo Purposes
-
-        insertMockData();
-
-
-
+        //insertMockData(); // COMMENT OUT TO STOP GENERATING DATA
     }
 
     private void insertMockData(){
@@ -59,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         ProgressDao progressDao = db.progressDao();
         HabitDao habitDao = db.habitDao();
 
-        // Insert a Habit (Uid will be 1)
+        // Insert a Habit
         Habit newHabit = new Habit("Example Habit", "This is about Example Habit.");
         Executor myExecutor = Executors.newSingleThreadExecutor();
         myExecutor.execute(() -> {
@@ -77,15 +68,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
             // Use insertAll for progress Dao
-            Executor pExecutor = Executors.newSingleThreadExecutor();
-            myExecutor.execute(() -> {
                 progressDao.insertAll(progresses);
                 habitDao.updateAvgScore((int)habit_id);
-            });
         });
-
-
-
     }
-
 }
