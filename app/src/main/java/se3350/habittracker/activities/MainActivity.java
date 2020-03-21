@@ -1,10 +1,20 @@
 package se3350.habittracker.activities;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.InflateException;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.CompoundButton;
+import android.widget.RadioGroup;
+import android.widget.Switch;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -27,10 +37,12 @@ import se3350.habittracker.models.Progress;
 public class MainActivity extends AppCompatActivity {
     long habit_id;
     private static boolean mockDataLoaded = false;
+    Switch themeSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -44,8 +56,47 @@ public class MainActivity extends AppCompatActivity {
 
         // Insert Mock Data for Demo Purposes
         if(!mockDataLoaded){
-            insertMockData(); // COMMENT OUT TO STOP GENERATING DATA
+            //insertMockData(); // COMMENT OUT TO STOP GENERATING DATA
         }
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        // Use the switch item for theme changing switch
+        MenuItem item = menu.findItem(R.id.theme_switch);
+        themeSwitch = item.getActionView().findViewById(R.id.theme_switch);
+
+        // Check if Night Mode is on to set the switch
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            themeSwitch.setChecked(true);
+        } else {
+            themeSwitch.setChecked(false);
+        }
+
+        // Listener for theme switch
+        themeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
+                SharedPreferences sharedPref = getSharedPreferences("PREFS", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+
+                // If toggle switch to on, set Night Mode and save preference
+                if (isChecked) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    editor.putBoolean("NIGHT_MODE", true);
+                    editor.apply();
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    editor.putBoolean("NIGHT_MODE", false);
+                    editor.apply();
+                }
+            }
+        });
+        return true;
     }
 
     private void insertMockData(){

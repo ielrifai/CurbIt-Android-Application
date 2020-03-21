@@ -3,6 +3,7 @@ package se3350.habittracker.adapters;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +47,7 @@ public class JournalListAdapter extends ArrayAdapter<JournalEntry> {
             title = journalTitle.getText() + " (draft)";
             journalTitle.setText(title);
         }
+
 
         return rowView;
     }

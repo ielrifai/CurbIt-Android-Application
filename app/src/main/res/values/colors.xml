@@ -1,23 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Default -->
-    <!--<color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>-->
-
-    <!-- Orange -->
-   <!-- <color name="colorPrimary">#FFC107</color>
-    <color name="colorPrimaryDark">#FF9800</color>
-    <color name="colorAccent">#FF5722</color>-->
-
-    <!-- Sea Blue -->
-    <!--<color name="colorPrimary">#00BCD4</color>
-    <color name="colorPrimaryDark">#03A9F4</color>
-    <color name="colorAccent">#9C27B0</color>-->
-
-    <!-- Green -->
     <color name="colorPrimary">#8BC34A</color>
     <color name="colorPrimaryDark">#4CAF50</color>
     <color name="colorAccent">#FF9800</color>
-    <color name="colorButtonText">#FFFFFF</color>
+    <color name="windowBackground">#FFFFFF</color>
+    <color name="textColor">#878787</color>
+    <color name="editTextColor">#000000</color>
+    <color name="colorControlNormal">#878787</color>
+    <color name="textColorPrimary">#FFFFFF</color>
+    <color name="textColorHint">#C4C4C4</color>
 </resources>

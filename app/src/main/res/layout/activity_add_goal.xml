@@ -49,6 +49,5 @@
         android:gravity="center"
         android:text="@string/add_goal"
         android:layout_margin="20sp"
-        android:backgroundTint="@color/colorPrimary"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>

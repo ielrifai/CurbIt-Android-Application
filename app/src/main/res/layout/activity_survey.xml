@@ -74,6 +74,5 @@
         android:gravity="center"
         android:text="@string/submit_survey"
         android:layout_margin="20sp"
-        android:backgroundTint="@color/colorPrimary"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>

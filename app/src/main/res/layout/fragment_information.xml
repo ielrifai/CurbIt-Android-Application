@@ -28,7 +28,6 @@
         android:gravity="center"
         android:text="@string/begin_tutorial"
         android:layout_margin="20sp"
-        android:backgroundTint="@color/colorPrimary"
         />
 
     <ImageView

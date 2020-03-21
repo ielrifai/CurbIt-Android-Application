@@ -50,10 +50,10 @@
             app:barThickness="4dp"
             app:goalIndicatorHeight="16dp"
             app:goalIndicatorThickness="4dp"
-            app:goalNotReachedColor="@color/colorPrimaryDark"
-            app:goalReachedColor="@color/colorAccent"
+            app:goalNotReachedColor="?attr/colorPrimaryDark"
+            app:goalReachedColor="?attr/colorAccent"
             app:indicatorType="square"
-            app:unfilledSectionColor="@color/colorPrimary" />
+            app:unfilledSectionColor="?attr/colorPrimary" />
 
         <Button
             android:id="@+id/resetProgressBtn"
@@ -69,7 +69,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20sp"
-        android:backgroundTint="@color/colorPrimary"
         android:text="@string/view_subgoals"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
