@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,6 +35,9 @@ public class JournalListActivity extends ActionBarActivity {
     JournalEntryDao journalEntryDao;
     JournalListAdapter adapter;
 
+    AppDatabase db = AppDatabase.getInstance(getBaseContext());
+    TextView tvSearch;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,25 +63,25 @@ public class JournalListActivity extends ActionBarActivity {
             }
         });
 
+
         int habitId = getIntent().getIntExtra("HABIT_ID", -1);
 
         // Get Daos
-        AppDatabase db = AppDatabase.getInstance(getBaseContext());
         journalEntryDao = db.journalEntryDao();
 
         // Get journal entries from database
         journalEntryDao.getAllByHabit(habitId)
                 .observe(this, newJournalEntries -> setJournalEntries(newJournalEntries));
 
+
+
         handleIntent(getIntent());
 
-        // Get the intent, verify the action and get the query
-        Intent intent = getIntent();
-        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            String query = intent.getStringExtra(SearchManager.QUERY);
-            //doMySearch(query);
-        }
+    }
 
+
+    private void doMySearch(String query) {
+        tvSearch.setText(query);
     }
 
     @Override
@@ -91,6 +95,7 @@ public class JournalListActivity extends ActionBarActivity {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
             //use the query to search your data somehow
+            doMySearch(query);
         }
     }
 
@@ -109,6 +114,7 @@ public class JournalListActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
         getMenuInflater().inflate(R.menu.menu_search, menu);
 
         // Associate searchable configuration with the SearchView
@@ -118,7 +124,26 @@ public class JournalListActivity extends ActionBarActivity {
                 (SearchView) menu.findItem(R.id.search).getActionView();
         searchView.setSearchableInfo(
                 searchManager.getSearchableInfo(getComponentName()));
-        searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
+        searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default,
+        searchView.setSubmitButtonEnabled(true);
+
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                Log.i("well", " this worked");
+
+                if (adapter != null){
+                    adapter.getFilter().filter(newText);
+                }
+                return true;
+            }
+        });
 
 
         return true;

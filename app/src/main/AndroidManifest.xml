@@ -28,7 +28,13 @@
             android:parentActivityName=".activities.JournalListActivity" />
         <activity
             android:name=".activities.JournalListActivity"
-            android:parentActivityName=".activities.ViewHabitActivity" />
+            android:parentActivityName=".activities.ViewHabitActivity">
+        <intent-filter>
+            <action android:name="android.intent.action.SEARCH" />
+        </intent-filter>
+        <meta-data android:name="android.app.default_searchable"
+            android:resource="@xml/searchable" />
+        </activity>
         <activity
             android:name=".activities.Step1EntryActivity"
             android:parentActivityName=".activities.ViewHabitActivity" />
