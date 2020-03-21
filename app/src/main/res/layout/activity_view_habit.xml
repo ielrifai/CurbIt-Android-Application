@@ -36,7 +36,7 @@
         android:layout_margin="20sp"
         android:text="@string/view_habit_subtitle"
         android:textAlignment="center"
-        android:textSize="24sp"
+        android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,72 +67,56 @@
         />
 
 
-    <TextView
-        android:id="@+id/begin_4_steps_header"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/four_steps"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_goals_btn"
-        android:layout_margin="20sp"
-        android:textSize="20sp"
-        />
-
     <LinearLayout
         android:id="@+id/buttons_4_steps"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/begin_4_steps_header"
+        android:layout_margin="20sp"
         android:orientation="horizontal"
-        android:layout_margin="20sp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_goals_btn">
 
 
         <Button
             android:id="@+id/resume_4_steps_btn"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="@string/resume_4_steps"
+            android:layout_weight="1"
             android:backgroundTint="@color/colorPrimary"
-            />
-        
+            android:text="@string/resume_4_steps" />
+
         <Button
             android:id="@+id/begin_4_steps_btn"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="@string/begin_4_steps"
+            android:layout_weight="1"
             android:backgroundTint="@color/colorPrimary"
-            />
+            android:text="@string/begin_4_steps" />
 
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/see_progress_header"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/habit_progress_header"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttons_4_steps"
-        android:layout_margin="20sp"
-        android:textSize="20sp"
-        />
 
     <Button
         android:id="@+id/see_progress_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/see_progress"
-        android:backgroundTint="@color/colorPrimary"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/see_progress_header"
         android:layout_margin="20sp"
-        />
+        android:backgroundTint="@color/colorPrimary"
+        android:text="@string/see_progress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttons_4_steps" />
+
+    <Button
+        android:id="@+id/reminder_preferences_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20sp"
+        android:backgroundTint="@color/colorPrimary"
+        android:text="@string/view_habit_notification_preferences"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/see_progress_btn" />
 
     <TextView
         android:id="@+id/progress_average_header"
@@ -140,10 +124,13 @@
         android:layout_height="wrap_content"
         android:layout_margin="20sp"
         android:text="@string/view_habit_feelings"
-        android:textSize="20sp"
+        android:textAlignment="center"
+        android:textSize="22sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.775"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/see_progress_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/reminder_preferences_button" />
 
     <TextView
         android:id="@+id/progress_average_message"

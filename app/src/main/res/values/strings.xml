@@ -21,7 +21,7 @@
     <string name="revalue">Revalue</string>
     <string name="confirm_begin_4_steps_message">You are going to erase your previous unfinished draft. Do you want to continue ?</string>
     <string name="confirm_begin_4_steps_title">Begin 4 steps ?</string>
-    <string name="begin_4_steps">Begin 4 steps</string>
+    <string name="begin_4_steps">Begin 4 Steps</string>
     <string name="previous_step">Previous step</string>
     <string name="next_step">Next Step</string>
     <string name="four_steps">4 Steps</string>
@@ -113,6 +113,7 @@
     <string name="view_habit_feelings"> Average Feelings About Habit</string>
     <string name="view_habit_ranking_scale">0/10</string>
     <string name="view_habit_subtitle">Habit Dashboard</string>
+    <string name="view_habit_notification_preferences">Reminder Preferences</string>
 
 
 
@@ -169,7 +170,7 @@
     <string name="habit_description">Habit Description</string>
     <string name="goal_description">Goal Description</string>
     <string name="subgoal_description">Subgoal Description</string>
-    <string name="see_journal">See Journal</string>
+    <string name="see_journal">View Journal Entries</string>
     <string name="reset_progress">Reset your progress</string>
     <string name="view_progress">View your progress</string>
     <string name="view_goals">View Goals</string>
