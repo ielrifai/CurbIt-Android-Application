@@ -66,7 +66,7 @@
     <string name="alert_progress_may_overwrite_message">Any progress score already logged for this habit today will be overwritten.</string>
     <string name="alert_progress_may_overwrite_title">Progress Score</string>
     <string name="no_progress_logged">No progress scores logged. Complete the survey at the end of the 4 Step Process.</string>
-    <string name="overall_progress_message">Here is the average of your feelings about this habit. </string>
+    <string name="overall_progress_message">On average, you have been feeling: </string>
     <string name="no_progress_show">No progress to show.</string>
     <string name="survey_progress_value_text">5</string>
 
@@ -110,7 +110,7 @@
 
     <!--Habit-->
     <string name="view_habit_description">The description of the habit</string>
-    <string name="view_habit_feelings"> Average Feelings About Habit</string>
+    <string name="view_habit_feelings"> Habit Feels</string>
     <string name="view_habit_ranking_scale">0/10</string>
     <string name="view_habit_subtitle">Habit Dashboard</string>
     <string name="view_habit_notification_preferences">Reminder Preferences</string>

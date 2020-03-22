@@ -17,12 +17,14 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_margin="20sp"
         android:textSize="20sp"
-         />
+        android:scrollbars="vertical"
+
+        />
 
     <TextView
         android:id="@+id/habit_description"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_margin="20sp"
         android:text="@string/view_habit_description"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,7 +38,7 @@
         android:layout_margin="20sp"
         android:text="@string/view_habit_subtitle"
         android:textAlignment="center"
-        android:textSize="22sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,7 +53,9 @@
         app:layout_constraintStart_toStartOf="@id/habit_description"
         app:layout_constraintEnd_toEndOf="@id/habit_description"
         app:layout_constraintTop_toBottomOf="@id/journal_header"
-        android:layout_margin="20sp"
+        android:layout_marginTop="10sp"
+        android:layout_marginLeft="20sp"
+        android:layout_marginRight="20sp"
        />
 
     <Button
@@ -63,7 +67,9 @@
         app:layout_constraintStart_toStartOf="@id/habit_description"
         app:layout_constraintEnd_toEndOf="@id/habit_description"
         app:layout_constraintTop_toBottomOf="@id/see_journal_btn"
-        android:layout_margin="20sp"
+        android:layout_marginTop="10sp"
+        android:layout_marginLeft="20sp"
+        android:layout_marginRight="20sp"
         />
 
 
@@ -71,7 +77,9 @@
         android:id="@+id/buttons_4_steps"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20sp"
+        android:layout_marginTop="10sp"
+        android:layout_marginLeft="20sp"
+        android:layout_marginRight="20sp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -100,7 +108,9 @@
         android:id="@+id/see_progress_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20sp"
+        android:layout_marginTop="10sp"
+        android:layout_marginLeft="20sp"
+        android:layout_marginRight="20sp"
         android:backgroundTint="@color/colorPrimary"
         android:text="@string/see_progress"
         app:layout_constraintEnd_toEndOf="parent"
@@ -111,7 +121,9 @@
         android:id="@+id/reminder_preferences_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20sp"
+        android:layout_marginTop="10sp"
+        android:layout_marginLeft="20sp"
+        android:layout_marginRight="20sp"
         android:backgroundTint="@color/colorPrimary"
         android:text="@string/view_habit_notification_preferences"
         app:layout_constraintEnd_toEndOf="parent"
@@ -125,7 +137,7 @@
         android:layout_margin="20sp"
         android:text="@string/view_habit_feelings"
         android:textAlignment="center"
-        android:textSize="22sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.775"
@@ -136,16 +148,15 @@
         android:id="@+id/progress_average_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=""
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progress_average_header"
-        android:layout_marginTop="10sp"
-        android:layout_marginBottom="10sp"
         android:layout_marginLeft="20sp"
+        android:layout_marginTop="10sp"
         android:layout_marginRight="20sp"
+        android:gravity="center"
+        android:text=""
         android:textSize="15sp"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progress_average_header" />
 
     <TextView
         android:id="@+id/progress_average"
@@ -154,7 +165,9 @@
         android:layout_margin="10sp"
         android:text="@string/view_habit_ranking_scale"
         android:textAlignment="center"
-        android:textSize="60sp"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progress_average_message" />

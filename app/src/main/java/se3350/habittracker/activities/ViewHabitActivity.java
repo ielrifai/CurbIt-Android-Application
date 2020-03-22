@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.LiveData;
 
+import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -45,7 +46,9 @@ public class ViewHabitActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_habit);
 
+
         habitDescriptionTextView = findViewById(R.id.habit_description);
+        habitDescriptionTextView.setMovementMethod(new ScrollingMovementMethod());
         progressAverageTextView = findViewById(R.id.progress_average);
         progressAverageMessageTextView = findViewById(R.id.progress_average_message);
         seeJournalButton = findViewById(R.id.see_journal_btn);
