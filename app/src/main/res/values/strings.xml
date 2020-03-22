@@ -187,6 +187,7 @@
     <string name="loading">loading...</string>
     <string name="delete_subgoal">Delete Subgoal</string>
     <string name="chk_ios" />
+    <string name="theme_title">Theme</string>
 
 
 </resources>
