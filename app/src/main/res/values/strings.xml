@@ -189,6 +189,9 @@
     <string name="loading">loading...</string>
     <string name="delete_subgoal">Delete Subgoal</string>
     <string name="chk_ios" />
+    <string name="curbit">CurbIt</string>
+    <string name="habit_tracker">Habit Tracker</string>
+    <string name="logo">logo</string>
 
 
 </resources>

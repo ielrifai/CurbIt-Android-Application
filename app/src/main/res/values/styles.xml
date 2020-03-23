@@ -10,6 +10,12 @@
         <item name="alertDialogTheme">@style/AlertDialogTheme</item>
     </style>
 
+    <!--Splash shows no action bar/notif bar-->
+    <style name="AppTheme.Splash" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

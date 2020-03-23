@@ -45,7 +45,7 @@
             android:parentActivityName=".activities.ViewHabitActivity"/>
         <activity android:name=".activities.CreatePasswordActivity"></activity>
         <activity android:name=".activities.LoginActivity"></activity>
-        <activity android:name=".activities.SplashActivity">
+        <activity android:name=".activities.SplashActivity" android:theme="@style/AppTheme.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
