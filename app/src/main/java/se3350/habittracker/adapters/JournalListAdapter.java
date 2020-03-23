@@ -105,17 +105,26 @@ public class JournalListAdapter extends ArrayAdapter<JournalEntry> implements Fi
      */
     private class EntryFilter extends Filter {
 
+        SimpleDateFormat dayOfWeek = new SimpleDateFormat("EEEE");
+        SimpleDateFormat simpleDateformat = new SimpleDateFormat("MM/dd/yyyy");
+
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             FilterResults filterResults = new FilterResults();
             if (constraint!=null && constraint.length()>0) {
                 ArrayList<JournalEntry> tempList = new ArrayList<JournalEntry>();
 
+
                 // search content in list
                 for (JournalEntry entry : journalEntries) {
-                    String date = dateFormat.format(entry.getDate());
+                    String weekDay = dayOfWeek.format(entry.getDate());
+                    String date = simpleDateformat.format(entry.getDate());
 
-                   if (date.contains(constraint.toString())) {
+                    if (weekDay.toLowerCase().contains(constraint.toString().toLowerCase())) {
+                        tempList.add(entry);
+                    }
+
+                    else if (date.contains(constraint.toString())) {
                         tempList.add(entry);
                     }
 
