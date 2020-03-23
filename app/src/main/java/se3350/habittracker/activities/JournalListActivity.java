@@ -4,9 +4,8 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.text.TextUtils;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -16,8 +15,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 import se3350.habittracker.AppDatabase;
 import se3350.habittracker.R;
@@ -36,7 +33,6 @@ public class JournalListActivity extends ActionBarActivity {
     JournalListAdapter adapter;
 
     AppDatabase db = AppDatabase.getInstance(getBaseContext());
-    TextView tvSearch;
 
 
     @Override
@@ -63,6 +59,7 @@ public class JournalListActivity extends ActionBarActivity {
             }
         });
 
+        journalListView.setTextFilterEnabled(true);
 
         int habitId = getIntent().getIntExtra("HABIT_ID", -1);
 
@@ -74,31 +71,7 @@ public class JournalListActivity extends ActionBarActivity {
                 .observe(this, newJournalEntries -> setJournalEntries(newJournalEntries));
 
 
-
-        handleIntent(getIntent());
-
     }
-
-
-    private void doMySearch(String query) {
-        tvSearch.setText(query);
-    }
-
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        handleIntent(intent);
-    }
-
-    private void handleIntent(Intent intent) {
-
-        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            String query = intent.getStringExtra(SearchManager.QUERY);
-            //use the query to search your data somehow
-            doMySearch(query);
-        }
-    }
-
 
     private void setJournalEntries(JournalEntry[] newJournalEntries) {
         // If list is empty show the empty list message
@@ -136,10 +109,11 @@ public class JournalListActivity extends ActionBarActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                Log.i("well", " this worked");
-
-                if (adapter != null){
-                    adapter.getFilter().filter(newText);
+                if (TextUtils.isEmpty(newText)) {
+                    journalListView.clearTextFilter();
+                }
+                else {
+                    journalListView.setFilterText(newText.toString());
                 }
                 return true;
             }
@@ -149,29 +123,4 @@ public class JournalListActivity extends ActionBarActivity {
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle presses on the action bar items
-        switch (item.getItemId()) {
-            case R.id.search:
-                search();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    public void search() {
-
-        int date = getIntent().getIntExtra("DATE", -1);
-
-        Executor myExecutor = Executors.newSingleThreadExecutor();
-        myExecutor.execute(() -> {
-            // Display entries
-            journalEntryDao.getBySearch(date);
-                  //  .observe(this, newJournalEntries -> setJournalEntries(newJournalEntries));
-
-        });
-
-    }
 }

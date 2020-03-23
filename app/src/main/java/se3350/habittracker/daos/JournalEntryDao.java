@@ -16,9 +16,6 @@ public interface JournalEntryDao {
     @Query("SELECT * FROM journalEntry")
     LiveData<JournalEntry[]> getAll();
 
-    @Query("SELECT * FROM journalEntry WHERE date=:date")
-    LiveData<JournalEntry[]> getBySearch(int date);
-
     @Query("SELECT * FROM journalentry WHERE habitId=:habitId")
     LiveData<JournalEntry[]> getAllByHabit(int habitId);
 
