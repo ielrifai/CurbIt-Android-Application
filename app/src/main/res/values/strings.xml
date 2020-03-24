@@ -117,6 +117,9 @@
     <string name="habit_notification_title">Habit Notification Preferences</string>
     <string name="habit_notification_description">Habit Notification Description goes here!</string>
     <string name="habit_notification_switch">Receive Notifications for this Habit</string>
+    <string name="habit_notification_set_time">Set Notification Time</string>
+    <string name="habit_notification_save">Save Habit Reminder Preferences</string>
+
 
 
 
