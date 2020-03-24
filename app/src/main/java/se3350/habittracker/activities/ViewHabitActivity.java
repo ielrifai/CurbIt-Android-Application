@@ -33,7 +33,7 @@ public class ViewHabitActivity extends ActionBarActivity {
     JournalEntry draft;
 
     TextView habitDescriptionTextView, progressAverageTextView, progressAverageMessageTextView;
-    Button seeJournalButton, begin4StepsButton, resume4StepButton, seeProgressButton, viewGoalsButton;
+    Button seeJournalButton, begin4StepsButton, resume4StepButton, seeProgressButton, viewGoalsButton, reminderNotificationsButton;
 
     private HabitDao habitDao;
     private JournalEntryDao journalEntryDao;
@@ -56,6 +56,7 @@ public class ViewHabitActivity extends ActionBarActivity {
         resume4StepButton = findViewById(R.id.resume_4_steps_btn);
         seeProgressButton = findViewById(R.id.see_progress_btn);
         viewGoalsButton = findViewById(R.id.view_goals_btn);
+        reminderNotificationsButton = findViewById(R.id.reminder_preferences_button);
 
         habitId = getIntent().getIntExtra("HABIT_ID", -1 );
 
@@ -94,6 +95,11 @@ public class ViewHabitActivity extends ActionBarActivity {
         viewGoalsButton.setOnClickListener(event -> {
             Intent intent = new Intent(ViewHabitActivity.this, ViewGoalListActivity.class).putExtra("GOAL_ID", goalId);
             intent.putExtra("HABIT_ID", habitId);
+            startActivity(intent);
+        });
+
+        reminderNotificationsButton.setOnClickListener(event -> {
+            Intent intent = new Intent(ViewHabitActivity.this, JournalNotificationActivity.class).putExtra("HABIT_ID", habitId);
             startActivity(intent);
         });
 
