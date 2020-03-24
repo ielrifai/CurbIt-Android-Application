@@ -91,7 +91,7 @@ public class EditGoalActivity extends ActionBarActivity {
                 .setTitle(R.string.confirm_delete_popup_title_goal);
 
         // Add the buttons
-        builder.setPositiveButton(R.string.delete, ((dialog, which) -> {
+        builder.setNegativeButton(R.string.delete, ((dialog, which) -> {
             // Delete the habit if confirmed
             Executor myExecutor = Executors.newSingleThreadExecutor();
             myExecutor.execute(() -> {
@@ -105,7 +105,7 @@ public class EditGoalActivity extends ActionBarActivity {
             });
         }));
 
-        builder.setNegativeButton(R.string.cancel, ((dialog, which) -> {}));
+        builder.setNeutralButton(R.string.cancel, ((dialog, which) -> {}));
 
         // Create the AlertDialog
         AlertDialog dialog = builder.create();
