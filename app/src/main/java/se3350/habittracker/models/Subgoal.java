@@ -13,18 +13,16 @@ public class Subgoal {
     @ColumnInfo(name = "name")
     public String name;
 
-    @ColumnInfo(name = "description")
-    public String description;
+    @ColumnInfo(name = "habitId")
+    public int habitId;
 
-    @ColumnInfo(name = "goalId")
-    public int goalId;
-
+    @ColumnInfo(name = "completed")
+    public boolean completed;
 
     //public - can access outside package (folders)
-    public Subgoal(String name, String description, int goalId){
+    public Subgoal(String name, int habitId){
         this.name = name;
-        this.description = description;
-        this.goalId = goalId;
+        this.habitId = habitId;
+        this.completed = false;
     }
-
 }

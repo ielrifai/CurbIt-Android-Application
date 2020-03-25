@@ -99,7 +99,7 @@ public class EditGoalActivity extends ActionBarActivity {
                 goalDao.delete(goal);
 
                 // Go back to Habit List and clear task (clear all stacks)
-                Intent intent = new Intent(EditGoalActivity.this, ViewGoalListActivity.class);
+                Intent intent = new Intent(EditGoalActivity.this, ViewGoalActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             });

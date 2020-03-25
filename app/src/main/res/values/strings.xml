@@ -189,6 +189,9 @@
     <string name="loading">loading...</string>
     <string name="delete_subgoal">Delete Subgoal</string>
     <string name="chk_ios" />
+    <string name="add_subgoals">Add Subgoals</string>
+    <string name="no_goal">It seems you don\'t have a goal yet.\nAdd a goal now!</string>
+    <string name="view_goal">View Goal</string>
 
 
 </resources>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <EditText
+        android:id="@+id/subgoal_name_edit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20sp"
+        android:layout_marginEnd="10sp"
+        android:hint="@string/subgoal_name"
+        app:layout_constraintEnd_toStartOf="@+id/delete_subgoal_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:maxLines="1"/>
+
+
+    <Button
+        android:id="@+id/delete_subgoal_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_cross"
+        android:backgroundTint="@color/colorAccent"
+        android:background="@drawable/shape_round_button"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="20sp"
+        android:layout_marginTop="12sp"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

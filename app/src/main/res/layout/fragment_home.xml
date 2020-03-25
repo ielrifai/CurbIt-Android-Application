@@ -50,7 +50,7 @@
         android:layout_gravity="center"
         android:background="@drawable/shape_round_button"
         android:drawableStart="@drawable/ic_add"
-        android:drawableTint="#FFFF"
+        android:drawableTint="@color/colorButtonText"
 
         android:padding="15dp"
         />

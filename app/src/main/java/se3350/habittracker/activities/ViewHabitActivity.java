@@ -20,6 +20,7 @@ import se3350.habittracker.AppDatabase;
 import se3350.habittracker.R;
 import se3350.habittracker.daos.GoalDao;
 import se3350.habittracker.daos.ProgressDao;
+import se3350.habittracker.models.Goal;
 import se3350.habittracker.models.Habit;
 import se3350.habittracker.daos.HabitDao;
 import se3350.habittracker.daos.JournalEntryDao;
@@ -28,12 +29,13 @@ import se3350.habittracker.models.Progress;
 
 public class ViewHabitActivity extends ActionBarActivity {
 
-    int habitId, goalId;
+    int habitId;
     Habit habit;
     JournalEntry draft;
+    Goal goal;
 
     TextView habitDescriptionTextView, progressAverageTextView, progressAverageMessageTextView;
-    Button seeJournalButton, begin4StepsButton, resume4StepButton, seeProgressButton, viewGoalsButton;
+    Button seeJournalButton, begin4StepsButton, resume4StepButton, seeProgressButton, viewGoalsButton, addGoalButton;
 
     private HabitDao habitDao;
     private JournalEntryDao journalEntryDao;
@@ -56,6 +58,7 @@ public class ViewHabitActivity extends ActionBarActivity {
         resume4StepButton = findViewById(R.id.resume_4_steps_btn);
         seeProgressButton = findViewById(R.id.see_progress_btn);
         viewGoalsButton = findViewById(R.id.view_goals_btn);
+        addGoalButton = findViewById(R.id.add_goal_button);
 
         habitId = getIntent().getIntExtra("HABIT_ID", -1 );
 
@@ -76,6 +79,7 @@ public class ViewHabitActivity extends ActionBarActivity {
             setHabit(habit);
         });
 
+        // Get progress from database
         LiveData<Progress[]> progressLiveData = progressDao.getAllByHabit(habitId);
         progressLiveData.observe(this, progresses -> {
             setProgressText(progresses);
@@ -86,14 +90,22 @@ public class ViewHabitActivity extends ActionBarActivity {
         LiveData<JournalEntry> journalEntryLiveData = journalEntryDao.getDraftOfHabit(habitId);
         journalEntryLiveData.observe(this, journalEntry -> setDraft(journalEntry));
 
+        // Get goal from database
+        LiveData<Goal> goalLiveData = goalDao.getGoalByHabitId(habitId);
+        goalLiveData.observe(this, goal -> setGoal(goal));
+
         seeJournalButton.setOnClickListener(event -> {
             Intent intent = new Intent(ViewHabitActivity.this, JournalListActivity.class).putExtra("HABIT_ID", habitId);
             startActivity(intent);
         });
 
         viewGoalsButton.setOnClickListener(event -> {
-            Intent intent = new Intent(ViewHabitActivity.this, ViewGoalListActivity.class).putExtra("GOAL_ID", goalId);
-            intent.putExtra("HABIT_ID", habitId);
+            Intent intent = new Intent(ViewHabitActivity.this, ViewGoalActivity.class).putExtra("HABIT_ID", habitId);
+            startActivity(intent);
+        });
+
+        addGoalButton.setOnClickListener(event -> {
+            Intent intent = new Intent(ViewHabitActivity.this, AddGoalActivity.class).putExtra("HABIT_ID", habitId);
             startActivity(intent);
         });
 
@@ -134,6 +146,20 @@ public class ViewHabitActivity extends ActionBarActivity {
         // if there is no draft, hide the resume button from layout
         if(draft == null) {
             resume4StepButton.setVisibility(View.GONE);
+        }
+    }
+
+    private void setGoal(Goal goal){
+        this.goal = goal;
+
+        // Hide the corresponding button to no goal / goal
+        if(goal == null) {
+            viewGoalsButton.setVisibility(View.GONE);
+            addGoalButton.setVisibility(View.VISIBLE);
+        }
+        else {
+            addGoalButton.setVisibility(View.GONE);
+            viewGoalsButton.setVisibility(View.VISIBLE);
         }
     }
 

@@ -71,11 +71,23 @@
         android:layout_marginRight="20sp"
         android:layout_marginBottom="5sp"
         android:backgroundTint="@color/colorPrimary"
-        android:text="@string/view_goals"
+        android:text="@string/view_goal"
         app:layout_constraintBottom_toTopOf="@+id/buttons_4_steps"
         app:layout_constraintEnd_toEndOf="@id/habit_description"
         app:layout_constraintStart_toStartOf="@id/habit_description" />
 
+    <Button
+        android:id="@+id/add_goal_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20sp"
+        android:layout_marginRight="20sp"
+        android:layout_marginBottom="5sp"
+        android:backgroundTint="@color/colorPrimary"
+        android:text="@string/add_goal"
+        app:layout_constraintBottom_toTopOf="@+id/buttons_4_steps"
+        app:layout_constraintEnd_toEndOf="@id/habit_description"
+        app:layout_constraintStart_toStartOf="@id/habit_description" />
 
     <LinearLayout
         android:id="@+id/buttons_4_steps"
