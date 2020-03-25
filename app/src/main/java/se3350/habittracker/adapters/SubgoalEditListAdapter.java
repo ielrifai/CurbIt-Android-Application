@@ -10,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.appcompat.app.AlertDialog;
+
 import java.util.List;
 
 import se3350.habittracker.R;
@@ -20,10 +22,13 @@ public class SubgoalEditListAdapter extends ArrayAdapter<Subgoal> {
     private final Context context;
     private final List<Subgoal> subgoals;
 
+    private boolean showAlert;
+
     public SubgoalEditListAdapter(Context context, List<Subgoal> subgoals) {
         super(context, -1, subgoals);
         this.context = context;
         this.subgoals = subgoals;
+        this.showAlert = false;
     }
 
     @Override
@@ -56,11 +61,37 @@ public class SubgoalEditListAdapter extends ArrayAdapter<Subgoal> {
         });
 
         subgoalDeleteButton.setOnClickListener(v -> {
-            subgoals.remove(position);
-            this.notifyDataSetChanged();
+            if(showAlert){
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+
+                // Add title and text to confirmation popup
+                builder.setMessage(context.getString(R.string.confirm_delete_popup_message, subgoals.get(position).name))
+                        .setTitle(R.string.confirm_delete_popup_title);
+
+                // Add the buttons
+                builder.setNegativeButton(R.string.delete, ((dialog, which) -> {
+                    // Delete the sub goal if confirmed
+                    subgoals.remove(position);
+                    this.notifyDataSetChanged();
+                }));
+
+                builder.setNeutralButton(R.string.cancel, ((dialog, which) -> {}));
+
+                // Create the AlertDialog
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+            else{
+                subgoals.remove(position);
+                this.notifyDataSetChanged();
+            }
         });
 
         return view;
+    }
+
+    public void setDeleteAlert(boolean showAlert){
+        this.showAlert = showAlert;
     }
 }
 

@@ -73,6 +73,7 @@ public class EditGoalActivity extends ActionBarActivity {
         // Set the subgoal list adapter
         subgoals = new ArrayList<>();
         subgoalAdapter = new SubgoalEditListAdapter(getBaseContext(), subgoals);
+        subgoalAdapter.setDeleteAlert(true);
         subgoalListView.setAdapter(subgoalAdapter);
 
 
