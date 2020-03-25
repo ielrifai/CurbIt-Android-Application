@@ -189,6 +189,8 @@
     <string name="loading">loading...</string>
     <string name="delete_subgoal">Delete Subgoal</string>
     <string name="chk_ios" />
+    <string name="alert_celebrate_journal">You are One Step Closer to Freedom!</string>
+    <string name="alert_celebrate_journal_title">Yay!</string>
 
 
 </resources>

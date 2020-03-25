@@ -51,7 +51,6 @@ public class AddHabitActivity extends ActionBarActivity {
             AppDatabase db = AppDatabase.getInstance(this);
 
             HabitDao habitDao = db.habitDao();
-
             // asynchronous insert using an executor
             //to use Java 8 - go to project settings and change target compatibility to 1.8
             Executor myExecutor = Executors.newSingleThreadExecutor();
