@@ -196,6 +196,8 @@
     <string name="loading">loading...</string>
     <string name="delete_subgoal">Delete Subgoal</string>
     <string name="chk_ios" />
+    <string name="channel_name">Journal Notification</string>
+    <string name="channel_description">Notification reminder</string>
 
 
 </resources>
