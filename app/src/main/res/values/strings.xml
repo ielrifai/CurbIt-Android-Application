@@ -189,6 +189,7 @@
     <string name="loading">loading...</string>
     <string name="delete_subgoal">Delete Subgoal</string>
     <string name="chk_ios" />
+    <string name="add_habit_success">Habit saved successfully</string>
 
 
 </resources>
