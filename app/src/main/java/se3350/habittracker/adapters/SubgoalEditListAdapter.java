@@ -66,7 +66,7 @@ public class SubgoalEditListAdapter extends ArrayAdapter<Subgoal> {
 
                 // Add title and text to confirmation popup
                 builder.setMessage(context.getString(R.string.confirm_delete_popup_message, subgoals.get(position).name))
-                        .setTitle(R.string.confirm_delete_popup_title);
+                        .setTitle(R.string.confirm_delete_popup_title_subgoal);
 
                 // Add the buttons
                 builder.setNegativeButton(R.string.delete, ((dialog, which) -> {
