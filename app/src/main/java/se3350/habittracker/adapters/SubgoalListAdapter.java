@@ -46,12 +46,6 @@ public class SubgoalListAdapter extends ArrayAdapter<Subgoal> {
 
         checkBox.setOnCheckedChangeListener((v, isChecked) -> {
             subgoals.get(position).completed = isChecked;
-
-            //update subgoal in db
-            Executor subExecutor = Executors.newSingleThreadExecutor();
-            subExecutor.execute(() -> {
-                subgoalDao.updateSubgoals(subgoals.get(position));
-            });
         });
 
         checkBox.setChecked(subgoals.get(position).completed);

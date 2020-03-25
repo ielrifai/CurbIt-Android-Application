@@ -33,4 +33,7 @@ public interface SubgoalDao {
 
     @Delete
     void delete(Subgoal subgoal);
+
+    @Query("DELETE FROM subgoal WHERE habitId=:habitId")
+    void deleteAllByHabitId(int habitId);
 }

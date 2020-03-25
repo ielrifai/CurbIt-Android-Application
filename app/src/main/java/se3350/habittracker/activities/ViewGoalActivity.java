@@ -13,6 +13,8 @@ import androidx.lifecycle.LiveData;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import se3350.habittracker.AppDatabase;
 import se3350.habittracker.R;
@@ -71,13 +73,11 @@ public class ViewGoalActivity extends ActionBarActivity {
         LiveData<Subgoal[]> subgoalLiveData = subgoalDao.getSubgoalsByHabitId(habitId);
         subgoalLiveData.observe(this, newSubgoals ->{
             // If goal is not in database
-            if(newSubgoals == null || !subgoals.isEmpty()){
+            if(newSubgoals == null){
                 return;
             }
             setSubgoals(newSubgoals);
         });
-
-
     }
 
     @Override
@@ -114,8 +114,19 @@ public class ViewGoalActivity extends ActionBarActivity {
     }
 
     private void editGoal() {
-        Intent intent = new Intent(ViewGoalActivity.this, EditGoalActivity.class).putExtra("GOAL_ID", habitId);
+        Intent intent = new Intent(ViewGoalActivity.this, EditGoalActivity.class).putExtra("HABIT_ID", habitId);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        //update subgoal in db
+        Executor subExecutor = Executors.newSingleThreadExecutor();
+        subExecutor.execute(() -> {
+            subgoalDao.updateSubgoals(subgoals.toArray(new Subgoal[0]));
+        });
     }
 }
