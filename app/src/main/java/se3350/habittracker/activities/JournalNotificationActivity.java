@@ -11,42 +11,51 @@ import android.app.TaskStackBuilder;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.content.BroadcastReceiver;
+import android.widget.Button;
+import android.widget.Switch;
+import android.widget.TextView;
+import android.widget.TimePicker;
 
+import se3350.habittracker.AppDatabase;
 import se3350.habittracker.R;
+import se3350.habittracker.daos.HabitDao;
+import se3350.habittracker.daos.JournalEntryDao;
 
-import static android.app.Notification.EXTRA_NOTIFICATION_ID;
 
 public class JournalNotificationActivity extends AppCompatActivity {
     private int notificationId, savedNotificationId;
+    TimePicker setTime;
+    Switch sendNotification;
+    JournalEntryDao journalEntryDao;
+    TextView habitNotificationSettings;
+    TextView habitNotificationDescription;
+    TextView habitNotficationTitle;
+    HabitDao habitDao;
+    Button saveNotificationSettingsBtn;
+
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_journal_notification);
-        private void createNotificationChannel() {
-            // Create the NotificationChannel, but only on API 26+ because
-            // the NotificationChannel class is new and not in the support library
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                CharSequence name = getString(R.string.channel_name);
-                String description = getString(R.string.channel_description);
-                int importance = NotificationManager.IMPORTANCE_DEFAULT;
-                NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
-                channel.setDescription(description);
-                // Register the channel with the system; you can't change the importance
-                // or other notification behaviors after this
-                NotificationManager notificationManager = getSystemService(NotificationManager.class);
-                notificationManager.createNotificationChannel(channel);
-            }
-        }
+        saveNotificationSettingsBtn = findViewById(R.id.save_notification_settings_button);
+        setTime = findViewById(R.id.timePicker1);
+        sendNotification = findViewById(R.id.habit_notification_switch);
+        habitNotficationTitle = findViewById(R.id.habit_notification_title);
+        habitNotificationDescription = findViewById(R.id.habit_notification_description);
+        habitNotificationSettings = findViewById(R.id.habit_notification_title);
 
-        // Create an Intent for the activity you want to start
+        //get daos
+        AppDatabase db = AppDatabase.getInstance(getBaseContext());
+        journalEntryDao = db.journalEntryDao();
+        habitDao = db.habitDao();
         Intent resultIntent = new Intent(this, JournalNotificationActivity.class);
-// Create the TaskStackBuilder and add the intent, which inflates the back stack
+        // Create the TaskStackBuilder and add the intent, which inflates the back stack
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
         stackBuilder.addNextIntentWithParentStack(resultIntent);
-// Get the PendingIntent containing the entire back stack
+        // Get the PendingIntent containing the entire back stack
         PendingIntent resultPendingIntent =
                 stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
@@ -63,6 +72,26 @@ public class JournalNotificationActivity extends AppCompatActivity {
         notificationManager.notify(notificationId, builder.build());
         savedNotificationId = notificationId;
 
+    }
+
+
+    private void createNotificationChannel() {
+            // Create the NotificationChannel, but only on API 26+ because
+            // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = getString(R.string.channel_name);
+            String description = getString(R.string.channel_description);
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+            }
+        }
+
+
 
     }
-}
+
