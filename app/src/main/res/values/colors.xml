@@ -9,4 +9,8 @@
     <color name="colorControlNormal">#878787</color>
     <color name="textColorPrimary">#FFFFFF</color>
     <color name="textColorHint">#C4C4C4</color>
+    <color name="colorButtonText">#FFFFFF</color>
+
+    <color name="transparentWhite">#cccccc</color>
+    <color name="white">#FFFFFF</color>
 </resources>
