@@ -43,4 +43,5 @@ dependencies {
     implementation "androidx.sqlite:sqlite:2.0.1"
 
     implementation group: 'at.favre.lib', name: 'bcrypt', version: '0.9.0'
+    implementation 'com.android.support:support-compat:28.0.0'
 }
