@@ -8,7 +8,9 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.widget.Button;
@@ -16,6 +18,8 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
+
+import com.anychart.charts.Gantt;
 
 import se3350.habittracker.AppDatabase;
 import se3350.habittracker.R;
@@ -26,21 +30,18 @@ import static android.app.NotificationChannel.DEFAULT_CHANNEL_ID;
 
 
 public class JournalNotificationActivity extends AppCompatActivity {
-    private int notificationId, savedNotificationId;
+    private int notificationId, savedNotificationId, hour, minute;
     TimePicker notificationTime;
     Switch notificationSwitch;
-    JournalEntryDao journalEntryDao;
     TextView habitNotificationSettings;
     TextView habitNotificationDescription;
-    TextView habitNotficationTitle;
+    TextView habitNotificationTitle;
     HabitDao habitDao;
     Button saveNotificationSettingsBtn;
     TimePicker.OnTimeChangedListener onTimeChangedListener;
-    int hour;
-    int minute;
 
     Boolean notificationsOn = false;  //holds whether the user has turned on notifications
-    Boolean previouslySet = true;  //holds whether the user has previously set notifications
+    Boolean previouslySet;  //holds whether the user has previously set notifications
 
 
 
@@ -55,19 +56,18 @@ public class JournalNotificationActivity extends AppCompatActivity {
 
         notificationSwitch.setChecked(notificationsOn);  //edit this to automatically set the switch to the value the user has previously specified - if no prior notification settings, set to false
 
-        habitNotficationTitle = findViewById(R.id.habit_notification_title);
+        habitNotificationTitle = findViewById(R.id.habit_notification_title);
         habitNotificationDescription = findViewById(R.id.habit_notification_description);
         habitNotificationSettings = findViewById(R.id.habit_notification_title);
         createNotificationChannel();
 
         //get daos
         AppDatabase db = AppDatabase.getInstance(getBaseContext());
-        journalEntryDao = db.journalEntryDao();
         habitDao = db.habitDao();
 
         if(previouslySet) {  //if the user has previously set notifications, load the TimePicker with the time they last set so that they don't need to re-enter a new time every time they turn notifications on
-
-             //whatever the previous minute was set to
+            SharedPreferences settings = getSharedPreferences("MY_HABIT_1_NOTIFICATION", 0);
+            //whatever the previous minute was set to
             hour = notificationTime.getHour();
             minute = notificationTime.getMinute();
             notificationTime.setHour(hour);  //whatever the previous hour was set to - make sure to account for AM and PM
@@ -79,7 +79,6 @@ public class JournalNotificationActivity extends AppCompatActivity {
             minute = notificationTime.getMinute();
             notificationTime.setHour(hour);
             notificationTime.setMinute(minute);
-            previouslySet = true;
         }
 
 
@@ -120,14 +119,23 @@ public class JournalNotificationActivity extends AppCompatActivity {
         notificationSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                SharedPreferences sharedPreferences = getSharedPreferences("PREFS", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+
+
                 if(isChecked) {
                     //turn on notifications for the habit
+                    editor.putBoolean("MY_HABIT_1_NOTIFICATION", true).apply();
                     System.out.println("Notifications turned on");  //remove this after we get it working
+                    notificationsOn = true;
                 }
 
                 else {
                     //turn off notifications for the habit
+                    editor.putBoolean("MY_HABIT_1_NOTIFICATION", false).apply();
                     System.out.println("Notifications turned off");  //remove this after we get it working
+                    notificationsOn = false;
                 }
 
             }
@@ -136,6 +144,8 @@ public class JournalNotificationActivity extends AppCompatActivity {
 
         saveNotificationSettingsBtn.setOnClickListener(event -> {
             System.out.println("Notifications are currently on : " + notificationSwitch.isChecked() + "\nThe time entered is : " + notificationTime.getHour() + ":" + notificationTime.getMinute());
+            previouslySet = true;
+
         });
 
     }
