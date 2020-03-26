@@ -49,7 +49,7 @@
     <string name="tutorial_summary_description">Moving forward, Steve continues to use the Four Step Process. Over time, Steve is able to stop his coffee abuse. It isn\'t easy, but Steve journals his progress and uses this app to curb his habit. </string>
     <string name="tutorial_summary_body">HabitTracker allows individuals to catalogue, curtail and even curb all types of negative habits. Using HabitTracker, you too can stop negative habits.</string>
 
-    
+
     <!--Survey-->
     <string name="survey_title">How are you feeling?</string>
     <string name="survey_prompt">On a scale of 1 to 10, how much better are you feeling about your habit after going through the 4 step process?</string>
@@ -116,9 +116,8 @@
     <string name="view_habit_notification_preferences">Reminder Preferences</string>
 
 
-
     <!--Miscellaneous-->
-    <string name="app_name">Habit Tracker</string>
+    <string name="app_name">CurbIt</string>
     <string name="title_home">Home</string>
     <string name="title_information">Information</string>
     <string name="title_view_goal">Goal</string>
@@ -190,8 +189,11 @@
     <string name="delete_subgoal">Delete Subgoal</string>
     <string name="chk_ios" />
     <string name="curbit">CurbIt</string>
-    <string name="habit_tracker">Habit Tracker</string>
+    <string name="habit_tracker">CurbIt - Habit Tracker</string>
     <string name="logo">logo</string>
+    <string name="back">Back</string>
+    <string name="next">Next</string>
+    <string name="finish">Finish</string>
 
 
 </resources>

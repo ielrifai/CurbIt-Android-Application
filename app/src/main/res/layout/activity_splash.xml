@@ -9,16 +9,14 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/curblogo_wh"
-        tools:layout_editor_absoluteX="88dp"
-        tools:layout_editor_absoluteY="226dp"
+        android:layout_width="285dp"
+        android:layout_height="302dp"
+        android:contentDescription="@string/logo"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:contentDescription="@string/logo" />
+        app:srcCompat="@drawable/brain3" />
 
     <TextView
         android:id="@+id/logoText"

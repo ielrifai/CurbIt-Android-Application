@@ -50,7 +50,7 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 //if no password
                 if(password.equals("")){
-                    Intent intent = new Intent(getApplicationContext(), CreatePasswordActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), OnboardActivity.class);
                     startActivity(intent);
                     finish();
                 }
