@@ -4,7 +4,6 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -33,7 +32,6 @@ public class JournalListActivity extends ActionBarActivity {
     JournalListAdapter adapter;
 
     AppDatabase db = AppDatabase.getInstance(getBaseContext());
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +67,7 @@ public class JournalListActivity extends ActionBarActivity {
         // Get journal entries from database
         journalEntryDao.getAllByHabit(habitId)
                 .observe(this, newJournalEntries -> setJournalEntries(newJournalEntries));
+
 
 
     }
@@ -109,18 +108,22 @@ public class JournalListActivity extends ActionBarActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                if (TextUtils.isEmpty(newText)) {
-                    journalListView.clearTextFilter();
-                }
-                else {
-                    journalListView.setFilterText(newText.toString());
-                }
+                String text = newText;
+                searchValidator(newText);
+                journalListView.setFilterText(text);
                 return true;
             }
+
         });
 
+    return true; }
 
-        return true;
+    public static boolean searchValidator(String newText) {
+        if(newText.matches("\\d{1}/\\d{2}/\\d{2}"))
+            return true;
+        else
+            return false;
     }
-
 }
+
+

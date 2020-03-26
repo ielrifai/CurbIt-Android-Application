@@ -1,6 +1,7 @@
 package se3350.habittracker.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -106,7 +107,7 @@ public class JournalListAdapter extends ArrayAdapter<JournalEntry> implements Fi
     private class EntryFilter extends Filter {
 
         SimpleDateFormat dayOfWeek = new SimpleDateFormat("EEEE");
-        SimpleDateFormat simpleDateformat = new SimpleDateFormat("MM/dd/yyyy");
+        SimpleDateFormat simpleDateformat = new SimpleDateFormat("M/dd/yy");
 
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
@@ -132,6 +133,7 @@ public class JournalListAdapter extends ArrayAdapter<JournalEntry> implements Fi
 
                 filterResults.count = tempList.size();
                 filterResults.values = tempList;
+                Log.e("VALUES", filterResults.values.toString());
             } else {
                 filterResults.count = journalEntries.size();
                 filterResults.values = journalEntries;
