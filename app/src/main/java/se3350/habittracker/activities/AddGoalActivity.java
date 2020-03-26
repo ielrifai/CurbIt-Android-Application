@@ -1,11 +1,14 @@
 package se3350.habittracker.activities;
 
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
 
 import java.util.ArrayList;
 import java.util.concurrent.Executor;
@@ -73,13 +76,13 @@ public class AddGoalActivity extends ActionBarActivity {
     }
 
     // Insert new goal and its subgoal in database
-    private void save(){
+    private void save() {
         goalName = goalNameInput.getText().toString();
         goalDescription = goalDescriptionInput.getText().toString();
 
         //if goal name, or description is left blank
-        if(goalName.length() == 0 || goalDescription.length() == 0){
-            Toast.makeText(getApplicationContext(), R.string.error_add_goal,Toast.LENGTH_SHORT).show();
+        if (goalName.length() == 0 || goalDescription.length() == 0) {
+            Toast.makeText(getApplicationContext(), R.string.error_add_goal, Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -100,7 +103,27 @@ public class AddGoalActivity extends ActionBarActivity {
             subgoalDao.insertAll(subgoals.toArray(new Subgoal[0]));
         });
 
-        onBackPressed();
+        onBackPressedGoal();
     }
 
+    public void onBackPressedGoal(){
+        //goal added alert - gamification
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        // Add title and text to confirmation popup
+        builder.setMessage(R.string.alert_goal_gami)
+                .setTitle(R.string.alert_goal_gami_title);
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                onBackPressed();
+            }
+
+        });
+
+        // Create the AlertDialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+    }
 }

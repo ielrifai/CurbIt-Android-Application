@@ -9,6 +9,9 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
+
+import com.google.android.material.snackbar.Snackbar;
+
 import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -46,6 +49,20 @@ public class SubgoalListAdapter extends ArrayAdapter<Subgoal> {
 
         checkBox.setOnCheckedChangeListener((v, isChecked) -> {
             subgoals.get(position).completed = isChecked;
+        });
+
+        //if checked - subgoal complete
+        checkBox.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                //if checked -- subgoal completed: gamification alert
+                if(subgoals.get(position).completed == true){
+                    Snackbar.make(parent, R.string.alert_subgoal_gami,
+                            Snackbar.LENGTH_LONG)
+                            .show();
+                }
+            }
         });
 
         checkBox.setChecked(subgoals.get(position).completed);
