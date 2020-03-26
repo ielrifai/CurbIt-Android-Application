@@ -148,7 +148,7 @@ public class EditGoalActivity extends ActionBarActivity {
 
     // Pre add subgoal into the list
     private void addSubgoal() {
-        subgoals.add(new Subgoal("", habitId));
+        subgoals.add(new Subgoal("", 0, habitId));
         subgoalAdapter.notifyDataSetChanged();
     }
 
@@ -172,6 +172,9 @@ public class EditGoalActivity extends ActionBarActivity {
 
         //clean subgoals list of subgoals with empty names
         subgoals.removeIf(subgoal -> subgoal.name.isEmpty());
+
+        //get final position of subgoal
+        subgoals.forEach(subgoal -> subgoal.position = subgoals.indexOf(subgoal));
 
         //add subgoals to db
         Executor subExecutor = Executors.newSingleThreadExecutor();

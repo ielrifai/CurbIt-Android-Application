@@ -5,7 +5,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
-public class Subgoal {
+public class Subgoal implements Comparable<Subgoal>{
 
     @PrimaryKey(autoGenerate = true)
     public int uid;
@@ -19,10 +19,22 @@ public class Subgoal {
     @ColumnInfo(name = "completed")
     public boolean completed;
 
+    @ColumnInfo(name = "position")
+    public int position;
+
     //public - can access outside package (folders)
-    public Subgoal(String name, int habitId){
+    public Subgoal(String name, int position, int habitId){
         this.name = name;
         this.habitId = habitId;
+        this.position = position;
         this.completed = false;
+    }
+
+    @Override
+    public int compareTo(Subgoal o) {
+        if(this.completed == o.completed)
+            return Integer.compare(this.position, o.position);
+        else if (this.completed) return 1;
+        else return -1;
     }
 }

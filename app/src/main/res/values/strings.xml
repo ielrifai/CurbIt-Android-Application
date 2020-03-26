@@ -104,6 +104,7 @@
     <!--SubGoal-->
     <string name="add_subgoal_title">Add Subgoal</string>
     <string name="subgoal_name">Name the subgoal</string>
+    <string name="subgoal_n">Subgoal %1$d</string>
     <string name="add_subgoal_description">Add Subgoal Description</string>
     <string name="view_subgoal_description">The description of the subgoal</string>
 
@@ -193,6 +194,12 @@
     <string name="no_goal">It seems you don\'t have a goal yet.\nAdd a goal now!</string>
     <string name="view_goal">View Goal</string>
     <string name="theme_title">Theme</string>
+    <string name="subgoal_short_explanation_text">
+        A subgoal is a step in your journey to achieve your goal.\n
+        Each subgoal is a step forward your goal and those steps are linear: step 1 must be achieved before step 2.\n
+        For each subgoal, add a short description of a maximum of a few words describing the step.\n
+        Ex: smoking 1 cigarette a day
+    </string>
 
 
 </resources>

@@ -2,6 +2,7 @@ package se3350.habittracker.activities;
 
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -68,7 +69,7 @@ public class AddGoalActivity extends ActionBarActivity {
 
     // Pre add subgoal into the list
     private void addSubgoal() {
-        subgoals.add(new Subgoal("", habitId));
+        subgoals.add(new Subgoal("", 0, habitId));
         subgoalAdapter.notifyDataSetChanged();
     }
 
@@ -93,6 +94,9 @@ public class AddGoalActivity extends ActionBarActivity {
 
         //clean subgoals list of subgoals with empty names
         subgoals.removeIf(subgoal -> subgoal.name.isEmpty());
+
+        //get final position of subgoal
+        subgoals.forEach(subgoal -> subgoal.position = subgoals.indexOf(subgoal));
 
         //add subgoals to db
         Executor subExecutor = Executors.newSingleThreadExecutor();

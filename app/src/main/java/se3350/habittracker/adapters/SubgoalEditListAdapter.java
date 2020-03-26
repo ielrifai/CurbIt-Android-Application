@@ -40,7 +40,12 @@ public class SubgoalEditListAdapter extends ArrayAdapter<Subgoal> {
         EditText subgoalEditText = view.findViewById(R.id.subgoal_name_edit);
         Button subgoalDeleteButton = view.findViewById(R.id.delete_subgoal_btn);
 
-        subgoalEditText.setText(subgoals.get(position).name);
+        subgoalEditText.setHint(context.getString(R.string.subgoal_n, position+1));
+        if(subgoals.get(position).name.isEmpty()){
+            subgoalEditText.setText("");
+        } else {
+            subgoalEditText.setText(subgoals.get(position).name);
+        }
 
         // Change the name of the subgoal when the name is being edited
         subgoalEditText.addTextChangedListener(new TextWatcher() {

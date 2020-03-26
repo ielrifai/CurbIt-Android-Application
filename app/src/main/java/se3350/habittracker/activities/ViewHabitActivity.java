@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LiveData;
 
 import android.text.method.ScrollingMovementMethod;
@@ -13,6 +14,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.baoyachi.stepview.VerticalStepView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -20,12 +27,14 @@ import se3350.habittracker.AppDatabase;
 import se3350.habittracker.R;
 import se3350.habittracker.daos.GoalDao;
 import se3350.habittracker.daos.ProgressDao;
+import se3350.habittracker.daos.SubgoalDao;
 import se3350.habittracker.models.Goal;
 import se3350.habittracker.models.Habit;
 import se3350.habittracker.daos.HabitDao;
 import se3350.habittracker.daos.JournalEntryDao;
 import se3350.habittracker.models.JournalEntry;
 import se3350.habittracker.models.Progress;
+import se3350.habittracker.models.Subgoal;
 
 public class ViewHabitActivity extends ActionBarActivity {
 
@@ -33,14 +42,17 @@ public class ViewHabitActivity extends ActionBarActivity {
     Habit habit;
     JournalEntry draft;
     Goal goal;
+    List<Subgoal> subgoals;
 
     TextView habitDescriptionTextView, progressAverageTextView, progressAverageMessageTextView;
     Button seeJournalButton, begin4StepsButton, resume4StepButton, seeProgressButton, viewGoalsButton, addGoalButton;
+    VerticalStepView verticalStepView;
 
     private HabitDao habitDao;
     private JournalEntryDao journalEntryDao;
     private GoalDao goalDao;
     private ProgressDao progressDao;
+    private SubgoalDao subgoalDao;
 
 
     @Override
@@ -59,6 +71,7 @@ public class ViewHabitActivity extends ActionBarActivity {
         seeProgressButton = findViewById(R.id.see_progress_btn);
         viewGoalsButton = findViewById(R.id.view_goals_btn);
         addGoalButton = findViewById(R.id.add_goal_button);
+        verticalStepView = findViewById(R.id.step_view);
 
         habitId = getIntent().getIntExtra("HABIT_ID", -1 );
 
@@ -68,6 +81,7 @@ public class ViewHabitActivity extends ActionBarActivity {
         journalEntryDao = db.journalEntryDao();
         goalDao = db.goalDao();
         progressDao = db.progressDao();
+        subgoalDao = db.subgoalDao();
 
         // Get habit from database
         LiveData<Habit> habitLiveData = habitDao.getHabitById(habitId);
@@ -94,6 +108,10 @@ public class ViewHabitActivity extends ActionBarActivity {
         LiveData<Goal> goalLiveData = goalDao.getGoalByHabitId(habitId);
         goalLiveData.observe(this, goal -> setGoal(goal));
 
+        // Get subgoals from database
+        LiveData<Subgoal[]> subgoalLiveData = subgoalDao.getSubgoalsByHabitId(habitId);
+        subgoalLiveData.observe(this, subgoals -> setSubgoal(subgoals));
+
         seeJournalButton.setOnClickListener(event -> {
             Intent intent = new Intent(ViewHabitActivity.this, JournalListActivity.class).putExtra("HABIT_ID", habitId);
             startActivity(intent);
@@ -112,7 +130,7 @@ public class ViewHabitActivity extends ActionBarActivity {
         begin4StepsButton.setOnClickListener(event -> begin4Steps());
         resume4StepButton.setOnClickListener(event -> begin4Steps(draft.uid));
         seeProgressButton.setOnClickListener(event -> goToProgress());
-    }
+        }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -161,6 +179,28 @@ public class ViewHabitActivity extends ActionBarActivity {
             addGoalButton.setVisibility(View.GONE);
             viewGoalsButton.setVisibility(View.VISIBLE);
         }
+    }
+
+    private void setSubgoal(Subgoal[] subgoals) {
+        List<Subgoal> subgoalList = new ArrayList<>(Arrays.asList(subgoals));
+        this.subgoals = getOrderedSubgoalList(subgoalList);
+
+        // set the view
+
+        List<String> stepList = new ArrayList<>();
+        this.subgoals.forEach(subgoal -> stepList.add(subgoal.name));
+
+        verticalStepView.setStepsViewIndicatorComplectingPosition(stepList.size() - 5)//设置完成的步数
+                .reverseDraw(false)//default is true
+                .setStepViewTexts(stepList)//总步骤
+                .setLinePaddingProportion(0.85f)//设置indicator线与线间距的比例系数
+                .setStepsViewIndicatorCompletedLineColor(ContextCompat.getColor(this, R.color.colorAccent))//设置StepsViewIndicator完成线的颜色
+                .setStepsViewIndicatorUnCompletedLineColor(ContextCompat.getColor(this, R.color.textColor))//设置StepsViewIndicator未完成线的颜色
+                .setStepViewComplectedTextColor(ContextCompat.getColor(this, R.color.textColor))//设置StepsView text完成线的颜色
+                .setStepViewUnComplectedTextColor(ContextCompat.getColor(this, R.color.textColor))//设置StepsView text未完成线的颜色
+                .setStepsViewIndicatorCompleteIcon(ContextCompat.getDrawable(this, R.drawable.complted))//设置StepsViewIndicator CompleteIcon
+                .setStepsViewIndicatorDefaultIcon(ContextCompat.getDrawable(this, R.drawable.default_icon))//设置StepsViewIndicator DefaultIcon
+                .setStepsViewIndicatorAttentionIcon(ContextCompat.getDrawable(this, R.drawable.attention));//设置StepsViewIndicator AttentionIcon
     }
 
     private void begin4Steps() {
@@ -221,6 +261,11 @@ public class ViewHabitActivity extends ActionBarActivity {
         else{
             progressAverageMessageTextView.setText(R.string.overall_progress_message);
         }
+    }
+
+    private List<Subgoal> getOrderedSubgoalList(List<Subgoal> subgoals){
+        Collections.sort(subgoals);
+        return subgoals;
     }
 
 }
