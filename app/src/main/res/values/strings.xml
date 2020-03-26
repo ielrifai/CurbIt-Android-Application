@@ -192,6 +192,7 @@
     <string name="add_subgoals">Add Subgoals</string>
     <string name="no_goal">It seems you don\'t have a goal yet.\nAdd a goal now!</string>
     <string name="view_goal">View Goal</string>
+    <string name="theme_title">Theme</string>
 
 
 </resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="se3350.habittracker.activities.MainActivity">
+
+    <item
+        android:id="@+id/switch_text"
+        android:title="@string/theme_title"
+        app:showAsAction="always"
+    />
+
+
+    <item
+        android:id="@+id/theme_switch"
+        android:title=""
+        app:showAsAction="ifRoom"
+        android:actionLayout="@layout/switch_layout"
+        app:actionViewClass="android.widget.Switch"
+        />
+</menu>

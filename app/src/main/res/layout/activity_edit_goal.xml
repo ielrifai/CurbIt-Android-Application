@@ -104,7 +104,6 @@
         android:gravity="center"
         android:text="@string/apply_changes"
         android:layout_margin="20sp"
-        android:backgroundTint="@color/colorPrimary"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
