@@ -176,7 +176,7 @@
         android:layout_marginBottom="10sp"
         android:text="@string/view_habit_ranking_scale"
         android:textAlignment="center"
-        android:textColor="#8BC34A"
+        android:textColor="@color/colorPrimary"
         android:textSize="40sp"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
