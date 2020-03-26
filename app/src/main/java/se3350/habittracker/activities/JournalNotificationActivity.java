@@ -21,6 +21,8 @@ import se3350.habittracker.R;
 import se3350.habittracker.daos.HabitDao;
 import se3350.habittracker.daos.JournalEntryDao;
 
+import static android.app.NotificationChannel.DEFAULT_CHANNEL_ID;
+
 
 public class JournalNotificationActivity extends AppCompatActivity {
     private int notificationId, savedNotificationId;
@@ -58,7 +60,7 @@ public class JournalNotificationActivity extends AppCompatActivity {
         // Get the PendingIntent containing the entire back stack
         PendingIntent resultPendingIntent =
                 stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, DEFAULT_CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_notifications_black_24dp)
                 .setContentTitle("Journal Entry")
                 .setContentText("Remember to fill out your daily journal!")
@@ -82,7 +84,7 @@ public class JournalNotificationActivity extends AppCompatActivity {
             CharSequence name = getString(R.string.channel_name);
             String description = getString(R.string.channel_description);
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            NotificationChannel channel = new NotificationChannel(DEFAULT_CHANNEL_ID, name, importance);
             channel.setDescription(description);
             // Register the channel with the system; you can't change the importance
             // or other notification behaviors after this
@@ -90,8 +92,6 @@ public class JournalNotificationActivity extends AppCompatActivity {
             notificationManager.createNotificationChannel(channel);
             }
         }
-
-
 
     }
 
