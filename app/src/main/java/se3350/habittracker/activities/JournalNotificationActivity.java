@@ -35,6 +35,9 @@ public class JournalNotificationActivity extends AppCompatActivity {
     TextView habitNotficationTitle;
     HabitDao habitDao;
     Button saveNotificationSettingsBtn;
+    TimePicker.OnTimeChangedListener onTimeChangedListener;
+    int hour;
+    int minute;
 
     Boolean notificationsOn = false;  //holds whether the user has turned on notifications
     Boolean previouslySet = true;  //holds whether the user has previously set notifications
@@ -47,6 +50,7 @@ public class JournalNotificationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_journal_notification);
         saveNotificationSettingsBtn = findViewById(R.id.save_notification_settings_button);
         notificationTime = findViewById(R.id.notification_time_picker);
+        notificationTime.setIs24HourView(false);
         notificationSwitch = findViewById(R.id.habit_notification_switch);
 
         notificationSwitch.setChecked(notificationsOn);  //edit this to automatically set the switch to the value the user has previously specified - if no prior notification settings, set to false
@@ -62,11 +66,20 @@ public class JournalNotificationActivity extends AppCompatActivity {
         habitDao = db.habitDao();
 
         if(previouslySet) {  //if the user has previously set notifications, load the TimePicker with the time they last set so that they don't need to re-enter a new time every time they turn notifications on
-            int hour = 12;
-            int minute = 12;
 
-            notificationTime.setHour(12);  //whatever the previous hour was set to - make sure to account for AM and PM
-            notificationTime.setMinute(12);  //whatever the previous minute was set to
+             //whatever the previous minute was set to
+            hour = notificationTime.getHour();
+            minute = notificationTime.getMinute();
+            notificationTime.setHour(hour);  //whatever the previous hour was set to - make sure to account for AM and PM
+            notificationTime.setMinute(minute);
+        }
+        else {
+            notificationTime.setOnTimeChangedListener(onTimeChangedListener);
+            hour = notificationTime.getHour();
+            minute = notificationTime.getMinute();
+            notificationTime.setHour(hour);
+            notificationTime.setMinute(minute);
+            previouslySet = true;
         }
 
 
