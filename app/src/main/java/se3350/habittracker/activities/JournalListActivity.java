@@ -100,6 +100,7 @@ public class JournalListActivity extends ActionBarActivity {
         searchView.setSubmitButtonEnabled(true);
 
 
+        //Listener to record what the user enters into the search bar
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -109,7 +110,7 @@ public class JournalListActivity extends ActionBarActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
                 String text = newText;
-                searchValidator(newText);
+                searchValidator(newText);//calling unit test function
                 journalListView.setFilterText(text);
                 return true;
             }
@@ -118,6 +119,7 @@ public class JournalListActivity extends ActionBarActivity {
 
     return true; }
 
+    //Unit test to validate the user's search input
     public static boolean searchValidator(String newText) {
         if(newText.matches("\\d{1}/\\d{2}/\\d{2}"))
             return true;
