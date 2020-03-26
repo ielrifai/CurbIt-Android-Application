@@ -195,6 +195,7 @@
     <string name="alert_goal_gami">Amazing! You are one step closer to success!</string>
     <string name="alert_goal_gami_title">You set a Goal!</string>
     <string name="alert_subgoal_gami">You\'ve completed a SubGoal! One step closer to freedom!</string>
+    <string name="goal_complete">Goal Complete!</string>
 
 
 </resources>
