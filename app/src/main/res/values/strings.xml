@@ -49,7 +49,7 @@
     <string name="tutorial_summary_description">Moving forward, Steve continues to use the Four Step Process. Over time, Steve is able to stop his coffee abuse. It isn\'t easy, but Steve journals his progress and uses this app to curb his habit. </string>
     <string name="tutorial_summary_body">HabitTracker allows individuals to catalogue, curtail and even curb all types of negative habits. Using HabitTracker, you too can stop negative habits.</string>
 
-    
+
     <!--Survey-->
     <string name="survey_title">How are you feeling?</string>
     <string name="survey_prompt">On a scale of 1 to 10, how much better are you feeling about your habit after going through the 4 step process?</string>
@@ -115,7 +115,6 @@
     <string name="view_habit_ranking_scale">0/10</string>
     <string name="view_habit_subtitle">Habit Dashboard</string>
     <string name="view_habit_notification_preferences">Reminder Preferences</string>
-
 
 
     <!--Miscellaneous-->
@@ -200,6 +199,7 @@
         For each subgoal, add a short description of a maximum of a few words describing the step.\n
         Ex: smoking 1 cigarette a day
     </string>
+    <string name="complete_goal">Complete Goal</string>
 
 
 </resources>

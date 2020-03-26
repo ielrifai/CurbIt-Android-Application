@@ -72,6 +72,14 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <Button
+            android:id="@+id/complete_goal_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/complete_goal"
+            android:layout_weight="1"
+            />
+
+        <Button
             android:id="@+id/view_goals_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -186,15 +194,5 @@
         app:layout_constraintTop_toBottomOf="@id/progress_average_message"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <com.baoyachi.stepview.VerticalStepView
-        android:id="@+id/step_view"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
