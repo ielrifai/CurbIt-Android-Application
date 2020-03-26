@@ -43,7 +43,7 @@ public class JournalNotificationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_journal_notification);
         saveNotificationSettingsBtn = findViewById(R.id.save_notification_settings_button);
-        setTime = findViewById(R.id.timePicker1);
+        setTime = findViewById(R.id.notification_time_picker);
         sendNotification = findViewById(R.id.habit_notification_switch);
         habitNotficationTitle = findViewById(R.id.habit_notification_title);
         habitNotificationDescription = findViewById(R.id.habit_notification_description);

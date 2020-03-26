@@ -45,7 +45,7 @@
 
 
     <TimePicker
-        android:id="@+id/timePicker1"
+        android:id="@+id/notification_time_picker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -68,7 +68,7 @@
         android:textColorLink="#2196F3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timePicker1" />
+        app:layout_constraintTop_toBottomOf="@+id/notification_time_picker" />
 
     <Button
         android:id="@+id/save_notification_settings_button"
