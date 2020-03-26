@@ -80,6 +80,7 @@ public class SubgoalListAdapter extends ArrayAdapter<Subgoal> {
     }
 
     public void checkSubgoals(){
+        //iterate through list of subgoals - if one not complete, goal not complete 
         for(int i = 0; i < subgoals.size(); i++){
 
             if(subgoals.get(i).completed == true){
