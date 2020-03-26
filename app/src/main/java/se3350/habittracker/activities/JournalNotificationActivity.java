@@ -27,7 +27,7 @@ import static android.app.NotificationChannel.DEFAULT_CHANNEL_ID;
 
 public class JournalNotificationActivity extends AppCompatActivity {
     private int notificationId, savedNotificationId;
-    TimePicker setTime;
+    TimePicker notificationTime;
     Switch notificationSwitch;
     JournalEntryDao journalEntryDao;
     TextView habitNotificationSettings;
@@ -36,6 +36,8 @@ public class JournalNotificationActivity extends AppCompatActivity {
     HabitDao habitDao;
     Button saveNotificationSettingsBtn;
 
+    Boolean notificationsOn = false;  //holds whether the user has turned on notifications
+    Boolean previouslySet = true;  //holds whether the user has previously set notifications
 
 
 
@@ -44,8 +46,11 @@ public class JournalNotificationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_journal_notification);
         saveNotificationSettingsBtn = findViewById(R.id.save_notification_settings_button);
-        setTime = findViewById(R.id.notification_time_picker);
+        notificationTime = findViewById(R.id.notification_time_picker);
         notificationSwitch = findViewById(R.id.habit_notification_switch);
+
+        notificationSwitch.setChecked(notificationsOn);  //edit this to automatically set the switch to the value the user has previously specified - if no prior notification settings, set to false
+
         habitNotficationTitle = findViewById(R.id.habit_notification_title);
         habitNotificationDescription = findViewById(R.id.habit_notification_description);
         habitNotificationSettings = findViewById(R.id.habit_notification_title);
@@ -55,6 +60,15 @@ public class JournalNotificationActivity extends AppCompatActivity {
         AppDatabase db = AppDatabase.getInstance(getBaseContext());
         journalEntryDao = db.journalEntryDao();
         habitDao = db.habitDao();
+
+        if(previouslySet) {  //if the user has previously set notifications, load the TimePicker with the time they last set so that they don't need to re-enter a new time every time they turn notifications on
+            int hour = 12;
+            int minute = 12;
+
+            notificationTime.setHour(12);  //whatever the previous hour was set to - make sure to account for AM and PM
+            notificationTime.setMinute(12);  //whatever the previous minute was set to
+        }
+
 
 
         Intent resultIntent = new Intent(this, JournalNotificationActivity.class);  //this currently bypasses the lock screen of the app - consider revising
@@ -90,7 +104,6 @@ public class JournalNotificationActivity extends AppCompatActivity {
         //savedNotificationId = notificationId;
 
 
-
         notificationSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
@@ -105,6 +118,11 @@ public class JournalNotificationActivity extends AppCompatActivity {
                 }
 
             }
+        });
+
+
+        saveNotificationSettingsBtn.setOnClickListener(event -> {
+            System.out.println("Notifications are currently on : " + notificationSwitch.isChecked() + "\nThe time entered is : " + notificationTime.getHour() + ":" + notificationTime.getMinute());
         });
 
     }
