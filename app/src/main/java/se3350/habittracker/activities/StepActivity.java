@@ -52,7 +52,10 @@ public abstract class StepActivity extends ActionBarActivity{
         previousButton = (Button) findViewById(R.id.previous_btn);
 
         nextButton.setOnClickListener(v -> {
-            if (stepEmpty()) return;
+            if (stepEmpty(stepEntryInput.getText().toString())) {
+                Toast.makeText(getApplicationContext(), R.string.error_add_entry,Toast.LENGTH_SHORT).show();
+                return;
+            }
             save();
             goToNext();
         });
@@ -109,11 +112,10 @@ public abstract class StepActivity extends ActionBarActivity{
     protected abstract void setEntryText();
 
     // Check if step text entry is empty
-    private boolean stepEmpty(){
+    public static boolean stepEmpty(String step1Entry){
+        step1Entry = step1Entry.trim();
         // Check if field is empty
-        String step1Entry = stepEntryInput.getText().toString();
         if(step1Entry.length() == 0){
-            Toast.makeText(getApplicationContext(), R.string.error_add_entry,Toast.LENGTH_SHORT).show();
             return true;
         }
         return false;

@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20sp"
         android:layout_marginEnd="10sp"
-        android:hint="@string/subgoal_name"
+        android:hint="@string/subgoal_n"
         app:layout_constraintEnd_toStartOf="@+id/delete_subgoal_btn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
