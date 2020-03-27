@@ -8,6 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.Toast;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -22,14 +24,14 @@ public class SubgoalListAdapter extends ArrayAdapter<Subgoal> {
 
     private final Context context;
     private final List<Subgoal> subgoals;
-
+    private boolean subgoalsCompleted;
     private SubgoalDao subgoalDao;
 
     public SubgoalListAdapter(Context context, List<Subgoal> subgoals) {
         super(context, -1, subgoals);
         this.context = context;
         this.subgoals = subgoals;
-
+        subgoalsCompleted = false;
         // Get the subgoal Dao
         AppDatabase db = AppDatabase.getInstance(context);
         subgoalDao = db.subgoalDao();
@@ -46,12 +48,49 @@ public class SubgoalListAdapter extends ArrayAdapter<Subgoal> {
 
         checkBox.setOnCheckedChangeListener((v, isChecked) -> {
             subgoals.get(position).completed = isChecked;
+            //check if subgoals completed
+            checkSubgoals();
+            //if  all subgoals completed - goal completed, gamification
+            if(subgoalsCompleted){
+                Toast.makeText(context, R.string.goal_complete, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //if checked - subgoal complete
+        checkBox.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                //if checked -- subgoal completed: gamification alert
+                if(subgoals.get(position).completed == true){
+                    if(!subgoalsCompleted){
+                        Snackbar.make(view, R.string.alert_subgoal_gami,
+                                Snackbar.LENGTH_LONG)
+                                .show();
+                    }
+
+                }
+            }
         });
 
         checkBox.setChecked(subgoals.get(position).completed);
         subgoalNameText.setText(subgoals.get(position).name);
 
         return view;
+    }
+
+    public void checkSubgoals(){
+        //iterate through list of subgoals - if one not complete, goal not complete 
+        for(int i = 0; i < subgoals.size(); i++){
+
+            if(subgoals.get(i).completed == true){
+                subgoalsCompleted = true;
+            }
+            else{
+                subgoalsCompleted = false;
+                return;
+            }
+        }
     }
 }
 
