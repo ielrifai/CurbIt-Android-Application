@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -29,7 +30,7 @@ import se3350.habittracker.models.Progress;
 
 public class ViewHabitActivity extends ActionBarActivity {
 
-    int habitId;
+    int habitId, goalId, gamificationId;
     Habit habit;
     JournalEntry draft;
     Goal goal;
@@ -61,6 +62,18 @@ public class ViewHabitActivity extends ActionBarActivity {
         addGoalButton = findViewById(R.id.add_goal_button);
 
         habitId = getIntent().getIntExtra("HABIT_ID", -1 );
+        gamificationId = getIntent().getIntExtra("GAMIFICATION_ID",0);
+
+        //if journal completed - celebrate with message!
+        if(gamificationId == 1){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage(R.string.alert_celebrate_journal)
+                    .setTitle(R.string.alert_celebrate_journal_title)
+                    .setPositiveButton(R.string.ok, ((dialog, which) -> {}));
+            // Show the AlertDialog
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
 
         // Get Daos and DB
         AppDatabase db = AppDatabase.getInstance(getBaseContext());

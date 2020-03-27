@@ -199,6 +199,8 @@
     <string name="next">Next</string>
     <string name="finish">Finish</string>
     <string name="add_habit_success">Habit saved successfully</string>
+    <string name="alert_celebrate_journal">You are One Step Closer to Freedom!</string>
+    <string name="alert_celebrate_journal_title">Yay!</string>
 
 
 </resources>

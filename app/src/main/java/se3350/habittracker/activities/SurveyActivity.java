@@ -220,6 +220,8 @@ public class SurveyActivity extends ActionBarActivity {
     private void goToNext(){
         // Go back to habit page
         Intent intent = new Intent(getBaseContext(), ViewHabitActivity.class).putExtra("HABIT_ID", habit_id);
+        //completed journal entry - gamification
+        intent.putExtra("GAMIFICATION_ID",1 );
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
