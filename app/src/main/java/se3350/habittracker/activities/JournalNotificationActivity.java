@@ -99,32 +99,30 @@ public class JournalNotificationActivity extends AppCompatActivity {
     }
 
     private void sendNotification(boolean isOn) {
-        Toast.makeText(this, "Reminder Set!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Preferences Saved", Toast.LENGTH_SHORT).show();
         Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.HOUR, notificationTime.getHour());
+        cal.set(Calendar.HOUR_OF_DAY, notificationTime.getHour());
         cal.set(Calendar.MINUTE, notificationTime.getMinute());
         cal.set(Calendar.SECOND, 0);
 
         Intent intent = new Intent(JournalNotificationActivity.this, ReminderBroadcast.class);
         intent.putExtra("HABIT_ID", habitId);
         intent.putExtra("HABIT_NAME", habitName);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(JournalNotificationActivity.this, 0, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(JournalNotificationActivity.this, habitId, intent, 0);
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
-        //alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
         if (isOn) {
-            //alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
+
             alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
             Boolean status = notificationSettings.edit().putBoolean(habitId + "reminder", true).commit();
         }
         else {
             alarmManager.cancel(pendingIntent);
-            Boolean status = notificationSettings.edit().putBoolean(habitId + "reminder", true).commit();
+            Boolean status = notificationSettings.edit().putBoolean(habitId + "reminder", false).commit();
         }
 
         boolean set = false;
         set = notificationSettings.getBoolean(habitId + "reminder", set);
-        System.out.println("the boolean value saved is" + set);
     }
 }
