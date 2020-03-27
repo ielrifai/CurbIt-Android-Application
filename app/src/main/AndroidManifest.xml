@@ -31,24 +31,6 @@
         <activity android:name=".activities.ViewGoalActivity"
             android:parentActivityName=".activities.ViewHabitActivity" />
         <activity
-            android:name=".activities.TutorialSummaryActivity"
-            android:parentActivityName=".activities.Step4TutorialActivity" />
-        <activity
-            android:name=".activities.Step4TutorialActivity"
-            android:parentActivityName=".activities.Step3TutorialActivity" />
-        <activity
-            android:name=".activities.Step3TutorialActivity"
-            android:parentActivityName=".activities.Step2TutorialActivity" />
-        <activity
-            android:name=".activities.Step2TutorialActivity"
-            android:parentActivityName=".activities.Step1TutorialActivity" />
-        <activity
-            android:name=".activities.TutorialIntroductionActivity"
-            android:parentActivityName=".activities.MainActivity" />
-        <activity
-            android:name=".activities.Step1TutorialActivity"
-            android:parentActivityName=".activities.TutorialIntroductionActivity" />
-        <activity
             android:name=".activities.ViewJournalEntryActivity"
             android:parentActivityName=".activities.JournalListActivity" />
         <activity
@@ -74,21 +56,10 @@
             android:parentActivityName=".activities.ViewHabitActivity" />
         <activity android:name=".activities.CreatePasswordActivity" />
         <activity android:name=".activities.LoginActivity" />
-        <activity
-            android:name=".activities.SplashActivity"
+        <activity android:name=".activities.SplashActivity"
             android:theme="@style/AppTheme.Splash">
-        <activity
-            android:name=".activities.ViewHabitProgressActivity"
-            android:parentActivityName=".activities.ViewHabitActivity" />
-        <activity
-            android:name=".activities.SurveyActivity"
-            android:parentActivityName=".activities.ViewHabitActivity" />
-        <activity android:name=".activities.CreatePasswordActivity" />
-        <activity android:name=".activities.LoginActivity" />
-        <activity android:name=".activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
