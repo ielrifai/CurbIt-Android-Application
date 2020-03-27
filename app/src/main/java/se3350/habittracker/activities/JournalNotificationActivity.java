@@ -47,7 +47,7 @@ public class JournalNotificationActivity extends AppCompatActivity {
 
 
     Boolean notificationsOn = false;  //holds whether the user has turned on notifications
-    Boolean previouslySet;  //holds whether the user has previously set notifications
+    Boolean previouslySet = false;  //holds whether the user has previously set notifications
 
 
     @Override
