@@ -64,21 +64,26 @@ public class JournalNotificationActivity extends AppCompatActivity {
         habitNotificationTitle = findViewById(R.id.habit_notification_title);
         habitNotificationDescription = findViewById(R.id.habit_notification_description);
         habitNotificationSettings = findViewById(R.id.habit_notification_title);
+        createNotificationChannel();
 
 
         saveNotificationSettingsBtn.setOnClickListener(v -> {
             Toast.makeText(this, "Reminder Set!", Toast.LENGTH_SHORT).show();
+            
+            Calendar cal = Calendar.getInstance();
+            cal.set(Calendar.HOUR, notificationTime.getHour());
+            cal.set(Calendar.MINUTE, notificationTime.getMinute());
+            cal.set(Calendar.SECOND, 0);
+
+            //System.out.println("The current time is: " + System.currentTimeMillis());
+            //System.out.println("The time the notification should go off at is: " + cal.getTimeInMillis());
 
             Intent intent = new Intent(JournalNotificationActivity.this, ReminderBroadcast.class);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(JournalNotificationActivity.this, 0, intent, 0);
 
             AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
-            long timeAtButtonClock = System.currentTimeMillis();
-
-            long tenSecondsInMillis = 1000 * 10;
-
-            alarmManager.set(AlarmManager.RTC_WAKEUP, timeAtButtonClock + tenSecondsInMillis, pendingIntent);
+            alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
         });
 
     }
