@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="se3350.habittracker.activities.ViewGoalActivity">
+    tools:context="se3350.habittracker.activities.CompleteGoalActivity">
     <item
         android:id="@+id/edit_goal"
         android:orderInCategory="100"
