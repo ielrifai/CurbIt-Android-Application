@@ -1,39 +1,27 @@
 package se3350.habittracker.activities;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
-
 import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.TaskStackBuilder;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
-
-import com.anychart.charts.Gantt;
-
 import java.util.Calendar;
-
 import se3350.habittracker.AppDatabase;
 import se3350.habittracker.R;
 import se3350.habittracker.ReminderBroadcast;
 import se3350.habittracker.daos.HabitDao;
-import se3350.habittracker.daos.JournalEntryDao;
 
-import static android.app.NotificationChannel.DEFAULT_CHANNEL_ID;
+import static java.security.AccessController.getContext;
 
 
 public class JournalNotificationActivity extends AppCompatActivity {
@@ -45,7 +33,7 @@ public class JournalNotificationActivity extends AppCompatActivity {
     HabitDao habitDao;
     int habitId;
     String habitName;
-
+    SharedPreferences notificationSettings;
 
 
     @Override
@@ -65,13 +53,22 @@ public class JournalNotificationActivity extends AppCompatActivity {
         habitDao = db.habitDao();
         habitId = getIntent().getIntExtra("HABIT_ID", -1);
         habitDao.getHabitById(habitId).observe(this, habit -> habitName = habit.name);
-        System.out.println("The habit id is: " + habitId);
+        System.out.println("The habit Id is: " + habitId);
+
+        notificationSettings = getSharedPreferences("PREFS", Context.MODE_PRIVATE);
+        //Shared Preferences
+        if (notificationSettings.contains(getIntent().getIntExtra("HABIT_ID", -1) + "reminder"))
+        //if (notificationSettings.contains("reminder"))
+            notificationSwitch.setChecked(true);
+
 
         notificationSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(notificationSwitch.isChecked())
-                    sendNotification();
+                    sendNotification(true);
+                else
+                    sendNotification(false);
             }
         });
 
@@ -90,16 +87,12 @@ public class JournalNotificationActivity extends AppCompatActivity {
         }
     }
 
-    private void sendNotification() {
+    private void sendNotification(boolean isOn) {
         Toast.makeText(this, "Reminder Set!", Toast.LENGTH_SHORT).show();
-
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.HOUR, notificationTime.getHour());
         cal.set(Calendar.MINUTE, notificationTime.getMinute());
         cal.set(Calendar.SECOND, 0);
-
-        //System.out.println("The current time is: " + System.currentTimeMillis());
-        //System.out.println("The time the notification should go off at is: " + cal.getTimeInMillis());
 
         Intent intent = new Intent(JournalNotificationActivity.this, ReminderBroadcast.class);
         intent.putExtra("HABIT_ID", habitId);
@@ -108,6 +101,16 @@ public class JournalNotificationActivity extends AppCompatActivity {
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
-        alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
+        //alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
+        if (isOn) {
+            //alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+            Boolean status = notificationSettings.edit().putBoolean(habitId + "reminder", true).commit();
+        }
+        else {
+            alarmManager.cancel(pendingIntent);
+            Boolean status = notificationSettings.edit().putBoolean(habitId + "reminder", true).commit();
+
+        }
     }
 }
