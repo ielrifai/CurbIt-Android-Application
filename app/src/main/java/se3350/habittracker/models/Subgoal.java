@@ -32,9 +32,6 @@ public class Subgoal implements Comparable<Subgoal>{
 
     @Override
     public int compareTo(Subgoal o) {
-        if(this.completed == o.completed)
-            return Integer.compare(this.position, o.position);
-        else if (this.completed) return 1;
-        else return -1;
+        return Integer.compare(this.position, o.position);
     }
 }

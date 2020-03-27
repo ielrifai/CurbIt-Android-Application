@@ -200,6 +200,9 @@
         Ex: smoking 1 cigarette a day
     </string>
     <string name="complete_goal">Complete Goal</string>
+    <string name="start">Start</string>
+    <string name="complete">Complete</string>
+    <string name="view_goal_progress_title">%1$s Goal Progress</string>
 
 
 </resources>
