@@ -67,6 +67,24 @@ public class AddHabitActivity extends ActionBarActivity {
 
     }
 
+    //check if pass is empty string -- false if is
+    public static boolean checkEmptyHabitForm(String name, String description){
+        if(name.equals("") || description.equals("")){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
 
+    //check if pass is empty string -- false if is
+    public static boolean checkNullHabitForm(String name, String description){
+        if(name == null || description == null){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
 
 }

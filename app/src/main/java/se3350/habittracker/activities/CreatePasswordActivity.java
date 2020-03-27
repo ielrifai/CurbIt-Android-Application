@@ -20,7 +20,8 @@ public class CreatePasswordActivity extends AppCompatActivity {
 
     EditText inputPassword, inputPassword2;
     Button savePasswordButton;
-
+    String bcryptHashStringPass;
+    String pass, pass2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,17 +31,24 @@ public class CreatePasswordActivity extends AppCompatActivity {
         inputPassword2 = (EditText) findViewById(R.id.inputPassword2);
         savePasswordButton = (Button) findViewById(R.id.savePassword);
 
+
         savePasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String pass = inputPassword.getText().toString();
-                String pass2 = inputPassword2.getText().toString();
+                pass = inputPassword.getText().toString();
+                pass2 = inputPassword2.getText().toString();
                 //hash password using BCrypt
-                String bcryptHashStringPass = BCrypt.withDefaults().hashToString(12, pass.toCharArray());
+                bcryptHashStringPass = BCrypt.withDefaults().hashToString(12, pass.toCharArray());
                 //Log.v("hash pass",bcryptHashStringPass);
                 // compare pass2 to pass1 hash
+                //static check function for testing*********************************************************
+                checkEncryption(bcryptHashStringPass, pass);
                 BCrypt.Result result = BCrypt.verifyer().verify(pass2.toCharArray(), bcryptHashStringPass);
                 //if no pass entered
+                //static check function for testing*********************************************************
+                checkEmptyPass(pass,pass2);
+                //static check function for testing*********************************************************
+                checkNullPass(pass,pass2);
                 if(pass.equals("") || pass2.equals("")){
                     Toast.makeText(CreatePasswordActivity.this, "Please enter password", Toast.LENGTH_SHORT).show();
                 }
@@ -71,4 +79,33 @@ public class CreatePasswordActivity extends AppCompatActivity {
 
 
     }
+    //check that password is encrypted -- false if not
+    public static boolean checkEncryption(String encryptedPass, String pass){
+
+        if(encryptedPass.equals(pass)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    //check that password is entered -- false if not
+    public static boolean checkNullPass(String pass, String pass2){
+        if(pass == null || pass2 == null){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+    //check if pass is empty string -- false if is
+    public static boolean checkEmptyPass(String pass, String pass2){
+        if(pass.equals("") || pass2.equals("")){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
 }

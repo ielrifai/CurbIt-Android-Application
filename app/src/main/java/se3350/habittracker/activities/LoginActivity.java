@@ -39,6 +39,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String pass = loginPassword.getText().toString();
+                //static check function for testing*********************************************************
+                checkEmptyPass(pass);
+                checkNullPass(pass);
                 //compare hashed password in saved preferences to password being entered
                 BCrypt.Result result = BCrypt.verifyer().verify(pass.toCharArray(), password);
                 //Log.v("verify", result.toString());
@@ -57,5 +60,26 @@ public class LoginActivity extends AppCompatActivity {
 
         });
     }
+
+    //check that password is entered -- false if not
+    public static boolean checkNullPass(String pass){
+        if(pass == null){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+    //check if pass is empty string -- false if is
+    public static boolean checkEmptyPass(String pass){
+        if(pass.equals("")){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
 
 }
