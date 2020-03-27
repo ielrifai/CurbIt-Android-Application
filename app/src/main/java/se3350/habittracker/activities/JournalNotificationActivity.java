@@ -36,7 +36,6 @@ import static android.app.NotificationChannel.DEFAULT_CHANNEL_ID;
 
 
 public class JournalNotificationActivity extends AppCompatActivity {
-    private int notificationId, savedNotificationId, hour, minute;
     TimePicker notificationTime;
     Switch notificationSwitch;
     TextView habitNotificationSettings;
@@ -44,12 +43,9 @@ public class JournalNotificationActivity extends AppCompatActivity {
     TextView habitNotificationTitle;
     HabitDao habitDao;
     Button saveNotificationSettingsBtn;
-    TimePicker.OnTimeChangedListener onTimeChangedListener;
-    PendingIntent mPendingIntent;
+    int habitId;
+    String habitName;
 
-
-    Boolean notificationsOn = false;  //holds whether the user has turned on notifications
-    Boolean previouslySet = false;  //holds whether the user has previously set notifications
 
 
     @Override
@@ -58,18 +54,24 @@ public class JournalNotificationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_journal_notification);
         saveNotificationSettingsBtn = findViewById(R.id.save_notification_settings_button);
         notificationTime = findViewById(R.id.notification_time_picker);
-        notificationTime.setIs24HourView(false);
         notificationSwitch = findViewById(R.id.habit_notification_switch);
-        notificationSwitch.setChecked(notificationsOn);  //edit this to automatically set the switch to the value the user has previously specified - if no prior notification settings, set to false
         habitNotificationTitle = findViewById(R.id.habit_notification_title);
         habitNotificationDescription = findViewById(R.id.habit_notification_description);
         habitNotificationSettings = findViewById(R.id.habit_notification_title);
         createNotificationChannel();
 
+        // Get Daos and DB
+        AppDatabase db = AppDatabase.getInstance(getBaseContext());
+        habitDao = db.habitDao();
+        habitId = getIntent().getIntExtra("HABIT_ID", -1);
+        habitDao.getHabitById(habitId).observe(this, habit -> habitName = habit.name);
+        System.out.println("The habit id is: " + habitId);
+
+
 
         saveNotificationSettingsBtn.setOnClickListener(v -> {
             Toast.makeText(this, "Reminder Set!", Toast.LENGTH_SHORT).show();
-            
+
             Calendar cal = Calendar.getInstance();
             cal.set(Calendar.HOUR, notificationTime.getHour());
             cal.set(Calendar.MINUTE, notificationTime.getMinute());
@@ -79,6 +81,8 @@ public class JournalNotificationActivity extends AppCompatActivity {
             //System.out.println("The time the notification should go off at is: " + cal.getTimeInMillis());
 
             Intent intent = new Intent(JournalNotificationActivity.this, ReminderBroadcast.class);
+            intent.putExtra("HABIT_ID", habitId);
+            intent.putExtra("HABIT_NAME", habitName);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(JournalNotificationActivity.this, 0, intent, 0);
 
             AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
