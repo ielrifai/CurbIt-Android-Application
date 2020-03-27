@@ -52,6 +52,9 @@ public class AddHabitActivity extends ActionBarActivity {
 
             HabitDao habitDao = db.habitDao();
 
+            //message - completed journal successfully
+            Toast.makeText(this,R.string.add_habit_success, Toast.LENGTH_SHORT).show();
+
             // asynchronous insert using an executor
             //to use Java 8 - go to project settings and change target compatibility to 1.8
             Executor myExecutor = Executors.newSingleThreadExecutor();
