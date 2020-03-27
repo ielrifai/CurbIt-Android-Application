@@ -74,10 +74,12 @@ public class CreatePasswordActivity extends AppCompatActivity {
 
     }
 
+    //check if passwords match
     public static boolean passwordsMatch(String pass1, String pass2){
         return pass1.equals(pass2);
     }
 
+    //check if password entered
     public static boolean isPasswordEmpty(String pass){
         return pass.trim().isEmpty();
     }

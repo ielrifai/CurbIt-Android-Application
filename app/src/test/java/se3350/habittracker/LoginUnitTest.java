@@ -11,17 +11,23 @@ import static org.junit.Assert.*;
 public class LoginUnitTest {
 
     @Test
-    public void testCheckEmptyPass_EmptyPass() {
+    public void testIsPasswordEmpty_EmptyPass() {
         String pass = "";
-        boolean expectedResult = false;
-        boolean result = LoginActivity.checkEmptyPass(pass);
-        assertEquals(expectedResult, result);
+        boolean result = LoginActivity.isPasswordEmpty(pass);
+        assertTrue(result);
     }
 
     @Test
-    public void testCheckNullPass_NullPass() {
-        boolean expectedResult = false;
-        boolean result = LoginActivity.checkNullPass(null);
+    public void testIsPasswordEmpty_EmptyWithSpacePass() {
+        String pass = "         ";
+        boolean result = LoginActivity.isPasswordEmpty(pass);
+        assertTrue(result);
+    }
+
+    @Test
+    public void testIsPasswordEmpty_NotEmptyPass() {
+        String pass = "a password";
+        boolean result = LoginActivity.isPasswordEmpty(pass);
         assertFalse(result);
     }
 

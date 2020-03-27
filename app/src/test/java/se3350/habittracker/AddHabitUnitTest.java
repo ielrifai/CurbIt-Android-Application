@@ -10,18 +10,23 @@ import static org.junit.Assert.*;
 
 public class AddHabitUnitTest {
     @Test
-    public void testCheckEmptyHabitForm() {
+    public void testIsHabitFormEmpty__EmptyField() {
         String name = "";
-        String description = "";
-        boolean expectedResult = false;
-        boolean result = AddHabitActivity.checkEmptyHabitForm(name, description);
+        boolean expectedResult = true;
+        boolean result = AddHabitActivity.isHabitFormEmpty(name);
         assertEquals(expectedResult, result);
     }
 
     @Test
-    public void testCheckNullHabitForm() {
-        boolean expectedResult = false;
-        boolean result = AddHabitActivity.checkNullHabitForm(null, null);
+    public void testIsHabitFormEmpty_EmptyWithSpaceField() {
+        String name = "         ";
+        boolean result = AddHabitActivity.isHabitFormEmpty(name);
+        assertTrue(result);
+    }
+    @Test
+    public void testIsHabitFormEmpty_NotEmptyField() {
+        String name = "a habit name";
+        boolean result = AddHabitActivity.isHabitFormEmpty(name);
         assertFalse(result);
     }
 

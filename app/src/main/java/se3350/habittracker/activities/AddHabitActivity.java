@@ -40,7 +40,8 @@ public class AddHabitActivity extends ActionBarActivity {
             habitName = habitNameInput.getText().toString();
             habitDescription = habitDescriptionInput.getText().toString();
 
-            if(habitName.length() == 0 || habitDescription.length() == 0){
+            //if both fields arent filled, prompt
+            if(isHabitFormEmpty(habitName) || isHabitFormEmpty(habitDescription)){
                 Toast.makeText(getApplicationContext(), R.string.error_add_habit,Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -67,24 +68,8 @@ public class AddHabitActivity extends ActionBarActivity {
 
     }
 
-    //check if pass is empty string -- false if is
-    public static boolean checkEmptyHabitForm(String name, String description){
-        if(name.equals("") || description.equals("")){
-            return false;
-        }
-        else{
-            return true;
-        }
+    //checks if field is empty
+    public static boolean isHabitFormEmpty(String habitText){
+        return habitText.trim().isEmpty();
     }
-
-    //check if pass is empty string -- false if is
-    public static boolean checkNullHabitForm(String name, String description){
-        if(name == null || description == null){
-            return false;
-        }
-        else{
-            return true;
-        }
-    }
-
 }
