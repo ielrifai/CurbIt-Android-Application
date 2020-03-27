@@ -58,6 +58,8 @@ public class ViewHabitActivity extends ActionBarActivity {
         viewGoalsButton = findViewById(R.id.view_goals_btn);
         reminderNotificationsButton = findViewById(R.id.reminder_preferences_button);
 
+
+
         habitId = getIntent().getIntExtra("HABIT_ID", -1 );
 
         // Get Daos and DB

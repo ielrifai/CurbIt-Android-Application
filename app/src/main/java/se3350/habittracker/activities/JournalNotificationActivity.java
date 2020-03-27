@@ -9,6 +9,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,6 +28,7 @@ import java.util.Calendar;
 
 import se3350.habittracker.AppDatabase;
 import se3350.habittracker.R;
+import se3350.habittracker.ReminderBroadcast;
 import se3350.habittracker.daos.HabitDao;
 import se3350.habittracker.daos.JournalEntryDao;
 
@@ -62,126 +64,36 @@ public class JournalNotificationActivity extends AppCompatActivity {
         habitNotificationTitle = findViewById(R.id.habit_notification_title);
         habitNotificationDescription = findViewById(R.id.habit_notification_description);
         habitNotificationSettings = findViewById(R.id.habit_notification_title);
-        createNotificationChannel();
-
-        int habitId = getIntent().getIntExtra("HABIT_ID", -1);
-
-        //get daos
-        AppDatabase db = AppDatabase.getInstance(getBaseContext());
-        habitDao = db.habitDao();
 
 
-        if (previouslySet) {  //if the user has previously set notifications, load the TimePicker with the time they last set so that they don't need to re-enter a new time every time they turn notifications on
-            //whatever the previous minute was set to
-            hour = notificationTime.getHour();
-            minute = notificationTime.getMinute();
-            notificationTime.setHour(hour);  //whatever the previous hour was set to - make sure to account for AM and PM
-            notificationTime.setMinute(minute);
-        } else {
-            notificationTime.setOnTimeChangedListener(onTimeChangedListener);
-            hour = notificationTime.getHour();
-            minute = notificationTime.getMinute();
-            notificationTime.setHour(hour);
-            notificationTime.setMinute(minute);
-        }
+        saveNotificationSettingsBtn.setOnClickListener(v -> {
+            Toast.makeText(this, "Reminder Set!", Toast.LENGTH_SHORT).show();
 
-        Intent resultIntent = new Intent(this, JournalNotificationActivity.class);  //this currently bypasses the lock screen of the app - consider revising
-        // Create the TaskStackBuilder and add the intent, which inflates the back stack
+            Intent intent = new Intent(JournalNotificationActivity.this, ReminderBroadcast.class);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(JournalNotificationActivity.this, 0, intent, 0);
 
-        resultIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, resultIntent, 0);
+            AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
-        /*
-        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-        stackBuilder.addNextIntentWithParentStack(resultIntent);
-        // Get the PendingIntent containing the entire back stack
-        PendingIntent resultPendingIntent =
-                stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+            long timeAtButtonClock = System.currentTimeMillis();
 
-         */
-        if (notificationsOn) {
-            NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "main_notifications")  //check channel ID
-                    .setSmallIcon(R.drawable.ic_notifications_black_24dp)
-                    .setContentTitle("Journal Entry")
-                    .setContentText("Remember to fill out your daily journal!")
-                    .setStyle(new NotificationCompat.BigTextStyle()
-                            .bigText("REMINDER"))
-                    .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-            builder.setContentIntent(pendingIntent);
-            builder.setAutoCancel(true);
+            long tenSecondsInMillis = 1000 * 10;
 
-            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-            notificationManager.notify(notificationId, builder.build());
-            //savedNotificationId = notificationId;
-        }
-
-        notificationSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                SharedPreferences sharedPreferences = getSharedPreferences("PREFS", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-
-
-                if (isChecked) {
-                    //turn on notifications for the habit
-                    editor.putBoolean("NOTIFICATION" + habitId, true).apply();
-                    System.out.println("Notifications turned on");  //remove this after we get it working
-                    notificationsOn = true;
-                } else {
-                    //turn off notifications for the habit
-                    editor.putBoolean("NOTIFICATION" + habitId, false).apply(); //habit key needs to be different
-                    System.out.println("Notifications turned off");  //remove this after we get it working
-                    notificationsOn = false;
-                }
-            }
-        });
-
-
-        saveNotificationSettingsBtn.setOnClickListener(event -> {
-            System.out.println("Notifications are currently on : " + notificationSwitch.isChecked() + "\nThe time entered is : " + notificationTime.getHour() + ":" + notificationTime.getMinute());
-            previouslySet = true;
-            notificationSwitch.isChecked();
-            if (notificationsOn) {
-                setReminderNotification();
-            }
+            alarmManager.set(AlarmManager.RTC_WAKEUP, timeAtButtonClock + tenSecondsInMillis, pendingIntent);
         });
 
     }
 
+    private void createNotificationChannel() {
 
-    private void createNotificationChannel() {  //this should probably be called on opening app
-        // Create the NotificationChannel, but only on API 26+ because
-        // the NotificationChannel class is new and not in the support library
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence name = getString(R.string.channel_name);
-            String description = getString(R.string.channel_description);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "JournalReminderChannel";
+            String description = "Channel for Journal Reminder";
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            NotificationChannel channel = new NotificationChannel("main_notifications", name, importance);
+            NotificationChannel channel = new NotificationChannel("journal_notification", name, importance);
             channel.setDescription(description);
-            // Register the channel with the system; you can't change the importance
-            // or other notification behaviors after this
+
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
         }
     }
-
-    private void setReminderNotification() {
-        hour = notificationTime.getHour();
-        minute = notificationTime.getMinute();
-        notificationTime.setHour(hour);
-        notificationTime.setMinute(minute);
-
-        Intent intent = new Intent(this, JournalNotificationActivity.class);
-        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        mPendingIntent = PendingIntent.getService(this, 0, intent, 0);
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.SECOND, 0);
-        calendar.set(Calendar.MINUTE, 0 + minute);
-        calendar.set(Calendar.HOUR, 0 + hour);
-        Toast.makeText(this, calendar.get(Calendar.MINUTE) + "    " + calendar.get(Calendar.HOUR), Toast.LENGTH_SHORT).show();
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP , calendar.getTimeInMillis() , 1000 * 60 * 60 * 24 , mPendingIntent);
-
-    }
 }
-

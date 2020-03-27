@@ -104,6 +104,9 @@
         <activity
             android:name=".activities.EditSubgoalActivity"
             android:parentActivityName=".activities.ViewSubgoalActivity" />
+        <receiver
+            android:name=".ReminderBroadcast"
+            android:enabled="true" />
     </application>
 
 </manifest>
