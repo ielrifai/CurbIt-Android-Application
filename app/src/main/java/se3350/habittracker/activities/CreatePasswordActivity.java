@@ -37,24 +37,18 @@ public class CreatePasswordActivity extends AppCompatActivity {
             public void onClick(View v) {
                 pass = inputPassword.getText().toString();
                 pass2 = inputPassword2.getText().toString();
-                //hash password using BCrypt
-                bcryptHashStringPass = BCrypt.withDefaults().hashToString(12, pass.toCharArray());
-                //Log.v("hash pass",bcryptHashStringPass);
-                // compare pass2 to pass1 hash
-                //static check function for testing*********************************************************
-                checkEncryption(bcryptHashStringPass, pass);
-                BCrypt.Result result = BCrypt.verifyer().verify(pass2.toCharArray(), bcryptHashStringPass);
+
                 //if no pass entered
-                //static check function for testing*********************************************************
-                checkEmptyPass(pass,pass2);
-                //static check function for testing*********************************************************
-                checkNullPass(pass,pass2);
-                if(pass.equals("") || pass2.equals("")){
+                if(isPasswordEmpty(pass) || isPasswordEmpty(pass2)){
                     Toast.makeText(CreatePasswordActivity.this, "Please enter password", Toast.LENGTH_SHORT).show();
                 }
+
                 else {
                     //if passwords match
-                    if(result.verified == true){
+                    if(passwordsMatch(pass, pass2)){
+                        //hash password using BCrypt
+                        bcryptHashStringPass = BCrypt.withDefaults().hashToString(12, pass.toCharArray());
+
                         //save password
                         SharedPreferences settings = getSharedPreferences("PREFS",0);
                         SharedPreferences.Editor editor = settings.edit();
@@ -79,33 +73,14 @@ public class CreatePasswordActivity extends AppCompatActivity {
 
 
     }
-    //check that password is encrypted -- false if not
-    public static boolean checkEncryption(String encryptedPass, String pass){
 
-        if(encryptedPass.equals(pass)){
-            return true;
-        }
-        else{
-            return false;
-        }
+    public static boolean passwordsMatch(String pass1, String pass2){
+        return pass1.equals(pass2);
     }
-    //check that password is entered -- false if not
-    public static boolean checkNullPass(String pass, String pass2){
-        if(pass == null || pass2 == null){
-            return false;
-        }
-        else{
-            return true;
-        }
+
+    public static boolean isPasswordEmpty(String pass){
+        return pass.trim().isEmpty();
     }
-    //check if pass is empty string -- false if is
-    public static boolean checkEmptyPass(String pass, String pass2){
-        if(pass.equals("") || pass2.equals("")){
-            return false;
-        }
-        else{
-            return true;
-        }
-    }
+
 
 }

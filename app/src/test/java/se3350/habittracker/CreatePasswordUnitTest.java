@@ -8,28 +8,35 @@ import static org.junit.Assert.*;
 
 public class CreatePasswordUnitTest {
     @Test
-    public void testCheckEmptyPass_EmptyPass() {
+    public void testIsPasswordEmpty_EmptyPass() {
         String pass = "";
-        String pass2 ="";
-        boolean expectedResult = false;
-        boolean result = CreatePasswordActivity.checkEmptyPass(pass, pass2);
-        assertEquals(expectedResult, result);
+        boolean result = CreatePasswordActivity.isPasswordEmpty(pass);
+        assertTrue(result);
     }
 
     @Test
-    public void testCheckNullPass_NullPass() {
-        boolean expectedResult = false;
-        boolean result = CreatePasswordActivity.checkNullPass(null, null);
+    public void testIsPasswordEmpty_EmptyWithSpacePass() {
+        String pass = "         ";
+        boolean result = CreatePasswordActivity.isPasswordEmpty(pass);
+        assertTrue(result);
+    }
+
+    @Test
+    public void testIsPasswordEmpty_NotEmptyPass() {
+        String pass = "a password";
+        boolean result = CreatePasswordActivity.isPasswordEmpty(pass);
         assertFalse(result);
     }
 
     @Test
-    public void testCheckEncryption_PassNotEncrypted() {
-        String encryptedPass = "password";
-        String pass = "password";
-        boolean expectedResult = true;
-        boolean result = CreatePasswordActivity.checkEmptyPass(encryptedPass, pass);
-        assertEquals(expectedResult, result);
+    public void testPasswordMatch_PassMatch() {
+        boolean result = CreatePasswordActivity.passwordsMatch("ab", "ab");
+        assertTrue(result);
     }
 
+    @Test
+    public void testPasswordMatch_PassNotMatch() {
+        boolean result = CreatePasswordActivity.passwordsMatch("abba", "ab");
+        assertFalse(result);
+    }
 }
