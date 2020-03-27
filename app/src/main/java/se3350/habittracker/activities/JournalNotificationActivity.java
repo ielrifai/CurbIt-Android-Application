@@ -70,30 +70,13 @@ public class JournalNotificationActivity extends AppCompatActivity {
 
 
         saveNotificationSettingsBtn.setOnClickListener(v -> {
-            Toast.makeText(this, "Reminder Set!", Toast.LENGTH_SHORT).show();
-
-            Calendar cal = Calendar.getInstance();
-            cal.set(Calendar.HOUR, notificationTime.getHour());
-            cal.set(Calendar.MINUTE, notificationTime.getMinute());
-            cal.set(Calendar.SECOND, 0);
-
-            //System.out.println("The current time is: " + System.currentTimeMillis());
-            //System.out.println("The time the notification should go off at is: " + cal.getTimeInMillis());
-
-            Intent intent = new Intent(JournalNotificationActivity.this, ReminderBroadcast.class);
-            intent.putExtra("HABIT_ID", habitId);
-            intent.putExtra("HABIT_NAME", habitName);
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(JournalNotificationActivity.this, 0, intent, 0);
-
-            AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-
-            alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
+            if(notificationSwitch.isChecked())
+                sendNotification();
         });
 
     }
 
     private void createNotificationChannel() {
-
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = "JournalReminderChannel";
             String description = "Channel for Journal Reminder";
@@ -104,5 +87,26 @@ public class JournalNotificationActivity extends AppCompatActivity {
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
         }
+    }
+
+    private void sendNotification() {
+        Toast.makeText(this, "Reminder Set!", Toast.LENGTH_SHORT).show();
+
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.HOUR, notificationTime.getHour());
+        cal.set(Calendar.MINUTE, notificationTime.getMinute());
+        cal.set(Calendar.SECOND, 0);
+
+        //System.out.println("The current time is: " + System.currentTimeMillis());
+        //System.out.println("The time the notification should go off at is: " + cal.getTimeInMillis());
+
+        Intent intent = new Intent(JournalNotificationActivity.this, ReminderBroadcast.class);
+        intent.putExtra("HABIT_ID", habitId);
+        intent.putExtra("HABIT_NAME", habitName);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(JournalNotificationActivity.this, 0, intent, 0);
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+        alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
     }
 }
