@@ -28,12 +28,24 @@
         <activity
             android:name=".activities.Step1TutorialActivity"
             android:parentActivityName=".activities.TutorialIntroductionActivity" />
+
         <activity
             android:name=".activities.ViewJournalEntryActivity"
             android:parentActivityName=".activities.JournalListActivity" />
         <activity
             android:name=".activities.JournalListActivity"
-            android:parentActivityName=".activities.ViewHabitActivity" />
+            android:parentActivityName=".activities.ViewHabitActivity">
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable">
+            </meta-data>
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+        </activity>
         <activity
             android:name=".activities.Step1EntryActivity"
             android:parentActivityName=".activities.ViewHabitActivity" />

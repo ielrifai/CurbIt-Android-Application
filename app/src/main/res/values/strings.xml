@@ -206,5 +206,8 @@
     <string name="alert_subgoal_gami">You\'ve completed a SubGoal! One step closer to freedom!</string>
     <string name="goal_complete">Goal Complete!</string>
 
+    <string name="app_label">label</string>
+    <string name="search_hint">hint</string>
+    <string name="search_title">Search Title</string>
 
 </resources>
