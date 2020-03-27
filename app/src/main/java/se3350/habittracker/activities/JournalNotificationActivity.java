@@ -58,9 +58,10 @@ public class JournalNotificationActivity extends AppCompatActivity {
         notificationSettings = getSharedPreferences("PREFS", Context.MODE_PRIVATE);
         //Shared Preferences
 
-        if (notificationSettings.contains(getIntent().getIntExtra("HABIT_ID", -1) + "reminder")) {
+        if (notificationSettings.contains(habitId + "reminder")) {
             boolean set = false;
-            notificationSettings.getBoolean(getIntent().getIntExtra("HABIT_ID", -1) + "reminder", set);
+            set = notificationSettings.getBoolean(habitId + "reminder", set);
+            System.out.println("Set is :" + set);
             if(set)
                 notificationSwitch.setChecked(true);
         }
@@ -120,7 +121,10 @@ public class JournalNotificationActivity extends AppCompatActivity {
         else {
             alarmManager.cancel(pendingIntent);
             Boolean status = notificationSettings.edit().putBoolean(habitId + "reminder", true).commit();
-
         }
+
+        boolean set = false;
+        set = notificationSettings.getBoolean(habitId + "reminder", set);
+        System.out.println("the boolean value saved is" + set);
     }
 }
