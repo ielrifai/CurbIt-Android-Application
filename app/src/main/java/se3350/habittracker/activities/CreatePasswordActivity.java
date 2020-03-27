@@ -20,7 +20,8 @@ public class CreatePasswordActivity extends AppCompatActivity {
 
     EditText inputPassword, inputPassword2;
     Button savePasswordButton;
-
+    String bcryptHashStringPass;
+    String pass, pass2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,23 +31,24 @@ public class CreatePasswordActivity extends AppCompatActivity {
         inputPassword2 = (EditText) findViewById(R.id.inputPassword2);
         savePasswordButton = (Button) findViewById(R.id.savePassword);
 
+
         savePasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String pass = inputPassword.getText().toString();
-                String pass2 = inputPassword2.getText().toString();
-                //hash password using BCrypt
-                String bcryptHashStringPass = BCrypt.withDefaults().hashToString(12, pass.toCharArray());
-                //Log.v("hash pass",bcryptHashStringPass);
-                // compare pass2 to pass1 hash
-                BCrypt.Result result = BCrypt.verifyer().verify(pass2.toCharArray(), bcryptHashStringPass);
+                pass = inputPassword.getText().toString();
+                pass2 = inputPassword2.getText().toString();
+
                 //if no pass entered
-                if(pass.equals("") || pass2.equals("")){
+                if(isPasswordEmpty(pass) || isPasswordEmpty(pass2)){
                     Toast.makeText(CreatePasswordActivity.this, "Please enter password", Toast.LENGTH_SHORT).show();
                 }
+
                 else {
                     //if passwords match
-                    if(result.verified == true){
+                    if(passwordsMatch(pass, pass2)){
+                        //hash password using BCrypt
+                        bcryptHashStringPass = BCrypt.withDefaults().hashToString(12, pass.toCharArray());
+
                         //save password
                         SharedPreferences settings = getSharedPreferences("PREFS",0);
                         SharedPreferences.Editor editor = settings.edit();
@@ -71,4 +73,16 @@ public class CreatePasswordActivity extends AppCompatActivity {
 
 
     }
+
+    //check if passwords match
+    public static boolean passwordsMatch(String pass1, String pass2){
+        return pass1.equals(pass2);
+    }
+
+    //check if password entered
+    public static boolean isPasswordEmpty(String pass){
+        return pass.trim().isEmpty();
+    }
+
+
 }
