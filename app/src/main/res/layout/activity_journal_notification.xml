@@ -23,7 +23,7 @@
     <TextView
         android:id="@+id/habit_notification_description"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_margin="20sp"
         android:text="@string/habit_notification_description"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,24 +63,14 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20sp"
         android:layout_marginRight="20sp"
+        android:layout_marginBottom="20sp"
+        android:scrollbars="vertical"
         android:text="@string/habit_notification_switch"
         android:textColor="@android:color/secondary_text_light"
         android:textColorLink="#2196F3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/notification_time_picker" />
-
-    <Button
-        android:id="@+id/save_notification_settings_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20sp"
-        android:layout_marginRight="20sp"
-        android:backgroundTint="@color/colorPrimary"
-        android:text="@string/habit_notification_save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/habit_notification_switch" />
+        app:layout_constraintTop_toBottomOf="@+id/notification_time_picker" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

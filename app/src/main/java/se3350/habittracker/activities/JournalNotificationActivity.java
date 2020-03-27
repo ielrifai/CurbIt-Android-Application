@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
@@ -42,7 +43,6 @@ public class JournalNotificationActivity extends AppCompatActivity {
     TextView habitNotificationDescription;
     TextView habitNotificationTitle;
     HabitDao habitDao;
-    Button saveNotificationSettingsBtn;
     int habitId;
     String habitName;
 
@@ -52,11 +52,11 @@ public class JournalNotificationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_journal_notification);
-        saveNotificationSettingsBtn = findViewById(R.id.save_notification_settings_button);
         notificationTime = findViewById(R.id.notification_time_picker);
         notificationSwitch = findViewById(R.id.habit_notification_switch);
         habitNotificationTitle = findViewById(R.id.habit_notification_title);
         habitNotificationDescription = findViewById(R.id.habit_notification_description);
+        habitNotificationDescription.setMovementMethod(new ScrollingMovementMethod());
         habitNotificationSettings = findViewById(R.id.habit_notification_title);
         createNotificationChannel();
 
@@ -67,11 +67,12 @@ public class JournalNotificationActivity extends AppCompatActivity {
         habitDao.getHabitById(habitId).observe(this, habit -> habitName = habit.name);
         System.out.println("The habit id is: " + habitId);
 
-
-
-        saveNotificationSettingsBtn.setOnClickListener(v -> {
-            if(notificationSwitch.isChecked())
-                sendNotification();
+        notificationSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(notificationSwitch.isChecked())
+                    sendNotification();
+            }
         });
 
     }
