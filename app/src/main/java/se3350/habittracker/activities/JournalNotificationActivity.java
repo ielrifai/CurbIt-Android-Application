@@ -61,12 +61,15 @@ public class JournalNotificationActivity extends AppCompatActivity {
         habitNotificationSettings = findViewById(R.id.habit_notification_title);
         createNotificationChannel();
 
+        int habitId = getIntent().getIntExtra("HABIT_ID", -1 );
+
         //get daos
         AppDatabase db = AppDatabase.getInstance(getBaseContext());
         habitDao = db.habitDao();
 
+        getHabitById(habitId);
+
         if(previouslySet) {  //if the user has previously set notifications, load the TimePicker with the time they last set so that they don't need to re-enter a new time every time they turn notifications on
-            SharedPreferences settings = getSharedPreferences("MY_HABIT_1_NOTIFICATION", 0);
             //whatever the previous minute was set to
             hour = notificationTime.getHour();
             minute = notificationTime.getMinute();
@@ -89,7 +92,6 @@ public class JournalNotificationActivity extends AppCompatActivity {
         resultIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, resultIntent, 0);
 
-
         /*
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
         stackBuilder.addNextIntentWithParentStack(resultIntent);
@@ -98,8 +100,6 @@ public class JournalNotificationActivity extends AppCompatActivity {
                 stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 
          */
-
-
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "main_notifications")  //check channel ID
                 .setSmallIcon(R.drawable.ic_notifications_black_24dp)
@@ -133,7 +133,7 @@ public class JournalNotificationActivity extends AppCompatActivity {
 
                 else {
                     //turn off notifications for the habit
-                    editor.putBoolean("MY_HABIT_1_NOTIFICATION", false).apply();
+                    editor.putBoolean("MY_HABIT_1_NOTIFICATION", false).apply(); //habit key needs to be different
                     System.out.println("Notifications turned off");  //remove this after we get it working
                     notificationsOn = false;
                 }
