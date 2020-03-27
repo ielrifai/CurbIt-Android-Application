@@ -39,7 +39,7 @@ public class SlideAdapter extends PagerAdapter {
     };
 
     public String[] slide_texts={
-            "Welcome to CurbIt! The Habit Tracking App to help you overcome any hurdle and succeed.",
+            "Welcome to CurbIt! It's a revolutionary habit tracking app to help you catalogue, curtail and even curb all sorts of negative habits.",
             "Track your habit using the fool-proof '4 Step Process' developed by American Psychiatrist Dr.Jeffery Schwartz",
             "Kick your bad Habits to the Curb! Let's start by setting up a password."
 

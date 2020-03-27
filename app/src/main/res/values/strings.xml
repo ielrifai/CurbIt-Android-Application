@@ -35,7 +35,7 @@
     <string name="tutorial_introduction_app_description">This app implements the four step process from the book \"You Are Not Your Brain\", written by two leading experts in neurology. The four step method is an iterative process  which enables individuals to work to minimize negative habits.</string>
     <string name="tutorial">The Four Steps In Action</string>
     <string name="tutorial_example_description"> This is Steve. Steve REALLY likes coffee. He drinks 6-10 cups every single day. If Steve does not have coffee he develops bad headaches, shakes, struggles to focus, and becomes frusturated easily. Steve is worried that his love for java might be problematic.</string>
-    <string name="tutorial_example_start">Follow along as Steve uses HabitTracker to complete The Four Steps for his habit. Each step will be broken down into instructions, prompts and \"Steve Says\". The \"Steve Says\" section will explain Steve\'s answer for each of the steps. </string>
+    <string name="tutorial_example_start">Follow along as Steve uses CurbIt to complete The Four Steps for his habit. Each step will be broken down into instructions, prompts and \"Steve Says\". The \"Steve Says\" section will explain Steve\'s answer for each of the steps. </string>
     <string name="tutorial_example_title">Steve Says: </string>
     <string name="tutorial_prompt_title">Prompts: </string>
     <string name="tutorial_example_instruction">Instructions: </string>
@@ -47,7 +47,7 @@
     <string name="tutorial_summary_title">In Summary</string>
     <string name="tutorial_summary_to_home">Home</string>
     <string name="tutorial_summary_description">Moving forward, Steve continues to use the Four Step Process. Over time, Steve is able to stop his coffee abuse. It isn\'t easy, but Steve journals his progress and uses this app to curb his habit. </string>
-    <string name="tutorial_summary_body">HabitTracker allows individuals to catalogue, curtail and even curb all types of negative habits. Using HabitTracker, you too can stop negative habits.</string>
+    <string name="tutorial_summary_body">CurbIt allows individuals to catalogue, curtail and even curb all types of negative habits. Using CurbIt, you too can stop negative habits.</string>
 
 
     <!--Survey-->
