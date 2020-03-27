@@ -27,7 +27,7 @@ public class ReminderBroadcast extends BroadcastReceiver {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "journal_notification")
                 .setSmallIcon(R.drawable.ic_notifications_black_24dp)
                 .setContentTitle("Journaling Reminder!")
-                .setContentText("Add a journal entry for your habit " + name)
+                .setContentText("Hows it going with your habit: " + name +"?")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, LoginActivity.class), PendingIntent.FLAG_UPDATE_CURRENT));
 

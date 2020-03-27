@@ -115,10 +115,9 @@
     <string name="view_habit_subtitle">Habit Dashboard</string>
     <string name="view_habit_notification_preferences">Reminder Preferences</string>
     <string name="habit_notification_title">Habit Notification Preferences</string>
-    <string name="habit_notification_description">Worried about forgetting to journal your habit regularity? Don’t fret! HabitTracker has your back! Turn on daily notifications and HabitTracker will send you a reminder if you haven’t completed your journal by a specified time:</string>
-    <string name="habit_notification_switch">Receive Notifications for this Habit</string>
+    <string name="habit_notification_description">Worried you might forget about your habit? Don’t fret! HabitTracker has your back! Turn on daily notifications and HabitTracker will check in to make sure you are doing well: </string>
     <string name="habit_notification_set_time">Set Notification Time</string>
-    <string name="habit_notification_save">Save Habit Reminder Preferences</string>
+    <string name="habit_notification_save">Habit Notifications</string>
 
 
 

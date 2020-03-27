@@ -65,7 +65,7 @@
         android:layout_marginRight="20sp"
         android:layout_marginBottom="20sp"
         android:scrollbars="vertical"
-        android:text="@string/habit_notification_switch"
+        android:text="Turn on notifications"
         android:textColor="@android:color/secondary_text_light"
         android:textColorLink="#2196F3"
         app:layout_constraintBottom_toBottomOf="parent"

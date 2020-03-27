@@ -57,10 +57,13 @@ public class JournalNotificationActivity extends AppCompatActivity {
 
         notificationSettings = getSharedPreferences("PREFS", Context.MODE_PRIVATE);
         //Shared Preferences
-        if (notificationSettings.contains(getIntent().getIntExtra("HABIT_ID", -1) + "reminder"))
-        //if (notificationSettings.contains("reminder"))
-            notificationSwitch.setChecked(true);
 
+        if (notificationSettings.contains(getIntent().getIntExtra("HABIT_ID", -1) + "reminder")) {
+            boolean set = false;
+            notificationSettings.getBoolean(getIntent().getIntExtra("HABIT_ID", -1) + "reminder", set);
+            if(set)
+                notificationSwitch.setChecked(true);
+        }
 
         notificationSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -72,6 +75,13 @@ public class JournalNotificationActivity extends AppCompatActivity {
             }
         });
 
+        notificationTime.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+            @Override
+            public void onTimeChanged(TimePicker timePicker, int i, int i1) {
+                if(notificationSwitch.isChecked())
+                    sendNotification(true);
+            }
+        });
     }
 
     private void createNotificationChannel() {
