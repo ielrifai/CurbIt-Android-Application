@@ -60,7 +60,7 @@ public abstract class AppDatabase extends RoomDatabase {
         }
 
         //Comment the following line to not destroy the database on launch
-     //context.getApplicationContext().deleteDatabase(DB_NAME);
+        //context.getApplicationContext().deleteDatabase(DB_NAME);
 
         //connect Room to SQLCipher API - now Room uses SQLCipher
         SQLiteDatabase.loadLibs(context);
