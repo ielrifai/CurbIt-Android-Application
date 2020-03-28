@@ -29,7 +29,7 @@ public class ReminderBroadcast extends BroadcastReceiver {
                 .setContentTitle("Journaling Reminder!")
                 .setContentText("Hows it going with your habit: " + name +"?")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, LoginActivity.class), PendingIntent.FLAG_UPDATE_CURRENT));
+                .setContentIntent(PendingIntent.getActivity(context, habitId, new Intent(context, LoginActivity.class), PendingIntent.FLAG_UPDATE_CURRENT));
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
         notificationManager.notify(200, builder.build());

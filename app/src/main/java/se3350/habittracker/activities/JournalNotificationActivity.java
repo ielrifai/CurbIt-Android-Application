@@ -53,7 +53,6 @@ public class JournalNotificationActivity extends AppCompatActivity {
         habitDao = db.habitDao();
         habitId = getIntent().getIntExtra("HABIT_ID", -1);
         habitDao.getHabitById(habitId).observe(this, habit -> habitName = habit.name);
-        System.out.println("The habit Id is: " + habitId);
 
         notificationSettings = getSharedPreferences("PREFS", Context.MODE_PRIVATE);
         //Shared Preferences
@@ -61,7 +60,6 @@ public class JournalNotificationActivity extends AppCompatActivity {
         if (notificationSettings.contains(habitId + "reminder")) {
             boolean set = false;
             set = notificationSettings.getBoolean(habitId + "reminder", set);
-            System.out.println("Set is :" + set);
             if(set)
                 notificationSwitch.setChecked(true);
         }
@@ -108,12 +106,10 @@ public class JournalNotificationActivity extends AppCompatActivity {
         Intent intent = new Intent(JournalNotificationActivity.this, ReminderBroadcast.class);
         intent.putExtra("HABIT_ID", habitId);
         intent.putExtra("HABIT_NAME", habitName);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(JournalNotificationActivity.this, habitId, intent, 0);
-
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(JournalNotificationActivity.this, habitId, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-
+        
         if (isOn) {
-
             alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
             Boolean status = notificationSettings.edit().putBoolean(habitId + "reminder", true).commit();
         }
