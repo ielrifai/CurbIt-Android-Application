@@ -64,6 +64,18 @@ public class JournalNotificationActivity extends AppCompatActivity {
                 notificationSwitch.setChecked(true);
         }
 
+        if (notificationSettings.contains(habitId + "timeHour")) {
+            int hour = 0;
+            hour = notificationSettings.getInt(habitId+"timeHour", hour);
+            notificationTime.setHour(hour);
+        }
+
+        if (notificationSettings.contains(habitId + "timeMinute")) {
+            int minute = 0;
+            minute = notificationSettings.getInt(habitId+"timeMinute", minute);
+            notificationTime.setMinute(minute);
+        }
+
         notificationSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -79,6 +91,10 @@ public class JournalNotificationActivity extends AppCompatActivity {
             public void onTimeChanged(TimePicker timePicker, int i, int i1) {
                 if(notificationSwitch.isChecked())
                     sendNotification(true);
+
+                notificationSettings.edit().putInt(habitId +"timeHour", notificationTime.getHour()).commit();
+                notificationSettings.edit().putInt(habitId +"timeMinute", notificationTime.getMinute()).commit();
+
             }
         });
     }
@@ -108,7 +124,7 @@ public class JournalNotificationActivity extends AppCompatActivity {
         intent.putExtra("HABIT_NAME", habitName);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(JournalNotificationActivity.this, habitId, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        
+
         if (isOn) {
             alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
             Boolean status = notificationSettings.edit().putBoolean(habitId + "reminder", true).commit();
