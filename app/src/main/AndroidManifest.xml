@@ -11,6 +11,9 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activities.OnboardActivity" android:theme="@style/AppTheme.Onboard"></activity>
         <activity
+            android:name=".activities.JournalNotificationActivity"
+            android:parentActivityName=".activities.ViewHabitActivity" />
+        <activity
             android:name=".activities.TutorialSummaryActivity"
             android:parentActivityName=".activities.Step4TutorialActivity" />
         <activity
@@ -98,6 +101,9 @@
         <activity
             android:name=".activities.EditGoalActivity"
             android:parentActivityName=".activities.CompleteGoalActivity" />
+        <receiver
+            android:name=".ReminderBroadcast"
+            android:enabled="true" />
     </application>
 
 </manifest>
