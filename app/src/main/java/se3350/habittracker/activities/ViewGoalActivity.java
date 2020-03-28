@@ -43,7 +43,10 @@ public class ViewGoalActivity extends ActionBarActivity {
         subgoalDao = db.subgoalDao();
         habitDao = db.habitDao();
 
-        habitDao.getHabitById(habitId).observe(this, habit -> setTitle(getString(R.string.view_goal_progress_title, habit.name)));
+        habitDao.getHabitById(habitId).observe(this, habit -> {
+            if(habit == null) return;
+            setTitle(getString(R.string.view_goal_progress_title, habit.name));
+        });
 
         // Get subgoals from database
         LiveData<Subgoal[]> subgoalLiveData = subgoalDao.getSubgoalsByHabitId(habitId);

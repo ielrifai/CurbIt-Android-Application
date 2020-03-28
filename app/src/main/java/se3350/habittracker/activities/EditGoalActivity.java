@@ -53,6 +53,9 @@ public class EditGoalActivity extends ActionBarActivity {
         addSubgoalButton = findViewById(R.id.add_subgoal_btn);
         subgoalListView = findViewById(R.id.list_subgoal);
 
+        // Enable the subgoal list to scroll
+        subgoalListView.setNestedScrollingEnabled(true);
+
         // Get Daos
         AppDatabase db = AppDatabase.getInstance(getBaseContext());
         goalDao = db.goalDao();

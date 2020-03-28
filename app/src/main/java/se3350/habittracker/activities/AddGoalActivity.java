@@ -55,6 +55,10 @@ public class AddGoalActivity extends ActionBarActivity {
         addSubgoalButton = findViewById(R.id.add_subgoal_btn);
         subgoalListView = findViewById(R.id.list_subgoal);
 
+        // Enable the subgoal list to scroll
+        subgoalListView.setNestedScrollingEnabled(true);
+
+
         AppDatabase db = AppDatabase.getInstance(this);
 
         goalDao = db.goalDao();
