@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatDelegate;
+
 import com.anychart.AnyChart;
 import com.anychart.AnyChartView;
 import com.anychart.chart.common.dataentry.DataEntry;
@@ -38,6 +40,7 @@ public class ViewHabitProgressActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_view_habit_progress);
         setTitle(getString(R.string.habit_progress_header));
         // DateFormat to show the short dates without times
@@ -102,6 +105,13 @@ public class ViewHabitProgressActivity extends ActionBarActivity {
             String[] colours = { "#B22222" , "#FFA500",  "#FFD700", "#8BC34A" };
             lineChart.dataArea().background().enabled(true);
             lineChart.dataArea().background().fill(colours, 90, true, 100);
+
+            // Set back background
+            if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+                lineChart.background().fill("#292929");
+            } else {
+                lineChart.background().fill("#FFFFFF");
+            }
 
             // Put the chart in the  view
             anyChartView = (AnyChartView) findViewById(R.id.any_chart_view);

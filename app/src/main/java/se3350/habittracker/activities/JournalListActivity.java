@@ -1,12 +1,14 @@
 package se3350.habittracker.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -14,10 +16,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import se3350.habittracker.AppDatabase;
-import se3350.habittracker.models.JournalEntry;
-import se3350.habittracker.daos.JournalEntryDao;
 import se3350.habittracker.R;
 import se3350.habittracker.adapters.JournalListAdapter;
+import se3350.habittracker.daos.JournalEntryDao;
+import se3350.habittracker.models.JournalEntry;
 
 public class JournalListActivity extends ActionBarActivity {
 
@@ -28,6 +30,8 @@ public class JournalListActivity extends ActionBarActivity {
 
     JournalEntryDao journalEntryDao;
     JournalListAdapter adapter;
+
+    AppDatabase db = AppDatabase.getInstance(getBaseContext());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,15 +57,17 @@ public class JournalListActivity extends ActionBarActivity {
             }
         });
 
+        journalListView.setTextFilterEnabled(true);
+
         int habitId = getIntent().getIntExtra("HABIT_ID", -1);
 
         // Get Daos
-        AppDatabase db = AppDatabase.getInstance(getBaseContext());
         journalEntryDao = db.journalEntryDao();
 
         // Get journal entries from database
         journalEntryDao.getAllByHabit(habitId)
                 .observe(this, newJournalEntries -> setJournalEntries(newJournalEntries));
+
 
 
     }
@@ -77,4 +83,49 @@ public class JournalListActivity extends ActionBarActivity {
         journalEntries.addAll(Arrays.asList(newJournalEntries));
         adapter.notifyDataSetChanged();
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.menu_search, menu);
+
+        // Associate searchable configuration with the SearchView
+        SearchManager searchManager =
+                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView =
+                (SearchView) menu.findItem(R.id.search).getActionView();
+        searchView.setSearchableInfo(
+                searchManager.getSearchableInfo(getComponentName()));
+        searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default,
+        searchView.setSubmitButtonEnabled(true);
+
+
+        //Listener to record what the user enters into the search bar
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                String text = newText;
+                searchValidator(newText);//calling unit test function
+                journalListView.setFilterText(text);
+                return true;
+            }
+
+        });
+
+    return true; }
+
+    //Unit test to validate the user's search input
+    public static boolean searchValidator(String newText) {
+        if(newText.matches("\\d{1}/\\d{2}/\\d{2}"))
+            return true;
+        else
+            return false;
+    }
 }
+
+

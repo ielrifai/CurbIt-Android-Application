@@ -2,20 +2,16 @@ package se3350.habittracker;
 
 
 import android.content.Context;
-import android.content.SharedPreferences;
-
 
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
-import se3350.habittracker.daos.GoalDao;
-//import android.database.sqlite.SQLiteDatabase;
-//use sqlcipher instead of sqlite to create db
 import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SupportFactory;
 
+import se3350.habittracker.daos.GoalDao;
 import se3350.habittracker.daos.HabitDao;
 import se3350.habittracker.daos.JournalEntryDao;
 import se3350.habittracker.daos.ProgressDao;
@@ -25,6 +21,9 @@ import se3350.habittracker.models.Habit;
 import se3350.habittracker.models.JournalEntry;
 import se3350.habittracker.models.Progress;
 import se3350.habittracker.models.Subgoal;
+
+//import android.database.sqlite.SQLiteDatabase;
+//use sqlcipher instead of sqlite to create db
 
 @Database(entities = {Habit.class, JournalEntry.class, Progress.class, Goal.class, Subgoal.class}, version = 1, exportSchema = false)
 @TypeConverters({Converters.class})
@@ -72,4 +71,6 @@ public abstract class AppDatabase extends RoomDatabase {
                 .openHelperFactory(factory)
                 .build();
     }
+
+
 }

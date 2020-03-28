@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LiveData;
 
 import android.text.method.ScrollingMovementMethod;
@@ -12,7 +13,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.baoyachi.stepview.VerticalStepView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -20,20 +28,26 @@ import se3350.habittracker.AppDatabase;
 import se3350.habittracker.R;
 import se3350.habittracker.daos.GoalDao;
 import se3350.habittracker.daos.ProgressDao;
+import se3350.habittracker.daos.SubgoalDao;
+import se3350.habittracker.models.Goal;
 import se3350.habittracker.models.Habit;
 import se3350.habittracker.daos.HabitDao;
 import se3350.habittracker.daos.JournalEntryDao;
 import se3350.habittracker.models.JournalEntry;
 import se3350.habittracker.models.Progress;
+import se3350.habittracker.models.Subgoal;
 
 public class ViewHabitActivity extends ActionBarActivity {
 
-    int habitId, goalId;
+    int habitId, goalId, gamificationId;
     Habit habit;
     JournalEntry draft;
+    Goal goal;
+    List<Subgoal> subgoals;
 
     TextView habitDescriptionTextView, progressAverageTextView, progressAverageMessageTextView;
-    Button seeJournalButton, begin4StepsButton, resume4StepButton, seeProgressButton, viewGoalsButton, reminderNotificationsButton;
+    Button seeJournalButton, begin4StepsButton, resume4StepButton,
+            seeProgressButton, viewGoalsButton, addGoalButton, completeGoalButton, reminderNotificationsButton;
 
     private HabitDao habitDao;
     private JournalEntryDao journalEntryDao;
@@ -56,11 +70,25 @@ public class ViewHabitActivity extends ActionBarActivity {
         resume4StepButton = findViewById(R.id.resume_4_steps_btn);
         seeProgressButton = findViewById(R.id.see_progress_btn);
         viewGoalsButton = findViewById(R.id.view_goals_btn);
+        addGoalButton = findViewById(R.id.add_goal_button);
+        completeGoalButton = findViewById(R.id.complete_goal_btn);
         reminderNotificationsButton = findViewById(R.id.reminder_preferences_button);
 
 
 
         habitId = getIntent().getIntExtra("HABIT_ID", -1 );
+        gamificationId = getIntent().getIntExtra("GAMIFICATION_ID",0);
+
+        //if journal completed - celebrate with message!
+        if(gamificationId == 1){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage(R.string.alert_celebrate_journal)
+                    .setTitle(R.string.alert_celebrate_journal_title)
+                    .setPositiveButton(R.string.ok, ((dialog, which) -> {}));
+            // Show the AlertDialog
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
 
         // Get Daos and DB
         AppDatabase db = AppDatabase.getInstance(getBaseContext());
@@ -79,6 +107,7 @@ public class ViewHabitActivity extends ActionBarActivity {
             setHabit(habit);
         });
 
+        // Get progress from database
         LiveData<Progress[]> progressLiveData = progressDao.getAllByHabit(habitId);
         progressLiveData.observe(this, progresses -> {
             setProgressText(progresses);
@@ -89,14 +118,27 @@ public class ViewHabitActivity extends ActionBarActivity {
         LiveData<JournalEntry> journalEntryLiveData = journalEntryDao.getDraftOfHabit(habitId);
         journalEntryLiveData.observe(this, journalEntry -> setDraft(journalEntry));
 
+        // Get goal from database
+        LiveData<Goal> goalLiveData = goalDao.getGoalByHabitId(habitId);
+        goalLiveData.observe(this, goal -> setGoal(goal));
+
         seeJournalButton.setOnClickListener(event -> {
             Intent intent = new Intent(ViewHabitActivity.this, JournalListActivity.class).putExtra("HABIT_ID", habitId);
             startActivity(intent);
         });
 
+        completeGoalButton.setOnClickListener(event -> {
+            Intent intent = new Intent(ViewHabitActivity.this, CompleteGoalActivity.class).putExtra("HABIT_ID", habitId);
+            startActivity(intent);
+        });
+
         viewGoalsButton.setOnClickListener(event -> {
-            Intent intent = new Intent(ViewHabitActivity.this, ViewGoalListActivity.class).putExtra("GOAL_ID", goalId);
-            intent.putExtra("HABIT_ID", habitId);
+            Intent intent = new Intent(ViewHabitActivity.this, ViewGoalActivity.class).putExtra("HABIT_ID", habitId);
+            startActivity(intent);
+        });
+
+        addGoalButton.setOnClickListener(event -> {
+            Intent intent = new Intent(ViewHabitActivity.this, AddGoalActivity.class).putExtra("HABIT_ID", habitId);
             startActivity(intent);
         });
 
@@ -108,7 +150,7 @@ public class ViewHabitActivity extends ActionBarActivity {
         begin4StepsButton.setOnClickListener(event -> begin4Steps());
         resume4StepButton.setOnClickListener(event -> begin4Steps(draft.uid));
         seeProgressButton.setOnClickListener(event -> goToProgress());
-    }
+        }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -142,6 +184,22 @@ public class ViewHabitActivity extends ActionBarActivity {
         // if there is no draft, hide the resume button from layout
         if(draft == null) {
             resume4StepButton.setVisibility(View.GONE);
+        }
+    }
+
+    private void setGoal(Goal goal){
+        this.goal = goal;
+
+        // Hide the corresponding button to no goal / goal
+        if(goal == null) {
+            viewGoalsButton.setVisibility(View.GONE);
+            completeGoalButton.setVisibility(View.GONE);
+            addGoalButton.setVisibility(View.VISIBLE);
+        }
+        else {
+            addGoalButton.setVisibility(View.GONE);
+            viewGoalsButton.setVisibility(View.VISIBLE);
+            completeGoalButton.setVisibility(View.VISIBLE);
         }
     }
 

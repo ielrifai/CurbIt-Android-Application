@@ -4,11 +4,12 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/logo_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activities.OnboardActivity" android:theme="@style/AppTheme.Onboard"></activity>
         <activity
             android:name=".activities.JournalNotificationActivity"
             android:parentActivityName=".activities.ViewHabitActivity" />
@@ -30,12 +31,26 @@
         <activity
             android:name=".activities.Step1TutorialActivity"
             android:parentActivityName=".activities.TutorialIntroductionActivity" />
+
+        <activity android:name=".activities.ViewGoalActivity"
+            android:parentActivityName=".activities.ViewHabitActivity" />
         <activity
             android:name=".activities.ViewJournalEntryActivity"
             android:parentActivityName=".activities.JournalListActivity" />
         <activity
             android:name=".activities.JournalListActivity"
-            android:parentActivityName=".activities.ViewHabitActivity" />
+            android:parentActivityName=".activities.ViewHabitActivity">
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable">
+            </meta-data>
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+        </activity>
         <activity
             android:name=".activities.Step1EntryActivity"
             android:parentActivityName=".activities.ViewHabitActivity" />
@@ -56,10 +71,10 @@
             android:parentActivityName=".activities.ViewHabitActivity" />
         <activity android:name=".activities.CreatePasswordActivity" />
         <activity android:name=".activities.LoginActivity" />
-        <activity android:name=".activities.SplashActivity">
+        <activity android:name=".activities.SplashActivity"
+            android:theme="@style/AppTheme.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -68,21 +83,9 @@
             android:label="@string/title_activity_view_habit"
             android:parentActivityName=".activities.MainActivity" />
         <activity
-            android:name=".activities.ViewGoalActivity"
+            android:name=".activities.CompleteGoalActivity"
             android:label="@string/title_activity_view_goal"
-            android:parentActivityName=".activities.ViewGoalListActivity" />
-        <activity
-            android:name=".activities.ViewSubgoalActivity"
-            android:label="@string/title_activity_view_subgoal"
-            android:parentActivityName=".activities.ViewSubgoalListActivity" />
-        <activity
-            android:name=".activities.ViewGoalListActivity"
-            android:label="@string/goal_list"
             android:parentActivityName=".activities.ViewHabitActivity" />
-        <activity
-            android:name=".activities.ViewSubgoalListActivity"
-            android:label="@string/subgoal_list"
-            android:parentActivityName=".activities.ViewGoalActivity" />
         <activity
             android:name=".activities.MainActivity"
             android:label="@string/app_name"></activity>
@@ -96,14 +99,8 @@
             android:name=".activities.EditHabitActivity"
             android:parentActivityName=".activities.ViewHabitActivity" />
         <activity
-            android:name=".activities.AddSubgoalActivity"
-            android:parentActivityName=".activities.ViewSubgoalListActivity" />
-        <activity
             android:name=".activities.EditGoalActivity"
-            android:parentActivityName=".activities.ViewGoalActivity" />
-        <activity
-            android:name=".activities.EditSubgoalActivity"
-            android:parentActivityName=".activities.ViewSubgoalActivity" />
+            android:parentActivityName=".activities.CompleteGoalActivity" />
         <receiver
             android:name=".ReminderBroadcast"
             android:enabled="true" />

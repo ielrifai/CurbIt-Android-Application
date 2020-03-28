@@ -20,8 +20,8 @@ public interface SubgoalDao {
     @Query("SELECT * FROM subgoal WHERE uid=:id")
     LiveData<Subgoal> getSubgoalById(int id);
 
-    @Query("SELECT * FROM subgoal WHERE goalId=:goalId")
-    LiveData<Subgoal[]> getSubgoalsByGoalId(int goalId);
+    @Query("SELECT * FROM subgoal WHERE habitId=:habitId")
+    LiveData<Subgoal[]> getSubgoalsByHabitId(int habitId);
 
     //insert data
     //... - accept anything that is a list, array, or multiple arguments
@@ -33,4 +33,7 @@ public interface SubgoalDao {
 
     @Delete
     void delete(Subgoal subgoal);
+
+    @Query("DELETE FROM subgoal WHERE habitId=:habitId")
+    void deleteAllByHabitId(int habitId);
 }

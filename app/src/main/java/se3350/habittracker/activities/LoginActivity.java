@@ -39,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String pass = loginPassword.getText().toString();
+
                 //compare hashed password in saved preferences to password being entered
                 BCrypt.Result result = BCrypt.verifyer().verify(pass.toCharArray(), password);
                 //Log.v("verify", result.toString());
@@ -50,6 +51,10 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }
+                //if not password entered
+                else if(isPasswordEmpty(pass)){
+                    Toast.makeText(LoginActivity.this, "Please enter a Password", Toast.LENGTH_SHORT).show();
+                }
                 else{
                     Toast.makeText(LoginActivity.this, "Incorrect Password", Toast.LENGTH_SHORT).show();
                 }
@@ -57,5 +62,11 @@ public class LoginActivity extends AppCompatActivity {
 
         });
     }
+
+    //check if password entered
+    public static boolean isPasswordEmpty(String pass){
+        return pass.trim().isEmpty();
+    }
+
 
 }

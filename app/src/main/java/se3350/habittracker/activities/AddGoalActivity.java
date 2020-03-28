@@ -1,18 +1,27 @@
 package se3350.habittracker.activities;
 
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+
+import java.util.ArrayList;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import se3350.habittracker.AppDatabase;
 import se3350.habittracker.R;
+import se3350.habittracker.adapters.SubgoalEditListAdapter;
 import se3350.habittracker.daos.GoalDao;
+import se3350.habittracker.daos.SubgoalDao;
 import se3350.habittracker.models.Goal;
+import se3350.habittracker.models.Subgoal;
 
 public class AddGoalActivity extends ActionBarActivity {
 
@@ -20,9 +29,16 @@ public class AddGoalActivity extends ActionBarActivity {
     String goalName, goalDescription;
     int habitId;
 
-    EditText goalNameInput, goalDescriptionInput;
+    GoalDao goalDao;
+    SubgoalDao subgoalDao;
 
-    Button submitButton;
+    ArrayList<Subgoal> subgoals;
+    SubgoalEditListAdapter subgoalAdapter;
+
+    EditText goalNameInput, goalDescriptionInput;
+    ListView subgoalListView;
+    Button submitButton, addSubgoalButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,42 +46,88 @@ public class AddGoalActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_goal);
         //link to id with xml files
-        goalNameInput = (EditText) findViewById(R.id.goal_name);
-        goalDescriptionInput = (EditText) findViewById(R.id.goal_description);
+        goalNameInput = findViewById(R.id.goal_name);
+        goalDescriptionInput = findViewById(R.id.goal_description);
         //links goal to habit
         habitId = getIntent().getIntExtra("HABIT_ID", -1);
 
-        submitButton = (Button) findViewById(R.id.submit_btn);
+        submitButton = findViewById(R.id.submit_btn);
+        addSubgoalButton = findViewById(R.id.add_subgoal_btn);
+        subgoalListView = findViewById(R.id.list_subgoal);
 
-        submitButton.setOnClickListener(v -> {
-            //save goal info
-            goalName = goalNameInput.getText().toString();
-            goalDescription = goalDescriptionInput.getText().toString();
-            //if goal name or description is left blank
-            if(goalName.length() == 0 || goalDescription.length() == 0){
-                Toast.makeText(getApplicationContext(), R.string.error_add_goal,Toast.LENGTH_SHORT).show();
-                return;
-            }
+        AppDatabase db = AppDatabase.getInstance(this);
 
-            //add goal to db
-            Goal newGoal = new Goal(goalName, goalDescription, habitId);
+        goalDao = db.goalDao();
+        subgoalDao = db.subgoalDao();
 
-            AppDatabase db = AppDatabase.getInstance(this);
+        submitButton.setOnClickListener(v -> save());
 
-            GoalDao goalDao = db.goalDao();
+        addSubgoalButton.setOnClickListener(v -> addSubgoal());
 
-            // asynchronous insert using an executor
-            //to use Java 8 - go to project settings and change target compatibility to 1.8
-            Executor myExecutor = Executors.newSingleThreadExecutor();
-            myExecutor.execute(() -> {
-                goalDao.insertAll(newGoal);
-            });
-
-            onBackPressed();
-        });
-
+        subgoals = new ArrayList<>();
+        // Set the subgoal list adapter
+        subgoalAdapter = new SubgoalEditListAdapter(getBaseContext(), subgoals);
+        subgoalListView.setAdapter(subgoalAdapter);
     }
 
+    // Pre add subgoal into the list
+    private void addSubgoal() {
+        subgoals.add(new Subgoal("", 0, habitId));
+        subgoalAdapter.notifyDataSetChanged();
+    }
+
+    // Insert new goal and its subgoal in database
+    private void save() {
+        goalName = goalNameInput.getText().toString();
+        goalDescription = goalDescriptionInput.getText().toString();
+
+        //if goal name, or description is left blank
+        if (goalName.length() == 0 || goalDescription.length() == 0) {
+            Toast.makeText(getApplicationContext(), R.string.error_add_goal, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        //add goal to db
+        Goal newGoal = new Goal(goalName, goalDescription, habitId);
+        Executor goalExecutor = Executors.newSingleThreadExecutor();
+        goalExecutor.execute(() -> {
+            goalDao.insertOne(newGoal);
+        });
 
 
+        //clean subgoals list of subgoals with empty names
+        subgoals.removeIf(subgoal -> subgoal.name.isEmpty());
+
+        //get final position of subgoal
+        subgoals.forEach(subgoal -> subgoal.position = subgoals.indexOf(subgoal));
+
+        //add subgoals to db
+        Executor subExecutor = Executors.newSingleThreadExecutor();
+        subExecutor.execute(() -> {
+            subgoalDao.insertAll(subgoals.toArray(new Subgoal[0]));
+        });
+
+        onBackPressedGoal();
+    }
+
+    public void onBackPressedGoal(){
+        //goal added alert - gamification
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        // Add title and text to confirmation popup
+        builder.setMessage(R.string.alert_goal_gami)
+                .setTitle(R.string.alert_goal_gami_title);
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                onBackPressed();
+            }
+
+        });
+
+        // Create the AlertDialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+    }
 }

@@ -35,7 +35,7 @@
     <string name="tutorial_introduction_app_description">This app implements the four step process from the book \"You Are Not Your Brain\", written by two leading experts in neurology. The four step method is an iterative process  which enables individuals to work to minimize negative habits.</string>
     <string name="tutorial">The Four Steps In Action</string>
     <string name="tutorial_example_description"> This is Steve. Steve REALLY likes coffee. He drinks 6-10 cups every single day. If Steve does not have coffee he develops bad headaches, shakes, struggles to focus, and becomes frusturated easily. Steve is worried that his love for java might be problematic.</string>
-    <string name="tutorial_example_start">Follow along as Steve uses HabitTracker to complete The Four Steps for his habit. Each step will be broken down into instructions, prompts and \"Steve Says\". The \"Steve Says\" section will explain Steve\'s answer for each of the steps. </string>
+    <string name="tutorial_example_start">Follow along as Steve uses CurbIt to complete The Four Steps for his habit. Each step will be broken down into instructions, prompts and \"Steve Says\". The \"Steve Says\" section will explain Steve\'s answer for each of the steps. </string>
     <string name="tutorial_example_title">Steve Says: </string>
     <string name="tutorial_prompt_title">Prompts: </string>
     <string name="tutorial_example_instruction">Instructions: </string>
@@ -47,9 +47,9 @@
     <string name="tutorial_summary_title">In Summary</string>
     <string name="tutorial_summary_to_home">Home</string>
     <string name="tutorial_summary_description">Moving forward, Steve continues to use the Four Step Process. Over time, Steve is able to stop his coffee abuse. It isn\'t easy, but Steve journals his progress and uses this app to curb his habit. </string>
-    <string name="tutorial_summary_body">HabitTracker allows individuals to catalogue, curtail and even curb all types of negative habits. Using HabitTracker, you too can stop negative habits.</string>
+    <string name="tutorial_summary_body">CurbIt allows individuals to catalogue, curtail and even curb all types of negative habits. Using CurbIt, you too can stop negative habits.</string>
 
-
+    
     <!--Survey-->
     <string name="survey_title">How are you feeling?</string>
     <string name="survey_prompt">On a scale of 1 to 10, how much better are you feeling about your habit after going through the 4 step process?</string>
@@ -104,6 +104,7 @@
     <!--SubGoal-->
     <string name="add_subgoal_title">Add Subgoal</string>
     <string name="subgoal_name">Name the subgoal</string>
+    <string name="subgoal_n">Subgoal %1$d</string>
     <string name="add_subgoal_description">Add Subgoal Description</string>
     <string name="view_subgoal_description">The description of the subgoal</string>
 
@@ -122,9 +123,8 @@
 
 
 
-
     <!--Miscellaneous-->
-    <string name="app_name">Habit Tracker</string>
+    <string name="app_name">CurbIt</string>
     <string name="title_home">Home</string>
     <string name="title_information">Information</string>
     <string name="title_view_goal">Goal</string>
@@ -195,8 +195,38 @@
     <string name="loading">loading...</string>
     <string name="delete_subgoal">Delete Subgoal</string>
     <string name="chk_ios" />
+    <string name="add_subgoals">Add Subgoals</string>
+    <string name="no_goal">It seems you don\'t have a goal yet.\nAdd a goal now!</string>
+    <string name="view_goal">View Goal</string>
+    <string name="theme_title">Theme</string>
+    <string name="curbit">CurbIt</string>
+    <string name="habit_tracker">CurbIt - Habit Tracker</string>
+    <string name="logo">logo</string>
+    <string name="back">Back</string>
+    <string name="next">Next</string>
+    <string name="finish">Finish</string>
+    <string name="add_habit_success">Habit saved successfully</string>
+    <string name="alert_celebrate_journal">You are One Step Closer to Freedom!</string>
+    <string name="alert_celebrate_journal_title">Yay!</string>
+    <string name="alert_goal_gami">Amazing! You are one step closer to success!</string>
+    <string name="alert_goal_gami_title">You set a Goal!</string>
+    <string name="alert_subgoal_gami">You\'ve completed a SubGoal! One step closer to freedom!</string>
+    <string name="goal_complete">Goal Complete!</string>
+    <string name="subgoal_short_explanation_text">
+        A subgoal is a step in your journey to achieve your goal.\n
+        Each subgoal is a step forward your goal and those steps are linear: step 1 must be achieved before step 2.\n
+        For each subgoal, add a short description of a maximum of a few words describing the step.\n
+        Ex: smoking 1 cigarette a day
+    </string>
+    <string name="complete_goal">Complete Goal</string>
+    <string name="start">Start</string>
+    <string name="complete">Complete</string>
+    <string name="view_goal_progress_title">%1$s Goal Progress</string>
     <string name="channel_name">Journal Notification</string>
     <string name="channel_description">Notification reminder</string>
 
+    <string name="app_label">label</string>
+    <string name="search_hint">hint</string>
+    <string name="search_title">Search Title</string>
 
 </resources>

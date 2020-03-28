@@ -14,6 +14,7 @@ public class Goal {
 
     @ColumnInfo(name = "description")
     public String description;
+
     //goal is linked to a habit
     @ColumnInfo(name = "habitId")
     public int habitId;

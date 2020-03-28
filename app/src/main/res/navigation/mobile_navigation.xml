@@ -17,16 +17,5 @@
         android:label="@string/title_information"
         tools:layout="@layout/fragment_information" />
 
-    <fragment
-        android:id="@+id/navigation_goal"
-        android:name="se3350.habittracker.fragments.GoalFragment"
-        android:label="@string/title_goal"
-        tools:layout="@layout/fragment_goal" />
-
-    <fragment
-        android:id="@+id/navigation_subgoal"
-        android:name="se3350.habittracker.fragments.SubgoalFragment"
-        android:label="@string/title_subgoal"
-        tools:layout="@layout/fragment_subgoal" />
 
 </navigation>
