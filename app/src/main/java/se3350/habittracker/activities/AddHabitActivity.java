@@ -69,7 +69,6 @@ public class AddHabitActivity extends ActionBarActivity {
     }
 
     //checks if field is empty
-    public static boolean isHabitFormEmpty(String habitText){
-        return habitText.trim().isEmpty();
+    public static boolean isHabitFormEmpty(String habitText){ return habitText.trim().isEmpty();
     }
 }

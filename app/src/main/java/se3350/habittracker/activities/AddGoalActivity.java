@@ -130,4 +130,7 @@ public class AddGoalActivity extends ActionBarActivity {
         dialog.show();
 
     }
+    public static boolean isGoalFormEmpty(String goalText){
+        return goalText.trim().isEmpty();
+    }
 }
